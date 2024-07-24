@@ -1,0 +1,10 @@
+.Card {
+    display: flex;
+    flex-direction: column;
+    
+    border: 2px solid #000;
+}
+
+.Card img {
+    width: 250px;
+}

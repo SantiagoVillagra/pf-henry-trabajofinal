@@ -1,9 +1,10 @@
 
 export default function Form() {
 
+    
     return (
         <div>
-            <p>Soy un Form</p>
+            <h1>Añadir Producto</h1>
         </div>
     )
 }

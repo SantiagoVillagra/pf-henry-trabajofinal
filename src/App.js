@@ -8,6 +8,8 @@ import NavBar from "./Components/NavBar/NavBar"
 import Detail from "./Components/Detail/Detail"
 import Form from "./Components/Form/Form"
 import NotFound from "./Components/NotFound/NotFound"
+import SignUp from "./Components/SignUp/SignUp"
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         <Route path='/form' element={<Form/>}/>
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/signup' element={<SignUp/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>

@@ -11,6 +11,7 @@ export default function Card({ID, Name, Price, Image}) {
             <img src={Image} alt={Name} onClick={() => onClick(ID)}/>
             <p onClick={() => onClick(ID)}>{Name}</p>
             <p>{Price}</p>
+            <button>Ir al detalle</button>
         </div>
     )
 }

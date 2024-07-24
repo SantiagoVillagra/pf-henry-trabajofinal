@@ -18,16 +18,16 @@ h1{
 .header {
     background-color: #DDDDDD;
     width: 100%; 
-    height: 127px;
-    display: flex; /* Activa flexbox */
-    justify-content: flex-start; /* Justifica los elementos hacia la izquierda */
-    align-items: center; /* Centra los elementos verticalmente */
-    padding-left: 20px; /* Opcional: añade un padding para separar el logo del borde izquierdo */
+    height: 100px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
 }
 
 .logo {
-    height: 88px; /* Ajusta el tamaño del logo */
-    width: auto; /* Mantiene la proporción del logo */
+    height: 88px; 
+    width: auto; 
 }
 
 .button {

@@ -1,0 +1,9 @@
+.Detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Detail img {
+    width: 300px;
+}

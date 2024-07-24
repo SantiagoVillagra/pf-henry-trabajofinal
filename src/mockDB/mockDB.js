@@ -51,13 +51,13 @@ const sneakers = [
     },
     {
         ID: 6,
-        Name: "Tennis Adidas Game Spec 2",
+        Name: "Ligra 7",
         Brand: "Adidas",
         Size: [39, 45],
-        Price: 91000,
-        Gender: "Genderless",
+        Price: 103000,
+        Gender: "unisex",
         Sport: "Tennis",
-        Image: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw96e6c9a4/products/ADID2470/ADID2470-1.JPG"
+        Image: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwa0d9ce84/products/AD_FZ4660/AD_FZ4660-1.JPG"
     },
     {
         ID: 7,

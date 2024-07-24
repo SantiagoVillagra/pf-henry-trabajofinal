@@ -6,14 +6,14 @@ export default function Home() {
 
     return (
         <div className={styles.Home}>
-            {sneakers?.map(({ID, Name, Price, Image}) => {
+            {sneakers?.map(({ID, name, price, image}) => {
                 return (
                     <Card
                         key= {ID}
                         ID= {ID}
-                        Name= {Name}
-                        Price= {Price}
-                        Image= {Image}
+                        name= {name}
+                        price= {price}
+                        image= {image}
                     />
                 )
             })}

@@ -16,7 +16,7 @@ export default function Detail() {
             <img src={sneakerDetail.image} alt={sneakerDetail.name} />
             <div>
                 <p>{sneakerDetail.name}</p>
-                <p>${sneakerDetail.price}</p>
+                <p>$${sneakerDetail.price}</p>
                 <p>{sneakerDetail.sport}</p>
                 <p>Descripcion: {sneakerDetail.description}</p>
             </div>

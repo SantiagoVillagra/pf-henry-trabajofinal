@@ -13,12 +13,12 @@ export default function Detail() {
 
     return (
         <div className={styles.Detail}>
-            <img src={sneakerDetail.Image} alt={sneakerDetail.Name} />
+            <img src={sneakerDetail.image} alt={sneakerDetail.name} />
             <div>
-                <p>{sneakerDetail.Name}</p>
-                <p>${sneakerDetail.Price}</p>
-                <p>{sneakerDetail.Sport}</p>
-                <p>Descripcion: {sneakerDetail.Description}</p>
+                <p>{sneakerDetail.name}</p>
+                <p>$${sneakerDetail.price}</p>
+                <p>{sneakerDetail.sport}</p>
+                <p>Descripcion: {sneakerDetail.description}</p>
             </div>
         </div>
     )

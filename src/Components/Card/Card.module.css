@@ -1,10 +1,44 @@
+paletaDeColores{
+    color: #627254;
+    color: #76885B;
+    color: #999999;
+    color: #cccccc;
+    color: #EEEEEE;
+    color: #DDDDDD;
+
+}
+
 .Card {
     display: flex;
     flex-direction: column;
-    
-    border: 2px solid #000;
+    align-items: center;
+    margin: 5px;
+    margin-bottom: 15px;
+    border: 3px solid #76885B;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: bolder;
+    max-width: 250px; /* Limita el ancho de la tarjeta */
+    word-wrap: break-word;
 }
 
 .Card img {
     width: 250px;
+    border-radius: 10px;
 }
+
+.Card button {
+    background-color: #76885bc5;
+    font-size: large;
+    font-weight: bold;
+    width: 80%;
+    height: 40px;
+    border-radius: 8px;
+    font-family: sans-serif;  
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    
+}
+

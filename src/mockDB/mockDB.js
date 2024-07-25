@@ -56,13 +56,14 @@ const sneakers = [
     },
     {
         ID: 6,
-        Name: "Ligra 7",
-        Brand: "Adidas",
-        Size: [39, 45],
-        Price: 103000,
-        Gender: "unisex",
-        Sport: "Tennis",
-        Image: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwa0d9ce84/products/AD_FZ4660/AD_FZ4660-1.JPG"
+        name: "Ligra 7",
+        brand: "Adidas",
+        size: [39, 45],
+        price: 103000,
+        gender: "Unisex",
+        sport: "Tennis",
+        image: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwa0d9ce84/products/AD_FZ4660/AD_FZ4660-1.JPG",
+        description: "Vestibulum sed tortor sit amet odio sodales ultricies. Etiam tincidunt, justo ut molestie consequat, sapien lacus molestie arcu, laoreet consequat nisl nisi eget est. Cras ut libero gravida, elementum nisl nec, sagittis nisl. Etiam pulvinar, nibh id pretium facilisis, odio dolor hendrerit dui, condimentum tincidunt leo ligula bibendum justo. Cras iaculis hendrerit odio, sed dapibus odio semper id. Ut condimentum eros aliquet ligula bibendum volutpat.",
     },
     {
         ID: 7,

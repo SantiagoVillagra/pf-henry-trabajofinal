@@ -10,10 +10,12 @@ export default function Card({ID, name, price, image, brand}) {
     return (
         <div className={styles.Card}>
             <img src={image} alt={name} onClick={() => onClick(ID)}/>
-            <p onClick={() => onClick(ID)}> {brand} {name}</p>
+            <p onClick={() => onClick(ID)}>{brand}</p>
+            <p onClick={() => onClick(ID)}>{name}</p>
             <p>${price}</p>
             <button>Ir al detalle</button>
             <br />
+           
         </div>
     )
 }

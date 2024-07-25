@@ -13,22 +13,28 @@ paletaDeColores{
     flex-direction: column;
     align-items: center;
     margin: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     border: 3px solid #76885B;
     border-radius: 10px;
     font-size: larger;
     font-weight: bolder;
-    max-width: 250px; /* Limita el ancho de la tarjeta */
+    width: 300px; /* Limita el ancho de la tarjeta */
     word-wrap: break-word;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+.Card:hover {
+    transform: scale(1.05); /* Aumenta el tamaño de la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
 }
 
 .Card img {
-    width: 250px;
+    width: 200px;
     border-radius: 10px;
 }
 
 .Card button {
-    background-color: #76885bc5;
+    background-color: var(--color2, #76885bc5);
     font-size: large;
     font-weight: bold;
     width: 80%;
@@ -39,6 +45,24 @@ paletaDeColores{
     justify-content: center; 
     align-items: center; 
     cursor: pointer; 
+   
     
 }
 
+.Card p{
+    text-align: center; 
+    max-width: 250px; 
+    margin: 0; 
+    height: 2em; 
+    line-height: 1.2em;
+    
+} 
+
+.card:hover {
+  border: 1px solid black;
+  transform: scale(1.05);
+}
+
+.card:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}

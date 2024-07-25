@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import validation from "./validations"
+import styles from "../Login/Login.module.css"
+import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
 
 export default function Login() {
 
@@ -25,6 +27,7 @@ export default function Login() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <img src={logoNav} alt="logo shopsport" className={styles.logo} />
                 <div>
                     <label htmlFor="email"></label>
                     <input
@@ -49,7 +52,7 @@ export default function Login() {
                     <span>{errors.password}</span>
                 </div>
                 <div>
-                        <button type="submit">LOG IN</button>
+                        <button type="submit" className={styles.button}>LOG IN</button>
                         <hr />
                         <p>or</p>
                         <Link to={"/signup"}>

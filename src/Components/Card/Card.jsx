@@ -13,7 +13,7 @@ export default function Card({ID, name, price, image, brand}) {
             <p onClick={() => onClick(ID)}>{brand}</p>
             <p onClick={() => onClick(ID)}>{name}</p>
             <p>${price}</p>
-            <button>Ir al detalle</button>
+            <button onClick={() => onClick(ID)}>Ir al detalle</button>
             <br />
            
         </div>

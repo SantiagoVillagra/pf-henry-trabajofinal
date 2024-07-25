@@ -1,5 +1,24 @@
-.Home{
+.Home {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.Cards{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+.FiltrosYOrden {
+    display: flex;
+    flex-direction: column;
+}
+
+.ParInputLabel{
+    display: flex;
+    flex-direction: row;
+}
+
+.FiltrosYOrden input {
+    width: 15px;
 }

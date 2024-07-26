@@ -2,6 +2,7 @@ import sneakers from "../../mockDB/mockDB"
 import brands from "../../mockDB/mockBrands"
 import genders from "../../mockDB/mockGenders"
 import sports from "../../mockDB/mockSports"
+import filterAndOrder from "../../mockDB/mockFiltAndOrd"
 import Card from "../Card/Card"
 import { useState } from "react"
 import styles from "./Home.module.css"
@@ -37,7 +38,7 @@ export default function Home() {
 
     const handleChange = (event) => {
         setFilters({...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}})
-        console.log({ordenQuePaso: order, filtrosQuePaso: {...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}}});
+        filterAndOrder({ordenQuePaso: order, filtrosQuePaso: {...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}}});
 
     }
 

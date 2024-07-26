@@ -12,13 +12,37 @@
 .FiltrosYOrden {
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
-.ParInputLabel{
+.ParInputLabel {
     display: flex;
-    flex-direction: row;
+    align-items:end; /* Alinea verticalmente los elementos en el centro */
+    margin-bottom: 10px; /* Espacio entre las filas */
 }
 
-.FiltrosYOrden input {
+.ParInputLabel input {
     width: 15px;
+    height: 15px; /* Asegúrate de que el tamaño del input sea el adecuado */
+    margin-right: 8px; /* Espacio entre el input y el label */
 }
+
+.ParInputLabel label {
+    margin: 0; /* Elimina el margen por defecto del label */
+    font-size: 14px; /* Tamaño de fuente consistente para los labels */
+}
+.boldLabel{
+    font-size: large;
+    font-weight: bold;
+}
+
+.buttonPrice{
+    background-color: #76885bc5;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius:10px;
+    margin: 5px;
+ 
+  }

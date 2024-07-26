@@ -52,17 +52,17 @@ export default function Home() {
         <div className={styles.Home}>
 
             <div className={styles.FiltrosYOrden}>
-                <h3>Filtra tus zapatillas por:</h3>
+                <h2>Filtra tus zapatillas por:</h2>
 
                 <div>
-                    <p>PRECIO</p>
-                    <button onClick={() => onClick("menor")}>Menor precio</button>
-                    <button onClick={() => onClick("mayor")}>Mayor precio</button>
+                    <h4 className={styles.boldLabel}>PRECIO</h4>
+                    <button onClick={() => onClick("menor")} className={styles.buttonPrice}>Menor precio</button>
+                    <button onClick={() => onClick("mayor")} className={styles.buttonPrice}>Mayor precio</button>
                 </div>
                     
 
                 <div>
-                    <label htmlFor="sports">DEPORTE</label>
+                    <label htmlFor="sports" className={styles.boldLabel}>DEPORTE</label>
                     {sports?.map(sport => {
                         return (
                             <div className={styles.ParInputLabel}>
@@ -74,7 +74,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                    <label htmlFor="brands">MARCA</label>
+                    <label htmlFor="brands" className={styles.boldLabel}>MARCA</label>
                     {brands?.map(brand => {
                         return (
                             <div className={styles.ParInputLabel}>
@@ -86,7 +86,7 @@ export default function Home() {
                 </div>
 
                 <div>
-                    <label htmlFor="genders">GENERO</label>
+                    <label htmlFor="genders" className={styles.boldLabel}>GENERO</label>
                     {genders?.map(gender => {
                         return (
                             <div className={styles.ParInputLabel}>

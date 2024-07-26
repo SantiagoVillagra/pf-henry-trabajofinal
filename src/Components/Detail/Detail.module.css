@@ -7,21 +7,21 @@
     padding: 20px; /* Opcional: Agrega espacio alrededor del contenedor */
 }
 .DetailContent {
-    display: flex;
+    
     flex-direction: column;
-    align-items: center; /* Alinea los elementos al inicio del contenedor */
+    align-items: center;
 }
 
 .Detail img {
     width: 300px;
-    margin-right: 20px;
+    margin-left: 200px;
    align-self:auto;
 }
 .sneakerTable {
     border-collapse: collapse; /* Elimina los espacios entre bordes de celdas */
     width: 50%; /* Opcional: Hace que la tabla ocupe el 100% del ancho del contenedor */
     border:none;
-    margin:0
+    align-items: flex-start;
 }
 
 .sneakerTable td {
@@ -38,14 +38,22 @@
 }
 
 
-.sneakerTable-desription{
-    align-items: center;
-    justify-content: center;
-    max-width: 400px;
-    font-weight: bold
-}
 .sneakerTable .boldTd {
     font-weight: bolder;
     font-size: large;
     font-family: sans-serif;
+}
+.styedButton {
+    background-color: #DDDDDD;
+    border-color: #eeeeee;
+    font-size: large;
+    font-weight: bold;
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    font-family: sans-serif;  
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    
 }

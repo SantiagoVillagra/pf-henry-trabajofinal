@@ -28,7 +28,7 @@ return(
     <div className={styles.container}>
         <div className={styles.inputSearchContainer} >
         <input type="search"  value={searchShoe} placeholder="Busca tu modelo" onChange={handleChange}  className={styles.inputSearch}/>
-        <button onClick={handleSearch}  className={styles.botonSearch}>Buscar</button>
+        <button onClick={handleSearch} disabled={!searchShoe.trim()}  className={styles.botonSearch}>Buscar</button>
         </div>
         
     </div>

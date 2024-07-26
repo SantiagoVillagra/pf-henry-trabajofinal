@@ -16,7 +16,7 @@ export default function Detail() {
             <img src={sneakerDetail.image} alt={sneakerDetail.name} />
             <div className={styles.DetailContent}>
                 <h2>{sneakerDetail.brand} {sneakerDetail.name}</h2>
-                <button>Añadir al carrito</button>
+                <button className={styles.styedButton}>Añadir al carrito</button>
                 <table border="1" className={styles.sneakerTable}>
                     <tbody>
                         <tr>

@@ -39,10 +39,12 @@
 .buttonPrice{
     background-color: #76885bc5;
     color: rgb(0, 0, 0);
-    border: none;
+
+    border-color: #999999;
     padding: 10px;
     cursor: pointer;
     border-radius:10px;
     margin: 5px;
+    cursor: pointer; 
  
   }

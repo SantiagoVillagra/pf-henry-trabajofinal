@@ -1,9 +1,51 @@
 .Detail {
+    font-family: sans-serif;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center; /* Centra el contenido en el contenedor */
+    font-family: sans-serif;
+    padding: 20px; /* Opcional: Agrega espacio alrededor del contenedor */
+}
+.DetailContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos al inicio del contenedor */
 }
 
 .Detail img {
     width: 300px;
+    margin-right: 20px;
+   align-self:auto;
+}
+.sneakerTable {
+    border-collapse: collapse; /* Elimina los espacios entre bordes de celdas */
+    width: 50%; /* Opcional: Hace que la tabla ocupe el 100% del ancho del contenedor */
+    border:none;
+    margin:0
+}
+
+.sneakerTable td {
+    border: none; 
+    padding: 20px 50px; 
+    font-weight:normal;
+    text-align: left;
+}
+
+.sneakerTable tr {
+    border: none;
+    font-weight: bolder;
+    padding: 20px
+}
+
+
+.sneakerTable-desription{
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    font-weight: bold
+}
+.sneakerTable .boldTd {
+    font-weight: bolder;
+    font-size: large;
+    font-family: sans-serif;
 }

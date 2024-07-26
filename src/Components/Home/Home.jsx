@@ -67,7 +67,7 @@ export default function Home() {
                         return (
                             <div className={styles.ParInputLabel}>
                                 <input type="checkbox" name="sports" id={sport} value={sport} checked={filters.sports[sport]} onChange={handleChange}/>
-                                <label htmlFor={sport}>{sport.toUpperCase()}</label>
+                                <label htmlFor={sport}>{sport}</label>
                             </div>
                         )
                     })}
@@ -79,7 +79,7 @@ export default function Home() {
                         return (
                             <div className={styles.ParInputLabel}>
                                 <input type="checkbox" name="brands" id={brand} value={brand} checked={filters.brands[brand]} onChange={handleChange}/>
-                                <label htmlFor={brand}>{brand.toUpperCase()}</label>
+                                <label htmlFor={brand}>{brand}</label>
                             </div>
                         )
                     })}
@@ -91,7 +91,7 @@ export default function Home() {
                         return (
                             <div className={styles.ParInputLabel}>
                                 <input type="checkbox" name="genders" id={gender} value={gender} checked={filters.genders[gender]} onChange={handleChange}/>
-                                <label htmlFor={gender}>{gender.toUpperCase()}</label>
+                                <label htmlFor={gender}>{gender}</label>
                             </div>
                         )
                     })}

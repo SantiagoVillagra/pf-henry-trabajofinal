@@ -5,7 +5,7 @@
   
   .inputSearch {
     width: 100%;
-    padding: 10px 80px 10px 10px; /* Aumenta el padding para hacer espacio para el botón */
+    padding: 10px 70px 10px 10px; /* Aumenta el padding para hacer espacio para el botón */
     box-sizing: border-box;
     border-radius: 15px;
   }

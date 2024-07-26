@@ -1,0 +1,3 @@
+export const GET_SNEAKERS = "GET_SNEAKERS"
+
+export const ORDEN_Y_FILTRO = "ORDEN_Y_FILTRO"

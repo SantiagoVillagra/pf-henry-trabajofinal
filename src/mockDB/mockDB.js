@@ -252,7 +252,7 @@ const sneakers = [
         description: "Vestibulum sed tortor sit amet odio sodales ultricies. Etiam tincidunt, justo ut molestie consequat, sapien lacus molestie arcu, laoreet consequat nisl nisi eget est. Cras ut libero gravida, elementum nisl nec, sagittis nisl. Etiam pulvinar, nibh id pretium facilisis, odio dolor hendrerit dui, condimentum tincidunt leo ligula bibendum justo. Cras iaculis hendrerit odio, sed dapibus odio semper id. Ut condimentum eros aliquet ligula bibendum volutpat.",
     },
     {
-        ID: 23,
+        ID: 22,
         name: "Ever 2.0 Light",
         brand: "Topper",
         size: [40,41,42,43],

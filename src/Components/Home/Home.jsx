@@ -44,7 +44,7 @@ export default function Home() {
 
     const onClick = (order) => {
         setOrder({order: order})
-        console.log({ordenQuePaso: {order: order}, filtrosQuePaso: filters});
+        filterAndOrder({ordenQuePaso: {order: order}, filtrosQuePaso: filters});
     }
 
     return (

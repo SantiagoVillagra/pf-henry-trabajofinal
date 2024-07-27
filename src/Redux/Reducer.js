@@ -23,7 +23,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
 
     case ORDER_AND_FILTER_ACTION:
-      const {checked} = payload 
+      const checked = payload 
 
       const brandsToApply = Object.keys(checked.filtrosQuePaso.brands).filter(
         (key) => checked.filtrosQuePaso.brands[key]

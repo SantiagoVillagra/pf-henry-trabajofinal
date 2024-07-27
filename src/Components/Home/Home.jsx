@@ -2,14 +2,24 @@ import sneakers from "../../mockDB/mockDB"
 import brands from "../../mockDB/mockBrands"
 import genders from "../../mockDB/mockGenders"
 import sports from "../../mockDB/mockSports"
-import filterAndOrder from "../../mockDB/mockFiltAndOrd"
 import Card from "../Card/Card"
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import styles from "./Home.module.css"
+import {getAllShoes, orderAndFilterAction} from "../../Redux/Actions"
 
 export default function Home() {
 
+    const allShoes = useSelector((state)=>state.allShoes)
+    const orderAndFilter = useSelector((state)=>state.orderAndFilter)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAllShoes(sneakers))
+        
+    
+       }, [dispatch])
     const brandsDefault = {}
     
     brands.map(brand => {
@@ -34,18 +44,20 @@ export default function Home() {
         genders: gendersDefault
     }
 
+
+
     const [ filters, setFilters ] = useState(filtersDefault)
     const [ order, setOrder] = useState({order: null})
 
     const handleChange = (event) => {
         setFilters({...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}})
-        filterAndOrder({ordenQuePaso: order, filtrosQuePaso: {...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}}});
+        dispatch(orderAndFilterAction({ordenQuePaso: order, filtrosQuePaso: {...filters, [event.target.name]: {...filters[event.target.name], [event.target.value]: !filters[event.target.name][event.target.value]}}}));
 
     }
 
     const onClick = (order) => {
         setOrder({order: order})
-        filterAndOrder({ordenQuePaso: {order: order}, filtrosQuePaso: filters});
+        dispatch(orderAndFilterAction({ordenQuePaso: {order: order}, filtrosQuePaso: filters}));
     }
 
     return (
@@ -101,7 +113,7 @@ export default function Home() {
             </div>
 
             <div className={styles.Cards}>
-                {sneakers?.map(({ID, name, price, image, brand}) => {
+                {allShoes?.map(({ID, name, price, image, brand}) => {
                     return (
                         <Card
                             key= {ID}

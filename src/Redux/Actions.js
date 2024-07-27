@@ -1,6 +1,6 @@
-import { GET_ALL_SHOES, ORDER_AND_FILTER,SEARCH_SHOES, LOGIN_USER } from "./ActionsTypes";
+import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER } from "./ActionsTypes";
 
-import axios from "axios"
+import axios from "axios";
 
 
 
@@ -15,9 +15,9 @@ export  function getAllShoes(sneakers){
     }
 }
 
-export  function orderAndFilter(checked){
+export  function orderAndFilterAction(checked){
     return{
-        type:ORDER_AND_FILTER,
+        type:ORDER_AND_FILTER_ACTION,
         payload: checked
     }
 }

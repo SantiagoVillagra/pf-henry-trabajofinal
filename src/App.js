@@ -9,11 +9,22 @@ import Detail from "./Components/Detail/Detail"
 import Form from "./Components/Form/Form"
 import NotFound from "./Components/NotFound/NotFound"
 import SignUp from "./Components/SignUp/SignUp"
+import { useEffect } from "react";
+import getAllShoes from "./Redux/Actions";
+import { useDispatch } from "react-redux";
+import sneakers from "./mockDB/mockDB";
 
 
 function App() {
-
+ 
+  const dispatch = useDispatch()
   let location = useLocation()
+   useEffect(() => {
+    dispatch(getAllShoes(sneakers))
+
+   }, [])
+
+
 
   return (
     <div>

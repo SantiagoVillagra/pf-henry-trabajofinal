@@ -17,6 +17,10 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getAllShoes(sneakers))
+        dispatch(orderAndFilterAction({
+            ordenQuePaso: order,
+            filtrosQuePaso: filters
+        }))
         
     
        }, [dispatch])
@@ -113,7 +117,7 @@ export default function Home() {
             </div>
 
             <div className={styles.Cards}>
-                {allShoes?.map(({ID, name, price, image, brand}) => {
+                {orderAndFilter?.map(({ID, name, price, image, brand}) => {
                     return (
                         <Card
                             key= {ID}

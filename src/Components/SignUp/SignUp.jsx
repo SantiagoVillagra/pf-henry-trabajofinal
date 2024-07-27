@@ -1,8 +1,11 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import signUp from "../../mockDB/mockSignUp"
 import validation from "./validations"
 
 export default function Signup() {
+
+    const navigate = useNavigate()
 
     const [userData, setUserData] = useState({
         email: "",
@@ -13,12 +16,13 @@ export default function Signup() {
 
     const handleChange = (event) => {
         setUserData({...userData, [event.target.name]: event.target.value})
-        validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
+        //validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
+        const flag = signUp(userData)
+        flag === "flag" && navigate("/login")
     }
 
     return (

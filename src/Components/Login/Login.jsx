@@ -1,10 +1,13 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import validation from "./validations"
+import logIn from "../../mockDB/mockLogIn"
 import styles from "../Login/Login.module.css"
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
 
 export default function Login() {
+
+    const navigate = useNavigate()
 
     const [userData, setUserData] = useState({
         email: "",
@@ -15,13 +18,13 @@ export default function Login() {
 
     const handleChange = (event) => {
         setUserData({...userData, [event.target.name]: event.target.value})
-        validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
+        //validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
-        //*funcion que verifica acceso a la pagina -- Lo hace un controler desde el back?
+        const flag = logIn(userData)
+        flag === "flag" && navigate("/home")   
     }
 
     return (
@@ -52,13 +55,13 @@ export default function Login() {
                     <span>{errors.password}</span>
                 </div>
                 <div>
-                        <button type="submit" className={styles.button}>LOG IN</button>
-                        <hr />
-                        <p>or</p>
-                        <Link to={"/signup"}>
-                            <p>Sign up</p>
-                        </Link>
-                    </div>
+                    <button type="submit" className={styles.button}>LOG IN</button>
+                    <hr />
+                    <p>or</p>
+                    <Link to={"/signup"}>
+                        <p>Sign up</p>
+                    </Link>
+                </div>
             </form>
         </div>
     )

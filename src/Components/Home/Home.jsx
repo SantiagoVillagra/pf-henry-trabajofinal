@@ -4,7 +4,8 @@ import genders from "../../mockDB/mockGenders"
 import sports from "../../mockDB/mockSports"
 import filterAndOrder from "../../mockDB/mockFiltAndOrd"
 import Card from "../Card/Card"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import styles from "./Home.module.css"
 
 export default function Home() {

@@ -17,7 +17,7 @@ export default function Home() {
 
     useEffect(() => {
         dispatch(getAllShoes(sneakers))
-        dispatch()
+        
     
        }, [dispatch])
     const brandsDefault = {}
@@ -113,7 +113,7 @@ export default function Home() {
             </div>
 
             <div className={styles.Cards}>
-                {sneakers?.map(({ID, name, price, image, brand}) => {
+                {allShoes?.map(({ID, name, price, image, brand}) => {
                     return (
                         <Card
                             key= {ID}

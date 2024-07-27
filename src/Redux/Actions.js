@@ -15,6 +15,9 @@ export  function getAllShoes(sneakers){
     }
 }
 
+
+
+
 export  function orderAndFilterAction(checked){
     return{
         type:ORDER_AND_FILTER_ACTION,

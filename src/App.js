@@ -10,7 +10,7 @@ import Form from "./Components/Form/Form"
 import NotFound from "./Components/NotFound/NotFound"
 import SignUp from "./Components/SignUp/SignUp"
 import { useEffect } from "react";
-
+import 'typeface-montserrat';
 import { useDispatch } from "react-redux";
 import sneakers from "./mockDB/mockDB";
 

@@ -22,6 +22,8 @@
     width: 50%; /* Opcional: Hace que la tabla ocupe el 100% del ancho del contenedor */
     border:none;
     align-items: flex-start;
+    font-family: 'roboto';
+    
 }
 
 .sneakerTable td {
@@ -44,8 +46,9 @@
     font-family: sans-serif;
 }
 .styedButton {
-    background-color: #DDDDDD;
-    border-color: #eeeeee;
+    background-color: #76885bc5;
+    color: rgb(0, 0, 0);
+    border-color: #999999;
     font-size: large;
     font-weight: bold;
     width: 300px;
@@ -54,6 +57,8 @@
     font-family: sans-serif;  
     justify-content: center; 
     align-items: center; 
-    cursor: pointer; 
+    cursor:pointer;
+    box-shadow: 2px; /* Añade una sombra para dar un efecto de elevación */
     
 }
+

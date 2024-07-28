@@ -23,10 +23,10 @@ export function getShoeById(id){
     // }
 
 // aca el link deberia ser: "el link al deploy/home/id"
-    return{
-        type:GET_SHOE_BY_ID,
-        payload: sneakers
-    }
+    // return{
+    //     type:GET_SHOE_BY_ID,
+    //     payload: sneakers
+    // }
 }
 
 

@@ -7,6 +7,8 @@ import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import styles from "./Home.module.css"
 import {getAllShoes, orderAndFilterAction} from "../../Redux/Actions"
+import { Checkbox } from 'primereact/checkbox';
+
 
 export default function Home() {
 
@@ -76,9 +78,15 @@ export default function Home() {
                     <button onClick={() => onClick("menor")} className={styles.buttonPrice}>Menor precio</button>
                     <button onClick={() => onClick("mayor")} className={styles.buttonPrice}>Mayor precio</button>
                 </div>
-                    
 
-                <div>
+                <label htmlFor="sports" className={styles.boldLabel}>DEPORTE</label>
+            {sports?.map(sport => (
+                <div key={sport} className={styles.ParInputLabel}>
+                    <Checkbox inputId={sport} name="sports" value={sport} onChange={handleChange} checked={filters.sports[sport]} />
+                    <label htmlFor={sport} className="ml-2">{sport}</label>
+                </div>
+            ))}
+                {/* <div>
                     <label htmlFor="sports" className={styles.boldLabel}>DEPORTE</label>
                     {sports?.map(sport => {
                         return (
@@ -88,7 +96,7 @@ export default function Home() {
                             </div>
                         )
                     })}
-                </div>
+                </div> */}
 
                 <div>
                     <label htmlFor="brands" className={styles.boldLabel}>MARCA</label>

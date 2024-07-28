@@ -1,0 +1,20 @@
+:root {
+    --primary-color: #607d8b; /* Blue Gray */
+    --primary-color-text: #ffffff;
+    /* Puedes definir más variables CSS según sea necesario */
+}
+
+.p-button {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color-text) !important;
+}
+
+.p-inputtext {
+    border-color: var(--primary-color) !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    background-color: var(--primary-color) !important;
+    color: var(--primary-color-text) !important;
+}

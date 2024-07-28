@@ -7,12 +7,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
 
+// Importar estilos de PrimeReact
+import 'primereact/resources/themes/saga-blue/theme.css';  // Puedes cambiar 'saga-blue' por el tema que prefieras
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import './custom-theme.css';  // Archivo CSS personalizado para ajustes adicionales
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
-
 )
 reportWebVitals(sendToVercelAnalytics);

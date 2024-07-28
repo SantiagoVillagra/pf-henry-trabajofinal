@@ -4,6 +4,7 @@ import validation from "./validations"
 import logIn from "../../mockDB/mockLogIn"
 import styles from "../Login/Login.module.css"
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
+import { FloatLabel } from 'primereact/floatlabel';
 
 export default function Login() {
 

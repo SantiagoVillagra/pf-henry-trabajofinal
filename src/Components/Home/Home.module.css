@@ -25,6 +25,7 @@
     width: 15px;
     height: 15px; /* Asegúrate de que el tamaño del input sea el adecuado */
     margin-right: 8px; /* Espacio entre el input y el label */
+    background-color: #76885bc5 !important;
 }
 
 .ParInputLabel label {
@@ -36,15 +37,17 @@
     font-weight: bold;
 }
 
-.buttonPrice{
-    background-color: #76885bc5;
-    color: rgb(0, 0, 0);
-
+.buttonPrice {
+    background-color: #76885bc5 !important;
+    color: rgb(0, 0, 0) !important;
     border-color: #999999;
     padding: 10px;
     cursor: pointer;
-    border-radius:10px;
+    border-radius: 10px;
     margin: 5px;
-    cursor: pointer; 
- 
-  }
+}
+.paginatorContainer {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    margin-top: 20px; /* Espaciado opcional entre las tarjetas y el paginador */
+}

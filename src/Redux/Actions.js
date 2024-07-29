@@ -1,4 +1,4 @@
-import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER,GET_SHOE_BY_ID } from "./ActionsTypes";
+import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER } from "./ActionsTypes";
 
 import axios from "axios";
 
@@ -45,9 +45,15 @@ export  function searchShoes(shoeName){
     }
 }
 
-export  function loginUser(userData){
+export  function loginUser(loggedUser){
     return{
         type: LOGIN_USER,
-        payload:userData
+        payload:loggedUser
+    }
+}
+
+export  function logoutUser(){
+    return{
+        type: LOGOUT_USER
     }
 }

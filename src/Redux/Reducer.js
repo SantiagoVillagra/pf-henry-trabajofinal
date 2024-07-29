@@ -1,16 +1,17 @@
-import { orderAndFilter } from "./Actions";
+
 import {
   GET_ALL_SHOES,
   ORDER_AND_FILTER_ACTION,
   SEARCH_SHOES,
   LOGIN_USER,
+  LOGOUT_USER
 } from "./ActionsTypes";
 
 const initialState = {
   allShoes: [],
   searchedShoes: [],
   orderAndFilter: [],
-  loginUser: [],
+  loggedUserData: {},
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -67,8 +68,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
       }
 
       return { ...state, orderAndFilter: filteredSneakers };
-      
-      default:
+    
+    case LOGIN_USER: 
+    
+      const {isadmin, username} = payload
+      return {...state, loggedUserData: {isadmin, username}}
+
+    case LOGOUT_USER:
+      return {...state, loggedUserData: {}}
+
+    default:
         return {...state};
   }
 

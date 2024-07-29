@@ -6,4 +6,6 @@ export const SEARCH_SHOES = "SEARCH_SHOES"
 
 export const LOGIN_USER = "LOGIN_USER"
 
+export const LOGOUT_USER = "LOGOUT_USER"
+
 export const GET_SHOE_BY_ID = "GET_SHOE_BY_ID"

@@ -1,14 +1,17 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 import validation from "./validations"
 import logIn from "../../mockDB/mockLogIn"
 import styles from "../Login/Login.module.css"
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
 import { FloatLabel } from 'primereact/floatlabel';
+import { loginUser } from "../../Redux/Actions"
 
 export default function Login() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [userData, setUserData] = useState({
         email: "",
@@ -24,8 +27,8 @@ export default function Login() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const flag = logIn(userData)
-        flag === "flag" && navigate("/home")   
+        const loggedUser = logIn(userData)
+        loggedUser && dispatch(loginUser(loggedUser)) && navigate("/home")
     }
 
     return (

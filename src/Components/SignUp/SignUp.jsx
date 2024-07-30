@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
+import styles from "./SignUp.module.css"
 import signUp from "../../mockDB/mockSignUp"
 import validation from "./validations"
 
@@ -30,8 +32,9 @@ export default function Signup() {
 
     return (
         <div>
+            
             <form onSubmit={handleSubmit}>
-
+                <img src={logoNav} alt="logo shopsport" className={styles.logo} />
                 <div>
                     <div>
                         <label htmlFor="username"></label>

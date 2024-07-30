@@ -3,6 +3,7 @@ import brands from "../../mockDB/mockBrands";
 import genders from "../../mockDB/mockGenders";
 import sports from "../../mockDB/mockSports";
 import Card from "../Card/Card";
+import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Home.module.css";
@@ -99,6 +100,26 @@ export default function Home() {
       })
     );
   };
+
+  if (!orderAndFilter.length) {
+    Swal.fire({
+      title: "No se encontraron resultados",
+      showClass: {
+          popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+          `
+      },
+      hideClass: {
+          popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+          `
+      }
+  });
+  }
 
   return (
     <div className={styles.Home}>

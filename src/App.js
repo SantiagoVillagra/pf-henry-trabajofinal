@@ -28,7 +28,6 @@ function App() {
   return (
     <div>
       {location.pathname !== "/" && <NavBar/>}
-      {loggedUserData.username && <p>{loggedUserData.username}</p>}
       <Routes>
         <Route path='/' element={<Landing/>}/>
         <Route path='/home' element={<Home/>}/>

@@ -140,59 +140,42 @@ export default function Home() {
             </label>
           </div>
         ))}
-        {/* <div>
-                    <label htmlFor="sports" className={styles.boldLabel}>DEPORTE</label>
-                    {sports?.map(sport => {
-                        return (
-                            <div className={styles.ParInputLabel}>
-                                <input type="checkbox" name="sports" id={sport} value={sport} checked={filters.sports[sport]} onChange={handleChange}/>
-                                <label htmlFor={sport}>{sport}</label>
-                            </div>
-                        )
-                    })}
-                </div> */}
-
         <div>
           <label htmlFor="brands" className={styles.boldLabel}>
             MARCA
           </label>
-          {brands?.map((brand) => {
-            return (
-              <div className={styles.ParInputLabel}>
-                <input
-                  type="checkbox"
-                  name="brands"
-                  id={brand}
-                  value={brand}
-                  checked={filters.brands[brand]}
-                  onChange={handleChange}
-                />
-                <label htmlFor={brand}>{brand}</label>
-              </div>
-            );
-          })}
+          {brands?.map((brand) => (
+            <div key={brand} className={styles.ParInputLabel}>
+              <Checkbox
+                inputId={brand}
+                name="brands"
+                value={brand}
+                onChange={handleChange}
+                checked={filters.brands[brand]}
+              />
+              <label htmlFor={brand} className="ml-2">
+                {brand}
+              </label>
+            </div>
+          ))}
         </div>
-
-        <div>
-          <label htmlFor="genders" className={styles.boldLabel}>
-            GENERO
-          </label>
-          {genders?.map((gender) => {
-            return (
-              <div className={styles.ParInputLabel}>
-                <input
-                  type="checkbox"
-                  name="genders"
-                  id={gender}
-                  value={gender}
-                  checked={filters.genders[gender]}
-                  onChange={handleChange}
-                />
-                <label htmlFor={gender}>{gender}</label>
-              </div>
-            );
-          })}
-        </div>
+        <label htmlFor="genders" className={styles.boldLabel}>
+          GENERO
+        </label>
+        {genders?.map((gender) => (
+          <div key={gender} className={styles.ParInputLabel}>
+            <Checkbox
+              inputId={gender}
+              name="genders"
+              value={gender}
+              onChange={handleChange}
+              checked={filters.genders[gender]}
+            />
+            <label htmlFor={gender} className="ml-2">
+              {gender}
+            </label>
+          </div>
+        ))}
       </div>
       <div>
         <div className={styles.Cards}>

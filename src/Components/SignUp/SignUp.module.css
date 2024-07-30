@@ -1,0 +1,19 @@
+.logo{
+    width: 50%;
+}
+
+.Buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    background-color: #76885bc5;
+    font-size: large;
+    border-radius: 4px;
+    font-family: sans-serif;  
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+}

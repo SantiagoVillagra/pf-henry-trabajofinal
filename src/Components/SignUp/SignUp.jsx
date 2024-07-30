@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
+import styles from "./SignUp.module.css"
 import signUp from "../../mockDB/mockSignUp"
 import validation from "./validations"
 
@@ -30,8 +32,9 @@ export default function Signup() {
 
     return (
         <div>
+            
             <form onSubmit={handleSubmit}>
-
+                <img src={logoNav} alt="logo shopsport" className={styles.logo} />
                 <div>
                     <div>
                         <label htmlFor="username"></label>
@@ -83,13 +86,12 @@ export default function Signup() {
                         <br />
                         <span>{errors.passwordRepeat}</span>
                     </div>
-                    <div>
-                        <button type="submit">SIGN UP</button>
-                        <hr />
-                        <p>or</p>
-                        <Link to={"/login"}>
-                            <p>Log in</p>
-                        </Link>
+                    <div className={styles.Buttons}>
+                        <button type="submit" className={styles.button}>SIGN UP</button>
+                        <span>or</span>
+                        <button onClick={() => navigate("/login") } className={styles.button}>LOG IN</button>
+                        {/* <Link to={"/login"}>
+                        </Link> */}
                     </div>
                 </div>
 

@@ -8,20 +8,23 @@ export default function Signup() {
     const navigate = useNavigate()
 
     const [userData, setUserData] = useState({
+        username: "", 
         email: "",
-        password: ""
+        password: "",
+        passwordRepeat: ""
     })
 
     const [ errors, setErrors] = useState({})
 
     const handleChange = (event) => {
         setUserData({...userData, [event.target.name]: event.target.value})
-        //validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
+        validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const flag = signUp(userData)
+        validation(userData, setErrors, errors)
+        const flag = signUp(userData, errors)
         flag === "flag" && navigate("/login")
     }
 
@@ -30,6 +33,19 @@ export default function Signup() {
             <form onSubmit={handleSubmit}>
 
                 <div>
+                    <div>
+                        <label htmlFor="username"></label>
+                        <input 
+                            type="text" 
+                            name="username" 
+                            value={userData.username} 
+                            placeholder="USERNAME..."
+                            onChange={handleChange}
+                        />
+                        <span>{errors.username}</span>
+                        
+                    </div>
+
                     <div>
                         <label htmlFor="email"></label>
                         <input 
@@ -42,7 +58,7 @@ export default function Signup() {
                         <span>{errors.email}</span>
                         
                     </div>
-
+                    
                     <div>
                         <label htmlFor="password"></label>
                         <input 
@@ -52,7 +68,20 @@ export default function Signup() {
                             placeholder="PASSWORD..." 
                             onChange={handleChange}
                         />
+                    </div>
+
+                    <div>
+                        <label htmlFor="passwordRepeat"></label>
+                        <input 
+                            type="password" 
+                            name="passwordRepeat" 
+                            value={userData.passwordRepeat}
+                            placeholder="REPEAT PASSWORD..." 
+                            onChange={handleChange}
+                        />
                         <span>{errors.password}</span>
+                        <br />
+                        <span>{errors.passwordRepeat}</span>
                     </div>
                     <div>
                         <button type="submit">SIGN UP</button>

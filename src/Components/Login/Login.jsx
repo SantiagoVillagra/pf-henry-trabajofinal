@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
-import validation from "./validations"
 import logIn from "../../mockDB/mockLogIn"
 import styles from "../Login/Login.module.css"
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png"
@@ -22,7 +21,6 @@ export default function Login() {
 
     const handleChange = (event) => {
         setUserData({...userData, [event.target.name]: event.target.value})
-        //validation({...userData, [event.target.name]: event.target.value}, setErrors, errors, event.target.name)
     }
 
     const handleSubmit = (event) => {

@@ -4,6 +4,7 @@ import mockDB from "../../mockDB/mockDB";
 import { useEffect } from "react";
 import { useLocation, useParams } from 'react-router-dom';
 import Card from "../Card/Card";
+import styles from "./Search.module.css"
 
 
 
@@ -29,7 +30,7 @@ export default function Search() {
 
 
     return (
-        <div>
+        <div className={styles.cardSearch} >
                 {filteredShoes.map(({ID, name, price, image, brand}) => (
                     <Card
                     key={ID}

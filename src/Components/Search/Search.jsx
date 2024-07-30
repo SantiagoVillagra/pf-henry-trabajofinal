@@ -3,6 +3,7 @@ import { useState } from "react";
 import mockDB from "../../mockDB/mockDB";
 import { useEffect } from "react";
 import { useLocation, useParams } from 'react-router-dom';
+import Card from "../Card/Card";
 
 
 
@@ -29,15 +30,17 @@ export default function Search() {
 
     return (
         <div>
-            <ul>
-                {filteredShoes.map(shoe => (
-                    <li key={shoe.ID}>
-                        <h2>{shoe.name}</h2>
-                        <p>{shoe.brand}</p>
-                        <img src={shoe.image} alt={shoe.name} />
-                    </li>
+                {filteredShoes.map(({ID, name, price, image, brand}) => (
+                    <Card
+                    key={ID}
+                    ID={ID}
+                    brand={brand}
+                    name={name}
+                    price={price}
+                    image={image}
+                  />
                 ))}
-            </ul>
+           
         </div>
     );
 }

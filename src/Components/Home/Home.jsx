@@ -203,7 +203,7 @@ export default function Home() {
         ))}
       </div>
       <div>
-        <div className={styles.cardContainer}>
+        <div className={styles.Cards}>
           {paginatedData.map(({ ID, name, price, image, brand }) => (
             <Card
               key={ID}
@@ -214,18 +214,16 @@ export default function Home() {
               image={image}
             />
           ))}
+        </div>
 
-<Paginator
+        {/* Paginador */}
+        <Paginator
           className={styles.paginatorContainer}
           first={first}
           rows={rows}
           totalRecords={totalRecords}
           onPageChange={handlePageChange}
         />
-        
-        </div>
-
-          
       </div>
     </div>
   );

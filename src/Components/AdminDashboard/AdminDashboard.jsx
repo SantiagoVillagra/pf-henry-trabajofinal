@@ -1,6 +1,7 @@
 import { logoutUser } from "../../Redux/Actions"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import Create from "../Create/Create"
 
 export default function AdminDashboard() {
 
@@ -13,6 +14,7 @@ export default function AdminDashboard() {
 
     return (
         <div>
+            <Create></Create>
             <p>Soy un AdminDashboard</p>
             <button onClick={() => logOut()}>LOG OUT</button>
         </div>

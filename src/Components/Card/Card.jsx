@@ -2,6 +2,7 @@ import styles from "./Card.module.css"
 import { useNavigate } from "react-router-dom"
 
 
+
 export default function Card({ID, name, price, image, brand}) {
 
     const navigate = useNavigate()

@@ -7,15 +7,17 @@ import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Home.module.css";
-import { getAllShoes, orderAndFilterAction } from "../../Redux/Actions";
+import { getAllShoes, orderAndFilterAction, addToCartAction } from "../../Redux/Actions";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import css from "../../../src/custom-theme.css";
 import { Paginator } from "primereact/paginator";
 
 export default function Home() {
+
   const [first, setFirst] = useState(0); // Índice del primer elemento de la página actual
   const [rows, setRows] = useState(6); // Número de elementos por página
+  const [isLoading, setIsLoading] = useState(true)
 
   const allShoes = useSelector((state) => state.allShoes);
   const orderAndFilter = useSelector((state) => state.orderAndFilter);
@@ -39,8 +41,10 @@ export default function Home() {
         ordenQuePaso: order,
         filtrosQuePaso: filters,
       })
-    );
+    )
+    setIsLoading(false)
   }, [dispatch]);
+  
   const brandsDefault = {};
 
   brands.map((brand) => {
@@ -101,7 +105,7 @@ export default function Home() {
     );
   };
 
-  if (!orderAndFilter.length) {
+  if (!isLoading && !orderAndFilter.length) {
     Swal.fire({
       title: "No se encontraron resultados",
       showClass: {

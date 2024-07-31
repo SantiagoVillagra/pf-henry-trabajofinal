@@ -2,8 +2,6 @@ import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SH
 
 import axios from "axios";
 
-
-
 export  function getAllShoes(sneakers){
     // return function(dispatch) {
     //     axios("http://localhost:3001/countries")

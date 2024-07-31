@@ -14,7 +14,6 @@ import AdminDashboard from "./Components/AdminDashboard/AdminDashboard"
 import { useEffect } from "react";
 import 'typeface-montserrat';
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "./Redux/Actions";
 import sneakers from "./mockDB/mockDB";
 
 
@@ -23,7 +22,6 @@ function App() {
   const dispatch = useDispatch()
   const loggedUserData = useSelector(state => state.loggedUserData)
   let location = useLocation()
-  
 
   return (
     <div>

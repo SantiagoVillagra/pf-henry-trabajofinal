@@ -4,7 +4,10 @@ import {
   ORDER_AND_FILTER_ACTION,
   SEARCH_SHOES,
   LOGIN_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  LOAD_CART
 } from "./ActionsTypes";
 
 const initialState = {
@@ -12,6 +15,7 @@ const initialState = {
   searchedShoes: [],
   orderAndFilter: [],
   loggedUserData: {},
+  cart: []
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {

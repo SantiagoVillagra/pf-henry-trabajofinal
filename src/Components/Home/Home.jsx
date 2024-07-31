@@ -168,6 +168,7 @@ export default function Home() {
         <div>
           <label htmlFor="brands" className={styles.boldLabel}>
             MARCA
+            <br />
           </label>
           {brands?.map((brand) => (
             <div key={brand} className={styles.ParInputLabel}>

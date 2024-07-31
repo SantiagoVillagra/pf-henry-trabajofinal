@@ -16,6 +16,7 @@ import { Paginator } from "primereact/paginator";
 export default function Home() {
   const [first, setFirst] = useState(0); // Índice del primer elemento de la página actual
   const [rows, setRows] = useState(6); // Número de elementos por página
+  const [isLoading, setIsLoading] = useState(true)
 
   const allShoes = useSelector((state) => state.allShoes);
   const orderAndFilter = useSelector((state) => state.orderAndFilter);
@@ -39,8 +40,10 @@ export default function Home() {
         ordenQuePaso: order,
         filtrosQuePaso: filters,
       })
-    );
+    )
+    setIsLoading(false)
   }, [dispatch]);
+  
   const brandsDefault = {};
 
   brands.map((brand) => {
@@ -101,7 +104,7 @@ export default function Home() {
     );
   };
 
-  if (!orderAndFilter.length) {
+  if (!isLoading && !orderAndFilter.length) {
     Swal.fire({
       title: "No se encontraron resultados",
       showClass: {

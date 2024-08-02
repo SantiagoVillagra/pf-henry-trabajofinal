@@ -1,16 +1,17 @@
-import sneakers from "../../mockDB/mockDB"
-import { useParams } from "react-router-dom"
-import styles from "./Detail.module.css"
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import styles from "./Detail.module.css";
 
 export default function Detail() {
+    const { ID } = useParams();
+    const allShoes = useSelector(state => state.allShoes);
+    const sneakerDetail = allShoes.find(sneaker => sneaker.ID === parseInt(ID));
 
-    const {ID} = useParams()
-    const sneakerFilter = sneakers.filter(sneaker => {
-        return(sneaker.ID === parseInt(ID))
+
+    if (!sneakerDetail) {
+        return <p>La zapatilla no fue encontrada.</p>;
     }
-    )
-    const sneakerDetail = sneakerFilter[0]
-
+   
     return (
         <div className={styles.Detail}>
             <img src={sneakerDetail.image} alt={sneakerDetail.name} />
@@ -30,10 +31,10 @@ export default function Detail() {
                         <tr>
                             <td className={styles.boldTd}>Precio</td>
                             <td>$ {sneakerDetail.price}</td>
-                        </tr>
+                        </tr> 
                         <tr>
                             <td className={styles.boldTd}>Talles</td>
-                            <td>{sneakerDetail.size.join(', ')}</td>
+                            <td>{sneakerDetail.size ? sneakerDetail.size.join(', ') : 'No disponible'}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Género</td>
@@ -50,6 +51,8 @@ export default function Detail() {
                     </tbody>
                 </table>
             </div>
+
+            
         </div>
-    )
+    );
 }

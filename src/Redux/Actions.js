@@ -3,14 +3,14 @@ import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SH
 import axios from "axios";
 
 export  function getAllShoes(sneakers){
-    // return function(dispatch) {
-    //     axios("http://localhost:3001/countries")
-    //     .then(({data}) => dispatch({type: GET_ALL_SHOES, payload: data}))
-    // }
-    return{
-        type:GET_ALL_SHOES,
-        payload: sneakers
+    return function(dispatch) {
+        axios("https://backend-tp-final-phi.vercel.app/sneakers")
+        .then(({data}) => dispatch({type: GET_ALL_SHOES, payload: data}))
+        .catch(error => {
+            console.error('Network Error:', error);
+          });
     }
+   
 }
 
 export function getShoeById(id){
@@ -29,12 +29,14 @@ export function getShoeById(id){
 
 
 
-export  function orderAndFilterAction(checked){
-    return{
-        type:ORDER_AND_FILTER_ACTION,
-        payload: checked
-    }
-}
+export function orderAndFilterAction({ ordenQuePaso, filtrosQuePaso }) {
+    return function(dispatch) {
+      dispatch({
+        type: ORDER_AND_FILTER_ACTION,
+        payload: { ordenQuePaso, filtrosQuePaso },
+      });
+    };
+  }
 
 export  function searchShoes(shoeName){
     return{

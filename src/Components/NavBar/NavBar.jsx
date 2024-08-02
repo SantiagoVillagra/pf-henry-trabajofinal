@@ -12,7 +12,6 @@ export default function Navbar() {
     const navigate = useNavigate()
     const loggedUserData = useSelector(state => state.loggedUserData)
 
-    console.log(loggedUserData);
 
     return (
         <div className={style.navbar}>

@@ -1,4 +1,4 @@
-import sneakers from "../../mockDB/mockDB";
+//import sneakers from "../../mockDB/mockDB";
 import brands from "../../mockDB/mockBrands";
 import genders from "../../mockDB/mockGenders";
 import sports from "../../mockDB/mockSports";
@@ -34,16 +34,7 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllShoes(sneakers));
-    dispatch(
-      orderAndFilterAction({
-        ordenQuePaso: order,
-        filtrosQuePaso: filters,
-      })
-    )
-    setIsLoading(false)
-  }, [dispatch]);
+
   
   const brandsDefault = {};
 
@@ -124,6 +115,28 @@ export default function Home() {
       }
   });
   }
+
+  useEffect(() => {
+    dispatch(getAllShoes())
+    
+      
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (allShoes.length > 0) {
+      dispatch(
+        orderAndFilterAction({
+          ordenQuePaso: order,
+          filtrosQuePaso: filters,
+        })
+      );
+      setIsLoading(false);
+    }
+  }, [dispatch, order, filters, allShoes]);
+
+
+  console.log("allShoes:", allShoes);
+ 
 
   return (
     <div className={styles.Home}>

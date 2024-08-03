@@ -1,7 +1,6 @@
 /* Contenedor principal de la navbar */
 .navbar {
-    /*background: linear-gradient(to top, white 5%, #DDDDDD);*/
-    background:  #f02a2aef;
+    background: #f02a2aef;
     width: 100%;
     height: 80px; /* Ajusta la altura de la navbar si es necesario */
     display: flex;
@@ -13,15 +12,18 @@
 }
 
 /* Logo */
-.logo {
+.logo img {
     height: 40px; /* Ajusta la altura fija del logo */
     width: auto; /* Ajusta el ancho automáticamente para mantener la proporción */
+    cursor: pointer; /* Cambia el cursor cuando pasa sobre el logo */
 }
 
 /* Contenedor de la barra de búsqueda y los íconos */
-.rightCenter {
+.navbar-actions {
     display: flex;
     align-items: center;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    gap: 5px; /* Ajusta el espacio entre la barra de búsqueda y los botones */
 }
 
 /* Barra de búsqueda */
@@ -32,12 +34,9 @@
 }
 
 /* Íconos */
-.icon {
+.navbar-button {
     height: 40px; /* Ajusta la altura de los íconos */
     width: 40px; /* Ajusta el ancho de los íconos */
-    object-fit: contain;
-    margin: 25px; /* Espaciado entre los íconos */
-    background-color: none;
 }
 
 /* Media Queries para adaptarse a pantallas más pequeñas */
@@ -49,14 +48,15 @@
         padding: 10px;
     }
 
-    .logo {
+    .logo img {
         height: 30px; /* Ajusta la altura del logo en pantallas más pequeñas */
     }
 
-    .rightCenter {
+    .navbar-actions {
         flex-direction: column;
         align-items: flex-start;
         margin-top: 10px;
+        gap: 10px; /* Ajusta el espacio entre los elementos en pantallas más pequeñas */
     }
 
     .searchBar {
@@ -66,15 +66,14 @@
         max-width: none; /* Elimina el ancho máximo en pantallas pequeñas */
     }
 
-    .icon {
+    .navbar-button {
         height: 30px; /* Ajusta la altura de los íconos en pantallas más pequeñas */
         width: 30px; /* Ajusta el ancho de los íconos */
-        margin-left: 10px; /* Reduce el margen entre los íconos */
     }
 }
 
 @media (max-width: 480px) {
-    .logo {
+    .logo img {
         height: 20px; /* Ajusta la altura del logo en pantallas muy pequeñas */
     }
 
@@ -82,7 +81,7 @@
         font-size: 14px; /* Ajusta el tamaño del texto de la barra de búsqueda */
     }
 
-    .icon {
+    .navbar-button {
         height: 25px; /* Ajusta la altura de los íconos para pantallas muy pequeñas */
         width: 25px; /* Ajusta el ancho de los íconos */
     }
@@ -90,7 +89,7 @@
 
 /* Media Query para pantallas grandes */
 @media (min-width: 1200px) {
-    .logo {
+    .logo img {
         height: 50px; /* Ajusta la altura del logo en pantallas grandes */
     }
 
@@ -98,7 +97,7 @@
         max-width: 400px; /* Ajusta el ancho máximo de la barra de búsqueda */
     }
 
-    .icon {
+    .navbar-button {
         height: 45px; /* Ajusta la altura de los íconos en pantallas grandes */
         width: 45px; /* Ajusta el ancho de los íconos */
     }

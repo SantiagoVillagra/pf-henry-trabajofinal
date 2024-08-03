@@ -6,16 +6,14 @@ import mockDB from "../../mockDB/mockDB";
 import { InputText } from 'primereact/inputtext';
 import 'primeicons/primeicons.css'; // Asegúrate de importar los estilos de PrimeIcons
 import { Button } from "primereact/button";
-import {FaSearch} from 'react-icons/fa'
-
+import { FaSearch } from 'react-icons/fa';
 
 export default function SearchBar() {
     const navigate = useNavigate();
-    
+
     // Estado para manejar la visibilidad de la barra de búsqueda
     const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
     const [searchShoe, setSearchShoe] = useState('');
-    const [filteredShoes, setFilteredShoes] = useState(mockDB);
 
     const handleChange = (event) => {
         setSearchShoe(event.target.value);
@@ -66,7 +64,7 @@ export default function SearchBar() {
             <div className={styles.inputSearchContainer}>
                 {isSearchBarVisible && (
                     <InputText 
-                        className="search-input" 
+                        className={styles.searchInput} 
                         placeholder="Buscar..." 
                         value={searchShoe} 
                         onChange={handleChange} 
@@ -75,7 +73,7 @@ export default function SearchBar() {
                 )}
                 <Button 
                     icon={<FaSearch />} 
-                    className="navbar-button" 
+                    className={styles.navbarButton} 
                     onClick={toggleSearchBar} 
                 />
             </div>

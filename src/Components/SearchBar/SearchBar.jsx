@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import styles from "./SearchBar.module.css";
 import mockDB from "../../mockDB/mockDB";
-import { InputText } from "primereact/inputtext";
+import { InputText } from 'primereact/inputtext';
+import 'primeicons/primeicons.css'; // Asegúrate de importar los estilos de PrimeIcons
 import { Button } from "primereact/button";
+import { FaSearch } from 'react-icons/fa';
+import styles from "./SearchBar.module.css"
 
 export default function SearchBar() {
     const navigate = useNavigate();
 
+    // Estado para manejar la visibilidad de la barra de búsqueda
+    const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
     const [searchShoe, setSearchShoe] = useState('');
-    const [filteredShoes, setFilteredShoes] = useState(mockDB);
 
     const handleChange = (event) => {
         setSearchShoe(event.target.value);
@@ -19,12 +22,10 @@ export default function SearchBar() {
     const handleSearch = (event) => {
         event.preventDefault();
 
-        
         const filteredItems = mockDB.filter(shoe => 
             shoe.name.toLowerCase().includes(searchShoe.toLowerCase())
         );
 
-       
         if (filteredItems.length === 0) {
             Swal.fire({
                 title: "No se encontraron resultados",
@@ -48,21 +49,32 @@ export default function SearchBar() {
         }
     };
 
+    const toggleSearchBar = () => {
+        setIsSearchBarVisible(!isSearchBarVisible);
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch(event);
+        }
+    };
+
     return (
-        <div className={styles.container}>
-            <div className={styles.inputSearchContainer}>
-                <InputText 
-                    type="search"  
-                    value={searchShoe} 
-                    placeholder="Busca tu modelo" 
-                    onChange={handleChange}  
-                    className={styles.inputSearch} 
-                />
+        <div >
+            <div >
+                {isSearchBarVisible && (
+                    <InputText 
+                        
+                        placeholder="Buscar..." 
+                        value={searchShoe} 
+                        onChange={handleChange} 
+                        onKeyDown={handleKeyDown} // Detecta la tecla Enter
+                    />
+                )}
                 <Button 
-                    onClick={handleSearch} 
-                    disabled={!searchShoe.trim()}  
-                    className={styles.botonSearch} 
-                    icon="pi pi-search"
+                    icon={<FaSearch />} 
+                    className={styles.transparentIcon}
+                    onClick={toggleSearchBar} 
                 />
             </div>
         </div>

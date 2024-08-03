@@ -4,7 +4,7 @@ import axios from "axios";
 
 export  function getAllShoes(sneakers){
     return function(dispatch) {
-        axios("https://backend-tp-final-phi.vercel.app/sneakers")
+        axios("https://e-commerse-fc.onrender.com/api/shoes")
         .then(({data}) => dispatch({type: GET_ALL_SHOES, payload: data}))
         .catch(error => {
             console.error('Network Error:', error);
@@ -13,21 +13,28 @@ export  function getAllShoes(sneakers){
    
 }
 
-export function getShoeById(id){
-
-     // return function(dispatch) {
-    //     axios("http://localhost:3001/countries")
-    //     .then(({data}) => dispatch({type: GET_ALL_SHOES, payload: data}))
-    // }
-
-// aca el link deberia ser: "el link al deploy/home/id"
-    // return{
-    //     type:GET_SHOE_BY_ID,
-    //     payload: sneakers
-    // }
+// export function getShoeById(id) {
+//     return function(dispatch) {
+//         axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
+//             .then(({ data }) => dispatch({ type: GET_SHOE_BY_ID, payload: data }))
+//             .catch(error => {
+//                 console.error("Error fetching shoe data:", error.message);
+//                 // Puedes despachar una acción de error si tienes una para manejar esto en tu reducer
+//                 dispatch({ type: "FETCH_SHOE_ERROR", payload: error.message });
+//             });
+//     };
+// }
+export function getShoeById(id) {
+    return function(dispatch) {
+        axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
+            .then(({ data }) => {
+                dispatch({ type: GET_SHOE_BY_ID, payload: data });
+            })
+            .catch(error => {
+                console.error("Error fetching shoe data:", error);
+            });
+    };
 }
-
-
 
 export function orderAndFilterAction({ ordenQuePaso, filtrosQuePaso }) {
     return function(dispatch) {

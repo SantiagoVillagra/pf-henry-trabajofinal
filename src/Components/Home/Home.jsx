@@ -1,4 +1,3 @@
-//import sneakers from "../../mockDB/mockDB";
 import brands from "../../mockDB/mockBrands";
 import genders from "../../mockDB/mockGenders";
 import sports from "../../mockDB/mockSports";
@@ -10,7 +9,7 @@ import styles from "./Home.module.css";
 import { getAllShoes, orderAndFilterAction, addToCartAction } from "../../Redux/Actions";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
-import css from "../../../src/custom-theme.css";
+
 import { Paginator } from "primereact/paginator";
 
 export default function Home() {
@@ -135,7 +134,7 @@ export default function Home() {
   }, [dispatch, order, filters, allShoes]);
 
 
-  console.log("allShoes:", allShoes);
+
  
 
   return (
@@ -145,19 +144,17 @@ export default function Home() {
 
         <div>
           <h4 className={styles.boldLabel}>PRECIO</h4>
-          {/* <button onClick={() => onClick("menor")} className={styles.buttonPrice}>Menor precio</button> */}
-          {/* <button onClick={() => onClick("mayor")} className={styles.buttonPrice}>Mayor precio</button> */}
+          
           <Button
             label="Menor precio"
             raised
             onClick={() => onClick("menor")}
-            className="buttonPrice"
-          ></Button>
+            className={styles.buttonPrice}          ></Button>
           <Button
             label="Mayor precio"
             raised
             onClick={() => onClick("mayor")}
-            className="buttonPrice"
+            className={styles.buttonPrice}
           ></Button>
         </div>
 
@@ -218,15 +215,17 @@ export default function Home() {
       </div>
       <div>
         <div className={styles.Cards}>
-          {paginatedData.map(({ ID, name, price, image, brand }) => (
+          {paginatedData.map(({ id, name, price, image, brand }) => (
             <Card
-              key={ID}
-              ID={ID}
+              key={id}
+              id={id}
               brand={brand}
               name={name}
               price={price}
               image={image}
             />
+
+            
           ))}
         </div>
 

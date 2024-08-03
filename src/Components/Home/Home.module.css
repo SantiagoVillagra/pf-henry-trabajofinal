@@ -39,12 +39,12 @@
 }
 
 .buttonPrice {
-    background-color: #76885bc5 !important;
-    color: rgb(0, 0, 0) !important;
+    background-color:#a1a1a1 !important;
+    color: rgb(255, 255, 255) !important;
     border-color: #999999;
     padding: 10px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 50px;
     margin: 5px;
 }
 .paginatorContainer {
@@ -52,3 +52,16 @@
     justify-content: center; /* Centra horizontalmente */
     margin-top: 20px; /* Espaciado opcional entre las tarjetas y el paginador */
 }
+.buttonPrice{
+    background-color: #76885bc5;
+    color: rgb(0, 0, 0);
+    border-color: #999999;
+    padding: 10px;
+    cursor: pointer;
+    border-radius:10px;
+    margin: 5px;
+    cursor: pointer; 
+    transform: scale(1.05); /* Aumenta el tamaño de la tarjeta */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+ 
+  }

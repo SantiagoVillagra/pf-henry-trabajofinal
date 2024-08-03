@@ -4,7 +4,7 @@ import axios from "axios";
 
 export  function getAllShoes(sneakers){
     return function(dispatch) {
-        axios("https://backend-tp-final-phi.vercel.app/sneakers")
+        axios("https://e-commerse-fc.onrender.com/api/shoes")
         .then(({data}) => dispatch({type: GET_ALL_SHOES, payload: data}))
         .catch(error => {
             console.error('Network Error:', error);

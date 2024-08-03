@@ -7,7 +7,8 @@ import {
   LOGOUT_USER,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  LOAD_CART
+  LOAD_CART,
+  GET_SHOE_BY_ID
 } from "./ActionsTypes";
 
 const initialState = {
@@ -15,7 +16,8 @@ const initialState = {
   searchedShoes: [],
   orderAndFilter: [],
   loggedUserData: {},
-  cart: []
+  cart: [],
+  detail:[]
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -80,6 +82,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case LOGOUT_USER:
       return {...state, loggedUserData: {}}
+
+    case GET_SHOE_BY_ID:
+      return{...state, detail:payload}
 
     default:
         return {...state};

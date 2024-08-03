@@ -1,0 +1,21 @@
+.transparentIcon{
+    background-color: transparent !important;
+    color: white; /* Mantiene el color del icono según el contexto */
+    border: none; /* Elimina cualquier borde que pueda estar presente */
+    font-size: 1.5em; /* Agranda el tamaño del icono */
+   
+}
+.searchbar {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.searchInput {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    height: 2em; /* Ajusta la altura según sea necesario */
+    border-radius: 4px; /* Opcional: Añade bordes redondeados si lo prefieres */
+}

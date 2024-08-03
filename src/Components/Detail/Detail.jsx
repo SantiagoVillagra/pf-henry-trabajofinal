@@ -4,14 +4,18 @@ import styles from "./Detail.module.css";
 
 export default function Detail() {
     const { ID } = useParams();
-    const allShoes = useSelector(state => state.allShoes);
-    const sneakerDetail = allShoes.find(sneaker => sneaker.ID === parseInt(ID));
+    const sneakerDetail = useSelector(state => state.detail); // Accede a detail
 
+    // Asegúrate de que el detalle se encuentra correctamente
+    console.log("Detail component ID:", ID);
+    console.log("Sneaker Detail:", sneakerDetail);
 
-    if (!sneakerDetail) {
+    if (!sneakerDetail || sneakerDetail.id !== parseInt(ID)) {
         return <p>La zapatilla no fue encontrada.</p>;
     }
-   
+
+    const sizes = sneakerDetail.sizes.map(size => size.value).join(', ');
+
     return (
         <div className={styles.Detail}>
             <img src={sneakerDetail.image} alt={sneakerDetail.name} />
@@ -34,7 +38,7 @@ export default function Detail() {
                         </tr> 
                         <tr>
                             <td className={styles.boldTd}>Talles</td>
-                            <td>{sneakerDetail.size ? sneakerDetail.size.join(', ') : 'No disponible'}</td>
+                            <td>{sizes || 'No disponible'}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Género</td>
@@ -51,8 +55,6 @@ export default function Detail() {
                     </tbody>
                 </table>
             </div>
-
-            
         </div>
     );
 }

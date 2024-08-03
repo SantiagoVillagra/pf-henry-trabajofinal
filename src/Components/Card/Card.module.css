@@ -22,6 +22,7 @@ paletaDeColores{
     width: 300px; /* Limita el ancho de la tarjeta */
     word-wrap: break-word;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
     
 }
 .Card:hover {

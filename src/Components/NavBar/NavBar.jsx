@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
-import LogoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
+import LogoNav from "../../Assets/LogoNav.png";
 import { useSelector } from "react-redux";
 import SearchBar from "../SearchBar/SearchBar";
 import { Button } from 'primereact/button';
 import { FaUser, FaShoppingCart } from 'react-icons/fa';
-import 'primeicons/primeicons.css'; // Asegúrate de importar los estilos de PrimeIcons
+
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -21,17 +21,17 @@ const Navbar = () => {
                 />
             </div>
             <div className={styles.navbarActions}>
-                <SearchBar className={styles.navbarButton}  />
+            <SearchBar className={`${styles.transparentIcon} ${styles.searchbar}`} />
                 <Button 
                     icon={<FaUser />} 
-                    className={styles.navbarButton} 
+                    className={styles.transparentIcon} 
                     onClick={() => {
                         return loggedUserData.username ? navigate("/dashboard") : navigate("/login");
                     }}
                 />
                 <Button 
                     icon={<FaShoppingCart />} 
-                    className={styles.navbarButton} 
+                    className={styles.transparentIcon} 
                     onClick={() => navigate("/shop")}
                 />
             </div>

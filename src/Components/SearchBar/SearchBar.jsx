@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-import styles from "./SearchBar.module.css";
 import mockDB from "../../mockDB/mockDB";
 import { InputText } from 'primereact/inputtext';
 import 'primeicons/primeicons.css'; // Asegúrate de importar los estilos de PrimeIcons
 import { Button } from "primereact/button";
 import { FaSearch } from 'react-icons/fa';
+import styles from "./SearchBar.module.css"
 
 export default function SearchBar() {
     const navigate = useNavigate();
@@ -60,11 +60,11 @@ export default function SearchBar() {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.inputSearchContainer}>
+        <div >
+            <div >
                 {isSearchBarVisible && (
                     <InputText 
-                        className={styles.searchInput} 
+                        
                         placeholder="Buscar..." 
                         value={searchShoe} 
                         onChange={handleChange} 
@@ -73,7 +73,7 @@ export default function SearchBar() {
                 )}
                 <Button 
                     icon={<FaSearch />} 
-                    className={styles.navbarButton} 
+                    className={styles.transparentIcon}
                     onClick={toggleSearchBar} 
                 />
             </div>

@@ -1,4 +1,5 @@
 import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER } from "./ActionsTypes";
+import Swal from 'sweetalert2';
 
 import axios from "axios";
 
@@ -48,9 +49,20 @@ export function orderAndFilterAction({ ordenQuePaso, filtrosQuePaso }) {
   export function searchShoes(shoeName) {
     return (dispatch, getState) => {
         const allShoes = getState().allShoes;
+        const lowerCaseShoeName = shoeName.toLowerCase();
+
         const filteredShoes = allShoes.filter(shoe =>
-            shoe.name.toLowerCase().includes(shoeName.toLowerCase())
+            shoe.name.toLowerCase().includes(lowerCaseShoeName)
         );
+
+        if (filteredShoes.length === 0) {
+            Swal.fire({
+                icon: 'info',
+                title: 'No se encontraron productos',
+                text: `No hay productos que coincidan con "${shoeName}".`,
+            });
+        }
+
         dispatch({ type: SEARCH_SHOES, payload: filteredShoes });
     }
 }

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from 'sweetalert2';
 import { InputText } from 'primereact/inputtext';
 import 'primeicons/primeicons.css';
 import { Button } from "primereact/button";
 import { FaSearch } from 'react-icons/fa';
 import styles from "./SearchBar.module.css";
-import { getAllShoes, searchShoes } from "../../Redux/Actions";
+import { searchShoes } from "../../Redux/Actions";
 
 export default function SearchBar() {
     const navigate = useNavigate();

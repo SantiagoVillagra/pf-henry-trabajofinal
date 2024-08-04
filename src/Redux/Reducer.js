@@ -25,8 +25,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_SHOES:
       return { ...state, allShoes: payload };
 
-    case SEARCH_SHOES:
-      return { ...state, searchedShoes: payload };
+      case SEARCH_SHOES:
+        return {
+            ...state,
+            searchedShoes: payload
+        };
 
 
     case ORDER_AND_FILTER_ACTION:

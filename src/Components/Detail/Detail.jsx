@@ -1,40 +1,56 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react"
 import styles from "./Detail.module.css";
+import axios from "axios"
 
 export default function Detail() {
+
     const { ID } = useParams();
-    const sneakerDetail = useSelector(state => state.detail); // Accede a detail
+    const [shoeDetail, setShoeDetail] = useState({})
+    const [loading, setLoading] = useState(true);
 
-    // Asegúrate de que el detalle se encuentra correctamente
-    console.log("Detail component ID:", ID);
-    console.log("Sneaker Detail:", sneakerDetail);
+    useEffect(() => {
+        setLoading(true);
+        axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${ID}`)
+            .then(({ data }) => {
+                setShoeDetail(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching shoe details:", error);
+                setLoading(false);
+            });
+    }, [ID]);
 
-    if (!sneakerDetail || sneakerDetail.id !== parseInt(ID)) {
-        return <p>La zapatilla no fue encontrada.</p>;
+    if (loading) {
+        return <p>Cargando...</p>;
     }
 
-    const sizes = sneakerDetail.sizes.map(size => size.value).join(', ');
+    if (!shoeDetail || !shoeDetail.id) {
+        return <p>La zapatilla no fue encontrada.</p>;
+    }
+    const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => size.value).join(', ') : 'No disponible';
 
     return (
         <div className={styles.Detail}>
-            <img src={sneakerDetail.image} alt={sneakerDetail.name} />
+            <img src={shoeDetail.image} alt={shoeDetail.name} />
             <div className={styles.DetailContent}>
-                <h2>{sneakerDetail.brand} {sneakerDetail.name}</h2>
+                <h2>{shoeDetail.brand} {shoeDetail.name}</h2>
                 <button className={styles.styedButton}>Añadir al carrito</button>
                 <table border="1" className={styles.sneakerTable}>
                     <tbody>
                         <tr>
                             <td className={styles.boldTd}>Marca</td>
-                            <td>{sneakerDetail.brand}</td>
+                            <td>{shoeDetail.brand}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Modelo</td>
-                            <td>{sneakerDetail.name}</td>
+                            <td>{shoeDetail.name}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Precio</td>
-                            <td>$ {sneakerDetail.price}</td>
+                            <td>$ {shoeDetail.price}</td>
                         </tr> 
                         <tr>
                             <td className={styles.boldTd}>Talles</td>
@@ -42,15 +58,15 @@ export default function Detail() {
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Género</td>
-                            <td>{sneakerDetail.gender}</td>
+                            <td>{shoeDetail.gender}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Deporte</td>
-                            <td>{sneakerDetail.sport}</td>
+                            <td>{shoeDetail.sport}</td>
                         </tr>
                         <tr>
                             <td className={styles.boldTd}>Descripción</td>
-                            <td className={styles.description}>{sneakerDetail.description}</td>
+                            <td className={styles.description}>{shoeDetail.description}</td>
                         </tr>
                     </tbody>
                 </table>

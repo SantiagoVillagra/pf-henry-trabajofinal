@@ -45,10 +45,13 @@ export function orderAndFilterAction({ ordenQuePaso, filtrosQuePaso }) {
     };
   }
 
-export  function searchShoes(shoeName){
-    return{
-        type:SEARCH_SHOES,
-        payload: shoeName
+  export function searchShoes(shoeName) {
+    return (dispatch, getState) => {
+        const allShoes = getState().allShoes;
+        const filteredShoes = allShoes.filter(shoe =>
+            shoe.name.toLowerCase().includes(shoeName.toLowerCase())
+        );
+        dispatch({ type: SEARCH_SHOES, payload: filteredShoes });
     }
 }
 

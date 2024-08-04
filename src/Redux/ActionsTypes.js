@@ -17,3 +17,5 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const ADD_ITEM = "ADD_ITEM"
 
 export const TAKE_ITEM = "TAKE_ITEM"
+
+export const CREATE_SHOE = "CREATE_SHOE"

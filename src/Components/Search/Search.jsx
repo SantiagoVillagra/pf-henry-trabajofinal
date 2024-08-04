@@ -1,38 +1,46 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import mockDB from "../../mockDB/mockDB";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import styles from "./Search.module.css";
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
+import { getAllShoes } from "../../Redux/Actions";
 
 export default function Search() {
     const [filteredShoes, setFilteredShoes] = useState([]);
-    const query = useQuery().get('query'); // Obtener el parámetro de la URL
+    const allShoes = useSelector(state => state.allShoes);
+    const searchedShoes = useSelector(state => state.searchedShoes);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (query) {
-            setFilteredShoes(mockDB.filter(shoe =>
-                shoe.name.toLowerCase().includes(query.toLowerCase())
-            ));
+        dispatch(getAllShoes());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (searchedShoes.length > 0) {
+            setFilteredShoes(searchedShoes);
         } else {
-            setFilteredShoes([]);
+            setFilteredShoes(allShoes);
         }
-    }, [query]);
+    }, [searchedShoes, allShoes]);
+
+    const handleClick = (id) => {
+        navigate(`/detail/${id}`);
+    };
 
     return (
         <div className={styles.cardSearch}>
-            {filteredShoes.map(({ ID, name, price, image, brand }) => (
-                <Card
-                    key={ID}
-                    ID={ID}
-                    brand={brand}
-                    name={name}
-                    price={price}
-                    image={image}
-                />
+            {filteredShoes.map(({ id, name, price, image, brand }) => (
+                <div key={id} onClick={() => handleClick(id)}>
+                    <Card
+                        id={id}
+                        brand={brand}
+                        name={name}
+                        price={price}
+                        image={image}
+                    />
+                </div>
             ))}
         </div>
     );

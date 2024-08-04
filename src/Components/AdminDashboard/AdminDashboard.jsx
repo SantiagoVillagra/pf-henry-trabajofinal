@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Create from "../Create/Create";
 import { TabView, TabPanel } from 'primereact/tabview';
 import styles from "./AdminDashboard.module.css"
+import DeleteShoe from "../Delete/Delete";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -27,15 +28,7 @@ export default function AdminDashboard() {
         </TabPanel>
         <TabPanel header="Elimina/oculta productos">
           <div className={styles.tabContent}>
-            <p className="m-0">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-              aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-              eos qui ratione voluptatem sequi nesciunt. Consectetur, adipisci
-              velit, sed quia non numquam eius modi.
-            </p>
+            <DeleteShoe></DeleteShoe>
           </div>
         </TabPanel>
       </TabView>

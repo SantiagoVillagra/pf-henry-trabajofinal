@@ -1,4 +1,4 @@
-import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER, ADD_TO_CART, REMOVE_FROM_CART, ADD_ITEM, TAKE_ITEM } from "./ActionsTypes";
+import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,CREATE_SHOE,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER, ADD_TO_CART, REMOVE_FROM_CART, ADD_ITEM, TAKE_ITEM } from "./ActionsTypes";
 import Swal from 'sweetalert2';
 
 import axios from "axios";
@@ -14,17 +14,15 @@ export  function getAllShoes(sneakers){
    
 }
 
-// export function getShoeById(id) {
-//     return function(dispatch) {
-//         axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
-//             .then(({ data }) => dispatch({ type: GET_SHOE_BY_ID, payload: data }))
-//             .catch(error => {
-//                 console.error("Error fetching shoe data:", error.message);
-//                 // Puedes despachar una acción de error si tienes una para manejar esto en tu reducer
-//                 dispatch({ type: "FETCH_SHOE_ERROR", payload: error.message });
-//             });
-//     };
-// }
+export const createShoe = (shoeData) => async (dispatch) => {
+      const response = await axios.post('https://e-commerse-fc.onrender.com/api/shoes', shoeData);
+      dispatch({
+        type: CREATE_SHOE,
+        payload: response.data
+      });
+
+}
+
 export function getShoeById(id) {
     return function(dispatch) {
         axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
@@ -108,3 +106,4 @@ export const addItem = (item) => {
         payload: item
     }
 }
+

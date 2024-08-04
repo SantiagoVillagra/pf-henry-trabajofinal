@@ -9,7 +9,8 @@ import {
   REMOVE_FROM_CART,
   ADD_ITEM,
   TAKE_ITEM,
-  GET_SHOE_BY_ID
+  GET_SHOE_BY_ID,
+  CREATE_SHOE
 } from "./ActionsTypes";
 
 const initialState = {
@@ -120,6 +121,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 }
                 return cartItem
             })}
+
+            case CREATE_SHOE:
+              return {
+                ...state,
+                allShoes: [...state.allShoes, payload]
+              };
 
     default:
         return {...state};

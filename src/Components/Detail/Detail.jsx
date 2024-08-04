@@ -1,14 +1,21 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react"
+import { addToCart, addItem } from "../../Redux/Actions"
 import styles from "./Detail.module.css";
 import axios from "axios"
 
 export default function Detail() {
 
     const { ID } = useParams();
+    
     const [shoeDetail, setShoeDetail] = useState({})
     const [loading, setLoading] = useState(true);
+
+    const dispatch = useDispatch()
+    const cart = useSelector(state => state.cart)
+    const alreadyInCart = cart.find(cartItem => cartItem.item.id === parseInt(ID))
+    
 
     useEffect(() => {
         setLoading(true);
@@ -37,7 +44,15 @@ export default function Detail() {
             <img src={shoeDetail.image} alt={shoeDetail.name} />
             <div className={styles.DetailContent}>
                 <h2>{shoeDetail.brand} {shoeDetail.name}</h2>
-                <button className={styles.styedButton}>Añadir al carrito</button>
+                {
+                alreadyInCart ? 
+                <>
+                    <h3>Este producto ya está en el carrito:</h3>
+                    <button onClick={() => dispatch(addItem(shoeDetail))} className={styles.styedButton}>Añadir otro</button>
+                    <span>Cantidad: {(cart.find(cartItem => cartItem.item.id === parseInt(ID))).qty}</span>
+                </>
+                : <button onClick={() => dispatch(addToCart(shoeDetail))} className={styles.styedButton}>Añadir al carrito</button>
+                }
                 <table border="1" className={styles.sneakerTable}>
                     <tbody>
                         <tr>

@@ -2,6 +2,7 @@ import mockBrands from "../../mockDB/mockBrands"
 import mockGenders from "../../mockDB/mockGenders"
 import sports from "../../mockDB/mockSports";
 import mockSports from "../../mockDB/mockSports"
+import { Button } from "primereact/button";
 
 export default function Create(){
 
@@ -59,6 +60,11 @@ export default function Create(){
               ))}
             </select>
           </div>
+          <label htmlFor="Stock">Stock</label>
+          <select name="stock" id="stock">
+            <option value="true">Si</option>
+            <option value="false">No</option>
+          </select>
           <div>
             <label htmlFor="">Descripcion</label>
             <textarea
@@ -68,6 +74,7 @@ export default function Create(){
               placeholder="Añade la descripcion..."
             ></textarea>
           </div>
+              <Button>Enviar formulario</Button>
         </form>
       </div>
     );

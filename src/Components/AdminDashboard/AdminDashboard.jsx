@@ -16,6 +16,9 @@ export default function AdminDashboard() {
 
   return (
     <div className={styles.dashboardContainer}>
+
+       
+      <div>
       <TabView className={styles.tabView}>
         <TabPanel header="Carga nuevas zapatillas">
           <div className={styles.tabContent}>
@@ -37,7 +40,10 @@ export default function AdminDashboard() {
         </TabPanel>
       </TabView>
 
+      </div>
+   
       <button className={styles.logoutButton} onClick={logOut}>LOG OUT</button>
+    
     </div>
   );
 }

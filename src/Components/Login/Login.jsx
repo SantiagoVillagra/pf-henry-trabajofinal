@@ -81,7 +81,8 @@ export default function Login() {
                         <b>OR</b>
                     </Divider>
                 </div>
-
+                    <br />
+                    <br />
                 <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
                     <Link to={"/signup"}>
                         <Button label="Sign Up" icon="pi pi-user-plus" severity="success" className="w-10rem" />

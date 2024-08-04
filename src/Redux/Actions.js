@@ -1,4 +1,4 @@
-import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER } from "./ActionsTypes";
+import { GET_ALL_SHOES, ORDER_AND_FILTER_ACTION,SEARCH_SHOES, LOGIN_USER, GET_SHOE_BY_ID, LOGOUT_USER, ADD_TO_CART, REMOVE_FROM_CART, ADD_ITEM, TAKE_ITEM } from "./ActionsTypes";
 import Swal from 'sweetalert2';
 
 import axios from "axios";
@@ -77,5 +77,34 @@ export  function loginUser(loggedUser){
 export  function logoutUser(){
     return{
         type: LOGOUT_USER
+    }
+}
+
+export const addToCart = (shoe) => {
+    
+    return {
+        type: ADD_TO_CART,
+        payload: shoe
+    }
+}
+
+export const removeFromCart = (shoe) => {
+    return {
+        type: REMOVE_FROM_CART,
+        payload: shoe
+    }
+}
+
+export const takeItem = (item) => {
+    return {
+        type: TAKE_ITEM,
+        payload: item
+    }
+}
+
+export const addItem = (item) => {
+    return {
+        type: ADD_ITEM,
+        payload: item
     }
 }

@@ -10,6 +10,8 @@ import {
   TAKE_ITEM,
   GET_SHOE_BY_ID,
   CREATE_SHOE,
+  ADD_WISH,
+  REMOVE_WISH,
   DELETE_SHOE
 } from "./ActionsTypes";
 
@@ -78,10 +80,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       }
 
       return { ...state, orderAndFilter: filteredSneakers };
-
-    case LOGIN_USER:
-      const { isadmin, username } = payload;
-      return { ...state, loggedUserData: { isadmin, username } };
+    
+    case LOGIN_USER: 
+    
+      const {isadmin, username, wishList, shoppingHistory} = payload
+      return {...state, loggedUserData: {isadmin, username, wishList, shoppingHistory}}
 
     case LOGOUT_USER:
       return { ...state, loggedUserData: {} };
@@ -140,6 +143,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
       case DELETE_SHOE:
         return { ...state, allShoes: state.allShoes.filter(shoe => shoe.ID !== payload) };
+
+            case ADD_WISH:
+              return {
+                ...state,
+                loggedUserData: {...state.loggedUserData, }
+              }
 
     default:
       return { ...state };

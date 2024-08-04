@@ -9,7 +9,9 @@ const users = [
         username: "SoyUser",
         email: "soyuser@mail.com",
         password: "passUSER",
-        isadmin: false 
+        isadmin: false,
+        wishList: [],
+        shoppingHistory: []
     }
 ]
 

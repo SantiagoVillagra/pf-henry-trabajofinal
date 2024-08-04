@@ -21,3 +21,7 @@ export const TAKE_ITEM = "TAKE_ITEM"
 export const CREATE_SHOE = "CREATE_SHOE"
 
 export const DELETE_SHOE = "DELETE_SHOE"
+
+export const ADD_WISH = "ADD_WISH"
+
+export const REMOVE_WISH = "REMOVE_WISH"

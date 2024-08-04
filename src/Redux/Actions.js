@@ -10,7 +10,9 @@ import {
   REMOVE_FROM_CART,
   ADD_ITEM,
   TAKE_ITEM,
-  DELETE_SHOE
+  DELETE_SHOE,
+  ADD_WISH,
+  REMOVE_WISH
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -131,4 +133,18 @@ export const addItem = (item) => {
     type: ADD_ITEM,
     payload: item,
   };
-};
+}
+
+export const addWish = (shoe) => {
+    return {
+        type: ADD_WISH,
+        payload: shoe
+    }
+}
+
+export const removeWish = (shoe) => {
+    return {
+        type: REMOVE_WISH,
+        payload: shoe
+    }
+}

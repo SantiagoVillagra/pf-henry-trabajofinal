@@ -1,0 +1,21 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .tabView {
+    width: 100%;
+  }
+  
+  .tabContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .logoutButton {
+    margin-top: 1rem;
+  }

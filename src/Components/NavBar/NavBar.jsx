@@ -21,7 +21,7 @@ const Navbar = () => {
                 />
             </div>
             <div className={styles.navbarActions}>
-            <SearchBar className={`${styles.transparentIcon} ${styles.searchbar}`} />
+                <SearchBar className={`${styles.transparentIcon} ${styles.searchbar}`} />
                 <Button 
                     icon={<FaUser />} 
                     className={styles.transparentIcon} 

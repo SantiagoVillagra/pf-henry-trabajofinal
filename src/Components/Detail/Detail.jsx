@@ -49,7 +49,8 @@ export default function Detail() {
                 <>
                     <h3>Este producto ya está en el carrito:</h3>
                     <button onClick={() => dispatch(addItem(shoeDetail))} className={styles.styedButton}>Añadir otro</button>
-                    <span>Cantidad: {(cart.find(cartItem => cartItem.item.id === parseInt(ID))).qty}</span>
+                    {/* <span>Cantidad: {(cart.find(cartItem => cartItem.item.id === parseInt(ID))).qty}</span> */}
+                    <span>Cantidad: {alreadyInCart.qty}</span>
                 </>
                 : <button onClick={() => dispatch(addToCart(shoeDetail))} className={styles.styedButton}>Añadir al carrito</button>
                 }

@@ -21,6 +21,7 @@
 /* Contenedor de la barra de búsqueda y los íconos */
 .navbar-actions {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
     justify-content: center; /* Asegúrate de que los elementos en navbar-actions se centren horizontalmente */

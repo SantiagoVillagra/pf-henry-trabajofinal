@@ -15,6 +15,8 @@ export default function Shop() {
                 !cart.length
                 ? <p>Tu carrito está vacío</p>
                 : cart.map(({ item, qty }) => {
+                    console.log(typeof(qty));
+                    
                     return (
                         <div className={styles.item}>
                             <img src={item.image} alt={item.name} />

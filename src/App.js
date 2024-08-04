@@ -32,7 +32,9 @@ function App() {
         <Route path='/search' element={<Search/>}/>
         <Route path='/detail/:ID' element={<Detail/>}/>
         <Route path='/form' element={<Form/>}/>
-        <Route path='/shop' element={<Shop/>}/>
+        {
+          !loggedUserData.isadmin && <Route path='/shop' element={<Shop/>}/>
+        }
         {
           !loggedUserData.username && <Route path='/login' element={<Login/>}/>
         }

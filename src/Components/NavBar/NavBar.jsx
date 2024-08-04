@@ -29,11 +29,14 @@ const Navbar = () => {
                         return loggedUserData.username ? navigate("/dashboard") : navigate("/login");
                     }}
                 />
-                <Button 
+                {
+                    !loggedUserData.isadmin && <Button 
                     icon={<FaShoppingCart />} 
                     className={styles.transparentIcon} 
                     onClick={() => navigate("/shop")}
                 />
+                }
+                
             </div>
         </div>
     );

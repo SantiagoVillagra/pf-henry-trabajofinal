@@ -7,7 +7,8 @@ import {
   LOGOUT_USER,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  LOAD_CART,
+  ADD_ITEM,
+  TAKE_ITEM,
   GET_SHOE_BY_ID
 } from "./ActionsTypes";
 
@@ -16,7 +17,7 @@ const initialState = {
   searchedShoes: [],
   orderAndFilter: [],
   loggedUserData: {},
-  cart: [],
+  cart: JSON.parse(localStorage.getItem('cart')) || [],
   detail:[]
 };
 
@@ -30,7 +31,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
             ...state,
             searchedShoes: payload
         };
-
 
     case ORDER_AND_FILTER_ACTION:
       const checked = payload 
@@ -88,6 +88,38 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case GET_SHOE_BY_ID:
       return{...state, detail:payload}
+
+      case ADD_TO_CART:
+        const shoeId = payload
+        return {...state, cart: [...state.cart, {item: shoeId, qty: 1}]}
+
+    case REMOVE_FROM_CART: 
+        const shoeToRemoveId = payload
+        return {...state, cart: state.cart.filter(cartItem => cartItem.item !== shoeToRemoveId)}
+        
+    case ADD_ITEM:
+        const shoeToAddId = payload
+        return {...state, cart: state.cart.map(cartItem => {
+            if (cartItem.item === shoeToAddId) {
+                return {
+                    ...cartItem,
+                    qty: cartItem.qty+1
+                }
+            }
+            return cartItem
+        })}
+
+        case TAKE_ITEM:
+            const shoeToTakeId = payload
+            return {...state, cart: state.cart.map(cartItem => {
+                if (cartItem.item === shoeToTakeId && cartItem.qty > 0) {
+                    return {
+                        ...cartItem,
+                        qty: cartItem.qty-1
+                    }
+                }
+                return cartItem
+            })}
 
     default:
         return {...state};

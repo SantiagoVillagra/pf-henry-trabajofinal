@@ -17,9 +17,7 @@ import './custom-theme.css';  // Archivo CSS personalizado para ajustes adiciona
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
-      <GoogleOAuthProvider clientId=''>
         <App />
-      </GoogleOAuthProvider>
     </BrowserRouter>
   </Provider>
 )

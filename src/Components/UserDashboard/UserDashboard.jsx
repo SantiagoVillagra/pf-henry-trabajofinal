@@ -23,7 +23,7 @@ export default function UserDashboard() {
             <div>
                 <TabView className={styles.tabView}>
                     <TabPanel header="Lista de deseos">
-                        {
+                        {/* {
                             !loggedUserData.wishList.length
                             ? <h3>No hay zapatillas en tu lista de deseos</h3>
                             : loggedUserData.wishList.map(list => {
@@ -33,10 +33,11 @@ export default function UserDashboard() {
                                     </div>
                                 )
                             })
-                        }
+                        } */}
+                        <h3>No hay zapatillas en tu lista de deseos</h3>
                     </TabPanel>
                     <TabPanel header="Historial de compras">
-                        {
+                        {/* {
                             !loggedUserData.shoppingHistory.length
                             ? <h3>No hay registro de compras realizadas</h3>
                             : loggedUserData.shoppingHistory.map(list => {
@@ -46,10 +47,11 @@ export default function UserDashboard() {
                                     </div>
                                 )
                             })
-                        }
+                        } */}
+                        <h3>No hay registro de compras realizadas</h3>
                     </TabPanel>
                     <TabPanel header="Configuracion">
-
+                        <h3>Configuracion</h3>
                     </TabPanel>
                 </TabView>
             </div>

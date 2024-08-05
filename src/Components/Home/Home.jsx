@@ -9,7 +9,7 @@ import styles from "./Home.module.css";
 import { getAllShoes, orderAndFilterAction, addToCartAction } from "../../Redux/Actions";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
-
+import Card2 from "../Card/Card2"
 import { Paginator } from "primereact/paginator";
 
 export default function Home() {
@@ -214,9 +214,23 @@ export default function Home() {
         ))}
       </div>
       <div>
-        <div className={styles.Cards}>
+        {/* <div className={styles.Cards}>
           {paginatedData.map(({ id, name, price, image, brand }) => (
             <Card
+              key={id}
+              id={id}
+              brand={brand}
+              name={name}
+              price={price}
+              image={image}
+            />
+
+            
+          ))}
+        </div> */}
+        <div className={styles.Cards}>
+          {paginatedData.map(({ id, name, price, image, brand }) => (
+            <Card2
               key={id}
               id={id}
               brand={brand}

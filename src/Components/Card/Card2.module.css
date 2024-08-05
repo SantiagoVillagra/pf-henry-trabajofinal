@@ -1,0 +1,18 @@
+.Card {
+    width: 25em;
+    margin: 1em;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .Card:hover {
+    transform: scale(1.05);
+  }
+  
+  .pi-bookmark, .pi-bookmark-fill {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: #ffb400;
+  }

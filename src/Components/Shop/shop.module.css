@@ -1,8 +1,19 @@
+.ShopContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .item {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #ff000077;
+    border: 2px solid black;
+    border-radius: 15px;
 }
 
 .item img {
@@ -11,7 +22,18 @@
 
 .cantidad {
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;    
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
 }
 
+.cantidad span {
+    background-color: #00000077;
+    padding: 5px;
+    border: 2px solid #00000022;
+    border-radius: 7px;
+}
+
+.item button {
+    
+}

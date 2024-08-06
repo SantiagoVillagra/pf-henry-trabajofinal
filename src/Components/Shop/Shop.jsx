@@ -1,4 +1,4 @@
-
+import "primeicons/primeicons.css"
 import { useSelector, useDispatch } from "react-redux"
 import styles from "./shop.module.css"
 import { removeFromCart, addItem, takeItem } from "../../Redux/Actions"
@@ -15,7 +15,7 @@ export default function Shop() {
                 !cart.length
                 ? <p>Tu carrito está vacío</p>
                 : cart.map(({ item, qty }) => {
-                    console.log(typeof(qty));
+                    console.log(item);
                     
                     return (
                         <div className={styles.item}>

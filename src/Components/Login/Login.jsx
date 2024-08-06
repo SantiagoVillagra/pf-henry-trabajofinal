@@ -7,7 +7,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; // theme
+
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
 import 'primeflex/primeflex.css'; // PrimeFlex

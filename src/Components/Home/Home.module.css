@@ -1,12 +1,15 @@
 .Home {
     display: grid;
     grid-template-columns: 20% 80%;
+    gap: 1em; /* Añade espacio entre las columnas */
 }
 
-.Cards{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.Cards {
+    display: grid; /* Cambia de flex a grid para un diseño más estructurado */
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual ancho */
+    gap: 1em; /* Espacio entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    margin: 1em; /* Espacio alrededor del contenedor de tarjetas */
 }
 
 .FiltrosYOrden {
@@ -17,7 +20,7 @@
 
 .ParInputLabel {
     display: flex;
-    align-items:end; /* Alinea verticalmente los elementos en el centro */
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
     margin-bottom: 10px; /* Espacio entre las filas */
 }
 
@@ -32,36 +35,34 @@
     margin: 0; /* Elimina el margen por defecto del label */
     font-size: 14px; /* Tamaño de fuente consistente para los labels */
 }
-.boldLabel{
+
+.boldLabel {
     font-size: large;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .buttonPrice {
-    background-color:#a1a1a1 !important;
-    color: rgb(255, 255, 255) !important;
-    border-color: #999999;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50px;
     margin: 5px;
+    margin-left: 0;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+    background-color: #949494 !important; /* Asegura que el color de fondo del botón sea rojo */
+    color: rgb(255, 255, 255); /* Color del texto del botón */
+    border: none; /* Elimina el borde del botón si es necesario */
+    padding: 0.5em 1em; /* Ajusta el padding según sea necesario */
+    border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
+    font-size: 1em; /* Tamaño de fuente del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    text-align: center; /* Alinea el texto en el centro */
+    display: inline-flex; /* Alinea el botón en línea */
+    align-items: center; /* Alinea el contenido verticalmente en el centro */
 }
+
 .paginatorContainer {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     margin-top: 20px; /* Espaciado opcional entre las tarjetas y el paginador */
 }
-.buttonPrice{
-    background-color: #76885bc5;
-    color: rgb(0, 0, 0);
-    border-color: #999999;
-    padding: 10px;
-    cursor: pointer;
-    border-radius:10px;
-    margin: 5px;
-    cursor: pointer; 
-    transform: scale(1.05); /* Aumenta el tamaño de la tarjeta */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+.card-button {
  
-  }
+}

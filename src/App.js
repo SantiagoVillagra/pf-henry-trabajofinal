@@ -15,6 +15,8 @@ import { useEffect } from "react";
 import 'typeface-montserrat';
 import { useDispatch, useSelector } from "react-redux";
 import sneakers from "./mockDB/mockDB";
+import 'primereact/resources/themes/saga-blue/theme.css';  // O cualquier otro tema que prefieras
+
 
 
 function App() {

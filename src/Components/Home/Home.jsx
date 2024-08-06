@@ -140,7 +140,7 @@ export default function Home() {
   return (
     <div className={styles.Home}>
       <div className={styles.FiltrosYOrden}>
-        <h2>Filtra tus zapatillas por:</h2>
+        <h2>Buscá tus zapatillas por:</h2>
 
         <div>
           <h4 className={styles.boldLabel}>PRECIO</h4>
@@ -150,6 +150,7 @@ export default function Home() {
             raised
             onClick={() => onClick("menor")}
             className={styles.buttonPrice}          ></Button>
+            <br />
           <Button
             label="Mayor precio"
             raised

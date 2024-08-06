@@ -15,7 +15,7 @@
 }
 
 .searchInput {
-    
+    width: 200px; /* Ajusta el ancho según sea necesario */
     font-size: 1em;
     height: 2em; /* Ajusta la altura según sea necesario */
     border-radius: 4px; /* Opcional: Añade bordes redondeados si lo prefieres */

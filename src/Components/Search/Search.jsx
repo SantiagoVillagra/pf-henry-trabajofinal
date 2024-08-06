@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Card from "../Card/Card";
 import styles from "./Search.module.css";
+import Card2 from "../Card/Card2"
 
 export default function Search() {
     const searchedShoes = useSelector(state => state.searchedShoes);
@@ -22,7 +21,7 @@ export default function Search() {
             ) : (
                 searchedShoes.map(({ id, name, price, image, brand }) => (
                     <div key={id} onClick={() => handleClick(id)}>
-                        <Card
+                        <Card2
                             id={id}
                             brand={brand}
                             name={name}

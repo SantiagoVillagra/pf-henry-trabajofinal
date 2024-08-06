@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getShoeById } from '../../Redux/Actions'; // Ajusta la ruta según tu estructura de proyecto
 import { Card as PrimeCard } from 'primereact/card';
@@ -12,7 +12,6 @@ import styles from './Card2.module.css'; // Ajusta la ruta según tu estructura 
 export default function Card2({ id, name, price, image, brand }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const loggedUserData = useSelector(state => state.loggedUserData);
 
     const handleClick = () => {
         if (id) {
@@ -24,33 +23,28 @@ export default function Card2({ id, name, price, image, brand }) {
     };
 
     const header = (
-        <img alt={name} src={image} onClick={handleClick} className={styles['card-header']} />
+        <div className={styles['card-header']}>
+            <img alt={name} src={image} onClick={handleClick} />
+        </div>
     );
 
     const footer = (
-        <span>
-            <Button label="Ir al detalle"  onClick={handleClick} className={styles['card-button']} />
-        </span>
+        <div className={styles['card-footer']}>
+            <Button label="Ir al detalle" onClick={handleClick} className={styles['card-button']} />
+        </div>
     );
 
     return (
         <PrimeCard 
-            title={name} 
-            subTitle={`$${price}`} 
-            header={header} 
-            footer={footer} 
             className={styles.Card}
+            header={header}
+            footer={footer}
         >
-            {/* <div className={styles['card-content']}>
-                <p className={styles['card-title']}>{name}</p>
-                <p className={styles['card-subtitle']}>{brand}</p> */}
-                {/* {loggedUserData.username && !loggedUserData.isadmin && (
-                    <>
-                        <span className="pi pi-bookmark"></span>
-                        <span className="pi pi-bookmark-fill"></span>
-                    </>
-                )} */}
-            {/* </div> */}
+            <div className={styles['card-content']}>
+                <div className={styles['card-title']}>{name}</div>
+                <div className={styles['card-subtitle']}>{brand}</div>
+                <div className={styles['card-text']}>${price}</div>
+            </div>
         </PrimeCard>
     );
 }

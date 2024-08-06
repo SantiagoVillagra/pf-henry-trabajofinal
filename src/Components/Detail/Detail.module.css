@@ -1,64 +1,73 @@
-.Detail {
-    font-family: sans-serif;
+.container {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center; /* Centra el contenido en el contenedor */
-    font-family: sans-serif;
-    padding: 20px; /* Opcional: Agrega espacio alrededor del contenedor */
+    padding: 2rem;
 }
-.DetailContent {
-    
-    flex-direction: column;
+
+.productCard {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.productImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.styledButton {
+    margin: 5px;
+    background-color: #949494;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-flex;
     align-items: center;
 }
 
-.Detail img {
-    width: 300px;
-    margin-left: 200px;
-   align-self:auto;
-}
 .sneakerTable {
-    border-collapse: collapse; /* Elimina los espacios entre bordes de celdas */
-    width: 50%; /* Opcional: Hace que la tabla ocupe el 100% del ancho del contenedor */
-    border:none;
-    align-items: flex-start;
-    font-family: 'roboto';
-    
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre los bordes */
+    margin-top: 1rem;
 }
 
 .sneakerTable td {
-    border: none; 
-    padding: 20px 50px; 
-    font-weight:normal;
-    text-align: left;
+    padding: 0.5rem;
+    border: none; /* Elimina el borde de las celdas */
 }
 
-.sneakerTable tr {
-    border: none;
+.boldTd {
     font-weight: bolder;
-    padding: 20px
+    color: black;
+}
+.description {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-
-.sneakerTable .boldTd {
-    font-weight: bolder;
-    font-size: large;
-    font-family: sans-serif;
-}
-.styedButton {
-    background-color: #76885bc5;
-    color: rgb(0, 0, 0);
-    border-color: #999999;
-    font-size: large;
-    font-weight: bold;
-    width: 300px;
-    height: 40px;
-    border-radius: 8px;
-    font-family: sans-serif;  
-    justify-content: center; 
-    align-items: center; 
-    cursor:pointer;
-    box-shadow: 2px; /* Añade una sombra para dar un efecto de elevación */
-    
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que el spinner esté centrado verticalmente en la pantalla */
 }
 
+.spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1); /* Fondo del spinner */
+    border-left: 8px solid #3498db; /* Color del borde del spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* La animación dura 2 segundos y gira infinitamente */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

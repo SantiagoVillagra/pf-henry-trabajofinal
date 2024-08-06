@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import puma from "../../Assets/ShoeLanding_Mesa de trabajo 1 copia.jpg";
 import track from "../../Assets/land2.jpg";
 import adidas from "../../Assets/land3.jpg";
-import LogoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
+import LogoNav from "../../Assets/LogoNav.png";
 import style from "../Landing/Landing.module.css";
 import { Galleria } from 'primereact/galleria';
 

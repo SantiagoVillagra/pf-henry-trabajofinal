@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 import { InputText } from 'primereact/inputtext';
 import 'primeicons/primeicons.css';
@@ -36,20 +36,21 @@ export default function SearchBar() {
     };
 
     return (
-        <div>
-            <div>
+        <div className={styles.searchContainer}>
+            <div className={styles.searchbar}>
                 {isSearchBarVisible && (
-                    <InputText 
-                        placeholder="Buscar..." 
-                        value={searchShoe} 
-                        onChange={handleChange} 
+                    <InputText
+                        className={styles.searchInput}
+                        placeholder="Buscar..."
+                        value={searchShoe}
+                        onChange={handleChange}
                         onKeyDown={handleKeyDown}
                     />
                 )}
-                <Button 
-                    icon={<FaSearch />} 
+                <Button
+                    icon={<FaSearch />}
                     className={styles.transparentIcon}
-                    onClick={toggleSearchBar} 
+                    onClick={toggleSearchBar}
                 />
             </div>
         </div>

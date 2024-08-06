@@ -9,6 +9,7 @@ import { Divider } from 'primereact/divider';
 import { GoogleLogin } from "@react-oauth/google";
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
 import axios from "axios";
+import styles from "./Login.module.css"
 
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
@@ -69,7 +70,7 @@ export default function Login() {
                             type="email"
                             name="email"
                             value={userData.email}
-                            placeholder="EMAIL"
+                            placeholder="Email"
                             className="w-12rem"
                             onChange={handleChange}
                         />
@@ -77,27 +78,30 @@ export default function Login() {
                     </div>
 
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-                        <label htmlFor="password" className="w-6rem">Password</label>
+                        <label htmlFor="password" className="w-6rem">Contraseña</label>
                         <InputText
                             id="password"
                             type="password"
                             name="password"
                             value={userData.password}
-                            placeholder="PASSWORD"
+                            placeholder="Contraseña"
                             className="w-12rem"
                             onChange={handleChange}
                         />
                         <span className="p-error">{errors.password}</span>
                     </div>
 
-                    <Button type="submit" label="Login" icon="pi pi-user" className="w-10rem mx-auto mt-3" />
+                    <Button type="submit" label="Login" icon="pi pi-user" className={styles.button}  />
 
                     <div>
                         <GoogleLogin
                             onSuccess={handleLoginSuccess}
                             onError={handleLoginFailure}
+                            className={styles.googleButton}
                         />
                     </div>
+
+                  
 
                 </div>
 
@@ -112,7 +116,7 @@ export default function Login() {
                  
                 <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
                     <Link to={"/signup"}>
-                        <Button label="Sign Up" icon="pi pi-user-plus" severity="success" className="w-10rem" />
+                        <Button label="Sign Up" icon="pi pi-user-plus" severity="success" className={styles.button} />
                     </Link>
                 </div>
             </form>

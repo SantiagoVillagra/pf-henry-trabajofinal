@@ -6,6 +6,7 @@ import { loginUser } from "../../Redux/Actions";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
+import { GoogleLogin } from "@react-oauth/google";
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
 
 import 'primereact/resources/primereact.min.css'; // core css

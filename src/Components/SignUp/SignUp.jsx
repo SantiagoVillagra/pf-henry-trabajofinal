@@ -6,7 +6,7 @@ import { Divider } from 'primereact/divider';
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
 import signUp from "../../mockDB/mockSignUp";
 import validation from "./validations";
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; // theme
+
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
 

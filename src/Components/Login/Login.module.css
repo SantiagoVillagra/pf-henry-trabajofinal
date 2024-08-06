@@ -31,3 +31,8 @@
     border-color: #000000; /* Color del borde al enfocar */
     box-shadow: 0 0 4px rgba(3, 85, 172, 0.25); /* Sombra al enfocar */
 }
+
+.googleButton{
+    background-color: #949494;
+    border-radius: 6px;
+}

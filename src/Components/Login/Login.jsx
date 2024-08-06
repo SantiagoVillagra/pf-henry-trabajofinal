@@ -9,6 +9,7 @@ import { Divider } from 'primereact/divider';
 import { GoogleLogin } from "@react-oauth/google";
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
 import axios from "axios";
+import alertSwal from "../../funcs/alertSwal"
 import styles from "./Login.module.css"
 
 import 'primereact/resources/primereact.min.css'; // core css
@@ -43,15 +44,27 @@ export default function Login() {
         console.log("entro al handleSuccess");
         
         console.log(response.credential);
-        try {
-          const res = await axios.post('http://localhost:3001/auth/', {
-            token: response.credential,
-          });
-          console.log(res.data);
-          // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
-        } catch (error) {
-          console.error('Error al enviar el token al backend', error);
+        if (response.credential) {
+            dispatch(loginUser({
+                username: "Estoy Probando",
+                email: "probandoestoy26@gmail.com",
+                isadmin: false,
+                wishList: [],
+                shoppingHistory: []
+            }))
+            alertSwal("Log in exitoso")
+            navigate("/home")
         }
+        // try {
+        //   const res = await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
+        //     token: response.credential,
+        //   });
+        //   console.log(res.data);
+          
+        //   // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
+        // } catch (error) {
+        //   console.error('Error al enviar el token al backend', error);
+        // }
       };
     
       const handleLoginFailure = (response) => {

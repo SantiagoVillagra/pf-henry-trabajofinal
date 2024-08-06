@@ -95,6 +95,17 @@ export default function Home() {
     );
   };
 
+  const borrarFiltros = () => {
+    setOrder({ order: null });
+    setFilters(filtersDefault)
+    dispatch(
+      orderAndFilterAction({
+        ordenQuePaso: { order: null },
+        filtrosQuePaso: filtersDefault,
+      })
+    );
+  };
+
   if (!isLoading && !orderAndFilter.length) {
     Swal.fire({
       title: "No se encontraron resultados",
@@ -213,6 +224,12 @@ export default function Home() {
             </label>
           </div>
         ))}
+        <Button
+            label="Borrar filtros"
+            raised
+            onClick={() => borrarFiltros()}
+            className={styles.buttonFiltro}
+          ></Button> <br />
       </div>
       <div>
         {/* <div className={styles.Cards}>

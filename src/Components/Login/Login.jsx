@@ -6,7 +6,9 @@ import { loginUser } from "../../Redux/Actions";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
+import { GoogleLogin } from "@react-oauth/google";
 import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
+import axios from "axios";
 
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
@@ -35,6 +37,25 @@ export default function Login() {
             navigate("/home");
         }
     };
+
+    const handleLoginSuccess = async (response) => {
+        console.log("entro al handleSuccess");
+        
+        console.log(response.credential);
+        try {
+          const res = await axios.post('http://localhost:3001/auth/', {
+            token: response.credential,
+          });
+          console.log(res.data);
+          // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
+        } catch (error) {
+          console.error('Error al enviar el token al backend', error);
+        }
+      };
+    
+      const handleLoginFailure = (response) => {
+        console.error('Error al iniciar sesión con Google', response);
+      }
 
     return (
         <div className="card">
@@ -70,6 +91,13 @@ export default function Login() {
                     </div>
 
                     <Button type="submit" label="Login" icon="pi pi-user" className="w-10rem mx-auto mt-3" />
+
+                    <div>
+                        <GoogleLogin
+                            onSuccess={handleLoginSuccess}
+                            onError={handleLoginFailure}
+                        />
+                    </div>
 
                 </div>
 

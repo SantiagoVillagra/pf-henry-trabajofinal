@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { getAllShoes, deleteShoe } from "../../Redux/Actions";
+import styles from "./Delete.module.css";
 
 export default function DeleteShoe() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export default function DeleteShoe() {
             required 
           />
         </div>
-        <Button type="submit">Eliminar zapatilla</Button>
+        <Button type="submit" className={styles.deleteButton}>Eliminar zapatilla</Button>
       </form>
     </div>
   );

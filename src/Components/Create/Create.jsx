@@ -4,11 +4,12 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
-import { InputTextarea } from "primereact/inputtextarea"; // Corrige aquí
+import { InputTextarea } from "primereact/inputtextarea";
 import { createShoe } from "../../Redux/Actions";
 import mockBrands from "../../mockDB/mockBrands";
 import mockGenders from "../../mockDB/mockGenders";
 import mockSports from "../../mockDB/mockSports";
+import styles from "./Create.module.css"; // Asegúrate de importar el CSS
 
 // Relación de tallas
 const sizeMapping = {
@@ -61,13 +62,13 @@ export default function Create() {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <form onSubmit={handleSubmit}>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="name">Nombre</label>
           <InputText id="name" name="name" value={formData.name} onChange={handleChange} required />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="brand">Marca</label>
           <Dropdown 
             id="brand" 
@@ -79,7 +80,7 @@ export default function Create() {
             required 
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="price">Precio</label>
           <InputText 
             id="price" 
@@ -90,7 +91,7 @@ export default function Create() {
             required 
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="sizes">Talles</label>
           <MultiSelect 
             id="sizes" 
@@ -102,7 +103,7 @@ export default function Create() {
             required 
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="gender">Genero</label>
           <Dropdown 
             id="gender" 
@@ -114,7 +115,7 @@ export default function Create() {
             required 
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="sport">Deporte</label>
           <Dropdown 
             id="sport" 
@@ -126,11 +127,11 @@ export default function Create() {
             required 
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="image">Imagen</label>
           <InputText id="image" name="image" value={formData.image} onChange={handleChange} required />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="description">Descripcion</label>
           <InputTextarea
             id="description"
@@ -142,7 +143,7 @@ export default function Create() {
             required
           />
         </div>
-        <div className="p-field">
+        <div className={styles.pField}>
           <label htmlFor="stock">Stock</label>
           <Dropdown
             id="stock"
@@ -154,7 +155,7 @@ export default function Create() {
             required
           />
         </div>
-        <Button type="submit">Enviar formulario</Button>
+        <Button type="submit" className={styles.pFieldButton}>Enviar formulario</Button>
       </form>
     </div>
   );

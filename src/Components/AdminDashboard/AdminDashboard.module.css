@@ -1,21 +1,41 @@
 .dashboardContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
+  display: flex;
+  flex-direction: column; /* Organiza los elementos en una columna */
+  align-items: center; /* Centra el contenido horizontalmente */
+  padding: 2em; /* Espaciado alrededor del contenido */
+  gap: 2em; /* Espacio entre los elementos hijos */
+  background-color: #f9f9f9; /* Color de fondo claro para el contenedor */
+  min-height: 100vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+}
+
+/* Estilos para la vista de pestañas */
+.tabView {
   
-  .tabView {
-    width: 100%;
-  }
-  
-  .tabContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .logoutButton {
-    margin-top: 1rem;
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+  border-radius: 8px; /* Bordes redondeados para el TabView */
+  overflow: hidden; /* Evita que los elementos sobresalgan */
+}
+
+/* Estilos para el contenido de cada pestaña */
+.tabContent {
+  padding: 1em; /* Espaciado interno dentro de cada pestaña */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logoutButton {
+  background-color: #d5050f; /* Color de fondo rojo para el botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Elimina el borde por defecto del botón */
+  padding: 0.75em 2em; /* Espaciado interno del botón */
+  border-radius: 4px; /* Bordes redondeados del botón */
+  font-size: 1em; /* Tamaño de fuente del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+  margin-top: 1em; /* Espacio superior del botón */
+}
+
+.logoutButton:hover {
+  background-color: #a4040a; /* Color de fondo más oscuro al pasar el ratón */
+}

@@ -21,11 +21,10 @@
 /* Contenedor de la barra de búsqueda y los íconos */
 .navbar-actions {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    justify-content: center; /* Asegúrate de que los elementos en navbar-actions se centren horizontalmente */
-    position:fixed
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 10px; /* Espacio entre los elementos */
+    flex-grow: 1; /* Permite que este contenedor se expanda para ocupar el espacio disponible */
+    justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
 }
 
 /* Ajustes específicos para la barra de búsqueda */

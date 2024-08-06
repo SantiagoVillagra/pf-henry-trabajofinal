@@ -12,6 +12,7 @@ const Navbar = () => {
     const loggedUserData = useSelector(state => state.loggedUserData);
 
     return (
+        
         <div className={styles.navbar}>
             <div className={styles.logo}>
                 <img 
@@ -20,7 +21,7 @@ const Navbar = () => {
                     onClick={() => navigate("/home")} 
                 />
             </div>
-            <div className={styles.navbarActions}>
+            <div >
                 <SearchBar  />
                 <Button 
                     icon={<FaUser />} 

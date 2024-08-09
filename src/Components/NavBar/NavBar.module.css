@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    margin-bottom: 30px;
+    
     box-sizing: border-box; /* Incluye el padding y border en el ancho total */
 }
 

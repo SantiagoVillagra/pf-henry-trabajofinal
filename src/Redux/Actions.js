@@ -28,15 +28,58 @@ export function getAllShoes(sneakers) {
   };
 }
 
+
 export const createShoe = (shoeData) => async (dispatch) => {
-  const response = await axios.post(
-    "https://e-commerse-fc.onrender.com/api/shoes",
-    shoeData
-  );
-  dispatch({
-    type: CREATE_SHOE,
-    payload: response.data,
-  });
+  try {
+    // Subir la imagen a Cloudinary
+    const formData = new FormData();
+    formData.append("file", shoeData.image);
+    formData.append("upload_preset", "your_upload_preset");
+    formData.append("cloud_name", "your_cloud_name");
+
+    const uploadResponse = await axios.post(
+      "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
+      formData
+    );
+
+    // Obtener la URL de la imagen desde la respuesta de Cloudinary
+    const imageUrl = uploadResponse.data.secure_url;
+
+    // Crear un nuevo objeto con los datos del producto y la URL de la imagen
+    const newShoeData = {
+      ...shoeData,
+      image: imageUrl,
+    };
+
+    // Enviar los datos del nuevo producto a tu backend
+    const response = await axios.post(
+      "https://e-commerse-fc.onrender.com/api/shoes",
+      newShoeData
+    );
+
+    // Despachar la acción con los datos del producto creado
+    dispatch({
+      type: CREATE_SHOE,
+      payload: response.data,
+    });
+
+    // Mostrar alerta de éxito
+    Swal.fire({
+      icon: 'success',
+      title: '¡Éxito!',
+      text: 'El producto se ha creado correctamente.',
+    });
+
+  } catch (error) {
+    console.error("Error al crear el producto:", error);
+
+    // Mostrar alerta de error
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un problema al crear el producto. Intenta nuevamente.',
+    });
+  }
 };
 
 export function getShoeById(id) {

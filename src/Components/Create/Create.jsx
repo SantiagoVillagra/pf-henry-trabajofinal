@@ -5,6 +5,7 @@ import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
 import { InputTextarea } from "primereact/inputtextarea";
+import { FileUpload } from 'primereact/fileupload'; // Importar FileUpload
 import { createShoe } from "../../Redux/Actions";
 import mockBrands from "../../mockDB/mockBrands";
 import mockGenders from "../../mockDB/mockGenders";
@@ -34,7 +35,7 @@ export default function Create() {
     price: "",
     gender: "",
     sport: "",
-    image: "",
+    image: null, // Cambiado de "" a null
     description: "",
     stock: true,
     sizes: []
@@ -59,6 +60,14 @@ export default function Create() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createShoe(formData));
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.files[0];
+    setFormData({
+      ...formData,
+      image: file
+    });
   };
 
   return (
@@ -129,7 +138,16 @@ export default function Create() {
         </div>
         <div className={styles.pField}>
           <label htmlFor="image">Imagen</label>
-          <InputText id="image" name="image" value={formData.image} onChange={handleChange} required />
+          <FileUpload 
+            name="image" 
+            accept="image/*" 
+            maxFileSize={1000000} 
+            customUpload 
+            auto 
+            uploadHandler={handleImageUpload} 
+            chooseLabel="Seleccionar Imagen"
+            className={styles.pFieldButton}
+          />
         </div>
         <div className={styles.pField}>
           <label htmlFor="description">Descripcion</label>

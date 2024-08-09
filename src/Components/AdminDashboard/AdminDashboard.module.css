@@ -1,13 +1,9 @@
 .dashboardContainer {
   display: flex;
-  flex-direction: column; /* Organiza los elementos en una columna */
-  align-items: center; /* Centra el contenido horizontalmente */
-  padding: 2em; /* Espaciado alrededor del contenido */
-  gap: 2em; /* Espacio entre los elementos hijos */
-  background-color: #f9f9f9; /* Color de fondo claro para el contenedor */
-  min-height: 100vh; /* Asegura que el contenedor ocupe al menos la altura de la ventana */
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
 }
-
 /* Estilos para la vista de pestañas */
 .tabView {
   

@@ -30,16 +30,17 @@ const sizeMapping = {
 export default function Create() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: "",
-    brand: "",
-    price: "",
-    gender: "",
-    sport: "",
-    image: null, // Cambiado de "" a null
-    description: "",
+    name: '',
+    brand: '',
+    price: '',
+    gender: '',
+    sport: '',
+    image: null,
+    description: '',
     stock: true,
     sizes: []
   });
+  const [uploadStatus, setUploadStatus] = useState('idle'); // Agregado para controlar el estado de la carga
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,21 +54,24 @@ export default function Create() {
     const selectedSizes = e.value;
     setFormData({
       ...formData,
-      sizes: selectedSizes.map(size => sizeMapping[size])
+      sizes: selectedSizes.map((size) => sizeMapping[size])
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createShoe(formData));
+    setUploadStatus('pending'); // Cambiar estado a "pending" cuando comienza la carga
+    dispatch(createShoe(formData)).finally(() => {
+      setUploadStatus('idle'); // Cambiar estado a "idle" cuando se complete la carga
+    });
   };
 
   const handleImageUpload = (e) => {
     const file = e.files[0];
-    setFormData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       image: file
-    });
+    }));
   };
 
   return (
@@ -75,88 +79,98 @@ export default function Create() {
       <form onSubmit={handleSubmit}>
         <div className={styles.pField}>
           <label htmlFor="name">Nombre</label>
-          <InputText id="name" name="name" value={formData.name} onChange={handleChange} required />
+          <InputText
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div className={styles.pField}>
           <label htmlFor="brand">Marca</label>
-          <Dropdown 
-            id="brand" 
-            name="brand" 
-            value={formData.brand} 
-            options={mockBrands} 
-            onChange={handleChange} 
+          <Dropdown
+            id="brand"
+            name="brand"
+            value={formData.brand}
+            options={mockBrands}
+            onChange={handleChange}
             placeholder="Selecciona una marca"
-            required 
+            required
           />
         </div>
         <div className={styles.pField}>
           <label htmlFor="price">Precio</label>
-          <InputText 
-            id="price" 
-            name="price" 
-            value={formData.price} 
-            onChange={handleChange} 
-            type="number" 
-            required 
+          <InputText
+            id="price"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            type="number"
+            required
           />
         </div>
         <div className={styles.pField}>
           <label htmlFor="sizes">Talles</label>
-          <MultiSelect 
-            id="sizes" 
-            name="sizes" 
-            value={formData.sizes.map(sizeId => Object.keys(sizeMapping).find(key => sizeMapping[key] === sizeId))} 
-            options={Object.keys(sizeMapping)} 
-            onChange={handleSizeChange} 
+          <MultiSelect
+            id="sizes"
+            name="sizes"
+            value={formData.sizes.map((sizeId) =>
+              Object.keys(sizeMapping).find(
+                (key) => sizeMapping[key] === sizeId
+              )
+            )}
+            options={Object.keys(sizeMapping)}
+            onChange={handleSizeChange}
             placeholder="Selecciona tallas"
-            required 
+            required
           />
         </div>
         <div className={styles.pField}>
-          <label htmlFor="gender">Genero</label>
-          <Dropdown 
-            id="gender" 
-            name="gender" 
-            value={formData.gender} 
-            options={mockGenders} 
-            onChange={handleChange} 
-            placeholder="Selecciona un genero"
-            required 
+          <label htmlFor="gender">Género</label>
+          <Dropdown
+            id="gender"
+            name="gender"
+            value={formData.gender}
+            options={mockGenders}
+            onChange={handleChange}
+            placeholder="Selecciona un género"
+            required
           />
         </div>
         <div className={styles.pField}>
           <label htmlFor="sport">Deporte</label>
-          <Dropdown 
-            id="sport" 
-            name="sport" 
-            value={formData.sport} 
-            options={mockSports} 
-            onChange={handleChange} 
+          <Dropdown
+            id="sport"
+            name="sport"
+            value={formData.sport}
+            options={mockSports}
+            onChange={handleChange}
             placeholder="Selecciona un deporte"
-            required 
+            required
           />
         </div>
         <div className={styles.pField}>
           <label htmlFor="image">Imagen</label>
-          <FileUpload 
-            name="image" 
-            accept="image/*" 
-            maxFileSize={1000000} 
-            customUpload 
-            auto 
-            uploadHandler={handleImageUpload} 
+          <FileUpload
+            name="image"
+            accept="image/*"
+            maxFileSize={1000000}
+            customUpload
+            auto
+            uploadHandler={handleImageUpload}
             chooseLabel="Seleccionar Imagen"
             className={styles.pFieldButton}
           />
         </div>
         <div className={styles.pField}>
-          <label htmlFor="description">Descripcion</label>
+          <label htmlFor="description">Descripción</label>
           <InputTextarea
             id="description"
             name="description"
             value={formData.description}
             onChange={handleChange}
-            placeholder="Añade la descripcion..."
+            placeholder="Añade la descripción..."
             rows={5}
             required
           />
@@ -167,13 +181,19 @@ export default function Create() {
             id="stock"
             name="stock"
             value={formData.stock}
-            options={[{label: 'Si', value: true}, {label: 'No', value: false}]}
+            options={[
+              { label: 'Sí', value: true },
+              { label: 'No', value: false }
+            ]}
             onChange={handleChange}
             placeholder="Selecciona stock"
             required
           />
         </div>
-        <Button type="submit" className={styles.pFieldButton}>Enviar formulario</Button>
+        <Button type="submit" className={styles.pFieldButton}>
+          Enviar formulario
+        </Button>
+        {uploadStatus === 'pending' && <p>Subiendo imagen...</p>} {/* Mostrar mensaje de carga */}
       </form>
     </div>
   );

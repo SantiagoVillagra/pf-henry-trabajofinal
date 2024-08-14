@@ -1,11 +1,13 @@
 /* SignUp.module.css */
 .signupContainer {
-    background-color: #ff080893; /* Fondo gris claro para el contenedor */
+    background-color: #dfdfdf; /* Fondo gris claro para el contenedor */
     border-radius: 8px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     max-width: 400px; /* Ancho máximo del contenedor */
     margin: auto; /* Centrar el contenedor */
     padding: 2rem; /* Padding interno */
+    margin-top: 2rem;
+    
 }
 
 .signupForm {

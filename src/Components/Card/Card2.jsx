@@ -9,7 +9,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import styles from './Card2.module.css'; // Ajusta la ruta según tu estructura de proyecto
 
-export default function Card2({ id, name, price, image, brand }) {
+export default function Card2({ id, name, price, image, brand, }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

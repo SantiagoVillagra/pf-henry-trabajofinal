@@ -12,7 +12,8 @@ import {
   CREATE_SHOE,
   ADD_WISH,
   REMOVE_WISH,
-  DELETE_SHOE
+  DELETE_SHOE,
+  UPDATE_SHOE
 } from "./ActionsTypes";
 
 const initialState = {
@@ -149,6 +150,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 loggedUserData: {...state.loggedUserData, }
               }
+
+              case UPDATE_SHOE:
+                if (payload.error) {
+                    return {
+                        ...state,
+                        updateError: payload.error,
+                    };
+                } else {
+                    return {
+                        ...state,
+                        detail: {
+                            ...state.detail,
+                            [payload.data.id]: payload.data,
+                        },
+                        updateError: null,
+                    };
+                }
 
     default:
       return { ...state };

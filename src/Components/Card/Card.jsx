@@ -23,7 +23,7 @@ export default function Card({ id, name, price, image, brand }) {
     return (
         <div className={styles.Card}>
             {
-                loggedUserData.username && !loggedUserData.isadmin &&
+                loggedUserData.username && !loggedUserData.isAdmin &&
                 <>
                     <span className="pi pi-bookmark"></span>
                     <span className="pi pi-bookmark-fill"></span>

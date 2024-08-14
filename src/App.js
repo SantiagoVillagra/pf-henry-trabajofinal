@@ -35,7 +35,7 @@ function App() {
         <Route path='/detail/:ID' element={<Detail/>}/>
         <Route path='/form' element={<Form/>}/>
         {
-          !loggedUserData.isadmin && <Route path='/shop' element={<Shop/>}/>
+          !loggedUserData.isAdmin && <Route path='/shop' element={<Shop/>}/>
         }
         {
           !loggedUserData.username && <Route path='/login' element={<Login/>}/>
@@ -44,10 +44,10 @@ function App() {
           !loggedUserData.username && <Route path='/signup' element={<SignUp/>}/>
         }
         {
-          loggedUserData.username && !loggedUserData.isadmin && <Route path='/dashboard' element={<UserDashboard/>}/>
+          loggedUserData.username && !loggedUserData.isAdmin && <Route path='/dashboard' element={<UserDashboard/>}/>
         }
         {
-          loggedUserData.isadmin && <Route path='/dashboard' element={<AdminDashboard/>}/>
+          loggedUserData.isAdmin && <Route path='/dashboard' element={<AdminDashboard/>}/>
         }
         <Route path='*' element={<NotFound/>}/>
       </Routes>

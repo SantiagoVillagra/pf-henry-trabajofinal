@@ -12,7 +12,8 @@ import {
   TAKE_ITEM,
   DELETE_SHOE,
   ADD_WISH,
-  REMOVE_WISH
+  REMOVE_WISH,
+  UPDATE_SHOE
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -167,3 +168,21 @@ export const removeWish = (shoe) => {
         payload: shoe
     }
 }
+export const updateShoe = (shoeData) => async (dispatch) => {
+  try {
+      // Usamos shoeData.id para obtener el ID del zapato
+      const response = await axios.put(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`, shoeData);
+
+      dispatch({
+          type: UPDATE_SHOE,
+          payload: response.data // Esto asume que la API devuelve los datos actualizados
+      });
+  } catch (error) {
+      console.error('Error updating shoe:', error);
+      // Puedes manejar el error de diferentes formas, por ejemplo:
+      dispatch({
+          type: 'UPDATE_SHOE_FAIL',
+          payload: error.response ? error.response.data : 'Network Error'
+      });
+  }
+};

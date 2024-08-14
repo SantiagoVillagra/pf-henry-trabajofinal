@@ -5,6 +5,14 @@
     padding: 20px;
 }
 
+.DataScroller {
+    width: 100%;
+    max-width: 1200px; /* Ajusta el ancho máximo según tus necesidades */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .item {
     display: flex;
     flex-direction: row;
@@ -14,7 +22,7 @@
     max-width: 800px;
     padding: 20px;
     margin: 10px 0;
-    background-color: rgba(255, 0, 0, 0.1);
+    background-color: #e7e2e2;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -89,7 +97,7 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #ff4d4d;
+    background-color: #acaaaa;
     color: white;
     font-size: 1em;
     cursor: pointer;
@@ -99,4 +107,24 @@
 .item button:hover {
     background-color: #949494;
     transform: scale(1.05);
+}
+.totalContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente si el contenedor tiene altura */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.totalText {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.DataScroller {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }

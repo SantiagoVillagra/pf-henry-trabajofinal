@@ -5,6 +5,7 @@ import Create from "../Create/Create";
 import { TabView, TabPanel } from 'primereact/tabview';
 import styles from "./AdminDashboard.module.css"
 import DeleteShoe from "../../Admin/Delete/Delete";
+import  UpdateShoe  from "../UpdateShoe/UpdateShoe";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -29,6 +30,11 @@ export default function AdminDashboard() {
         <TabPanel header="Elimina/oculta productos">
           <div className={styles.tabContent}>
             <DeleteShoe></DeleteShoe>
+          </div>
+        </TabPanel>
+        <TabPanel header="Editá productos">
+          <div className={styles.tabContent}>
+            <UpdateShoe></UpdateShoe>
           </div>
         </TabPanel>
       </TabView>

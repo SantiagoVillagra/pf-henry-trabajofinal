@@ -1,95 +1,26 @@
-import users from "./mockUserData"
-import Swal from "sweetalert2"
+import axios from "axios";
+import alertSwal from "../funcs/alertSwal";
 
-export default function logIn (userData) {
+export default async function logIn (userData) {
 
     const { email, password } = userData
 
     if (!email || !password) {
-        //window.alert("Faltan campos por completar")
-        Swal.fire({
-            title: "Faltan campos por completar",
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
-            }
-        });
+        alertSwal("Faltan campos por completar")
         return
     }
 
-    const existentUser = users.find(user => user.email === email)
+    try {
+        var existentUser = await axios.post(`https://e-commerse-fc.onrender.com/api/auth/login`, userData)
+        console.log(existentUser)
+    } catch ({response: {data}}) {
+        const {message} = data
 
-    if (!existentUser) {
-        //window.alert("Usuario no registrado")
-        Swal.fire({
-            title: "Usuario no registrado",
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
-            }
-        });
+        message === "Invalid email" ? alertSwal("Email no registrado") : alertSwal("Contraseña incorrecta")
         return
     }
 
-    if (existentUser.password !== password) {
-        //window.alert("La contraseña ingresada es incorrecta")
-        Swal.fire({
-            title: "La contraseña ingresada es incorrecta",
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
-            }
-        });
-        return
-    }
-
-    //window.alert("Log in exitoso")
-    Swal.fire({
-        title: "Log in exitoso",
-        showClass: {
-            popup: `
-                animate__animated
-                animate__fadeInUp
-                animate__faster
-            `
-        },
-        hideClass: {
-            popup: `
-                animate__animated
-                animate__fadeOutDown
-                animate__faster
-            `
-        }
-    });
+    alertSwal("Log in exitoso")
+    
     return (existentUser)
 }

@@ -1,6 +1,6 @@
 import Swal from "sweetalert2"
 
-export default function(alertText) {
+export default function alertSwal(alertText) {
     return (
     Swal.fire({
         title: alertText,

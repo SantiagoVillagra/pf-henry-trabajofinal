@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode"
 import logIn from "../../mockDB/mockLogIn";
 import { loginUser } from "../../Redux/Actions";
 import { InputText } from 'primereact/inputtext';
@@ -31,40 +32,59 @@ export default function Login() {
         setUserData({ ...userData, [event.target.name]: event.target.value });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const loggedUser = logIn(userData);
-        if (loggedUser) {
-            dispatch(loginUser(loggedUser));
-            navigate("/home");
-        }
+        await logIn(userData)
+        .then(({data: {token}}) =>{
+            const decodedToken = jwtDecode(token)
+            console.log(decodedToken)
+            return decodedToken
+        })
+        .then(async ({id}) => {
+          console.log(id)
+          const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
+          console.log(user)
+          return user
+        })
+        .then(({data}) => {
+            console.log(data);
+            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory}
+            dispatch(loginUser(userData))
+            navigate("/home")
+        })
+
     };
 
     const handleLoginSuccess = async (response) => {
         console.log("entro al handleSuccess");
         
         console.log(response.credential);
-        if (response.credential) {
-            dispatch(loginUser({
-                username: "Estoy Probando",
-                email: "probandoestoy26@gmail.com",
-                isadmin: false,
-                wishList: [],
-                shoppingHistory: []
-            }))
+
+        try {
+          await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
+            token: response.credential,
+          })
+          .then(({data}) => {
+            const {token} = data
+            const decodedToken = jwtDecode(token)
+            return decodedToken
+          })
+          .then(async ({id}) => {
+            const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
+            console.log(user)
+            return user
+          })
+          .then(({data}) => {
+            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory}
+            dispatch(loginUser(userData))
             alertSwal("Log in exitoso")
             navigate("/home")
-        }
-        // try {
-        //   const res = await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
-        //     token: response.credential,
-        //   });
-        //   console.log(res.data);
+          })
           
-        //   // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
-        // } catch (error) {
-        //   console.error('Error al enviar el token al backend', error);
-        // }
+          // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
+        } catch (error) {
+          console.error('Error al enviar el token al backend', error);
+        }
       };
     
       const handleLoginFailure = (response) => {

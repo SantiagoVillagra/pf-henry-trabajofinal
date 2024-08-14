@@ -15,7 +15,6 @@ export default function UserDashboard() {
     }
 
     console.log(loggedUserData);
-    
 
     return (
         <div>

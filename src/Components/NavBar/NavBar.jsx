@@ -31,7 +31,7 @@ const Navbar = () => {
                     }}
                 />
                 {
-                    !loggedUserData.isadmin && <Button 
+                    !loggedUserData.isAdmin && <Button 
                     icon={<FaShoppingCart />} 
                     className={styles.transparentIcon} 
                     onClick={() => navigate("/shop")}

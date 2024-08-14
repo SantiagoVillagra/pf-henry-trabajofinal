@@ -1,19 +1,18 @@
-import "primeicons/primeicons.css"
-import { useSelector, useDispatch } from "react-redux"
+import "primeicons/primeicons.css";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styles from "./shop.module.css"
-import { removeFromCart, addItem, takeItem } from "../../Redux/Actions"
-import { DataView, DataViewLayoutOptions } from 'primereact/dataview';
+import styles from "./shop.module.css";
+import { removeFromCart, addItem, takeItem } from "../../Redux/Actions";
+import { DataScroller } from 'primereact/datascroller';
 import { Button } from 'primereact/button';
 import { useState } from "react";
-
 
 export default function Shop() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
 
-    const listTemplate = (product) => {
+    const itemTemplate = (product) => {
         return (
             <div className={styles.item}>
                 <img
@@ -44,15 +43,26 @@ export default function Shop() {
         );
     };
 
+    const calculateTotal = () => {
+        return cart.reduce((acc, product) => acc + product.item.price * product.qty, 0);
+    };
+
+
+
     return (
-        <div className={styles.ShopContainer}>
-            <h1>Este es tu carrito de compras</h1>
-            <DataView
-                value={cart}
-                layout="list"
-                itemTemplate={listTemplate}
-                emptyMessage="Tu carrito está vacío"
-            />
+        <div>
+        <div className={styles.shopContainer}>
+            <DataScroller value={cart} itemTemplate={itemTemplate} rows={10} inline scrollHeight="500px"    className={ styles.DataScroller}/>
         </div>
+        <div className={styles.totalContainer}>
+                <p className={styles.totalText}>El total de tu compra es ${calculateTotal().toFixed(2)}</p>
+                <Button
+                    label="Finalizar Compra"
+                    className="p-button-success"
+                    onClick={() => navigate('/checkout')} // Redirige a la página de checkout o realiza alguna acción
+                />
+            </div>
+        </div>
+
     );
 }

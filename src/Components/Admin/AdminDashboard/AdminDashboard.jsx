@@ -1,10 +1,10 @@
-import { logoutUser } from "../../Redux/Actions";
+import { logoutUser } from "../../../Redux/Actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Create from "../Create/Create";
 import { TabView, TabPanel } from 'primereact/tabview';
 import styles from "./AdminDashboard.module.css"
-import DeleteShoe from "../Delete/Delete";
+import DeleteShoe from "../../Admin/Delete/Delete";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();

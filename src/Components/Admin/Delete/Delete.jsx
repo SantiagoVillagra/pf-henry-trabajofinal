@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
-import { getAllShoes, deleteShoe } from "../../Redux/Actions";
+import { getAllShoes, deleteShoe } from "../../..//Redux/Actions";
 import styles from "./Delete.module.css";
 
 export default function DeleteShoe() {

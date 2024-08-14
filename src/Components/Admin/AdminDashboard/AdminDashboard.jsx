@@ -37,6 +37,21 @@ export default function AdminDashboard() {
             <UpdateShoe></UpdateShoe>
           </div>
         </TabPanel>
+        <TabPanel header="Usuarios">
+          <div className={styles.tabContent}>
+
+          </div>
+        </TabPanel>
+        <TabPanel header="Ordenes">
+          <div className={styles.tabContent}>
+        
+          </div>
+        </TabPanel>
+        <TabPanel header="Diagramas de ventas">
+          <div className={styles.tabContent}>
+            
+          </div>
+        </TabPanel>
       </TabView>
 
       </div>

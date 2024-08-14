@@ -6,10 +6,10 @@ import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
 import { InputTextarea } from "primereact/inputtextarea";
 import { FileUpload } from 'primereact/fileupload'; // Importar FileUpload
-import { createShoe } from "../../Redux/Actions";
-import mockBrands from "../../mockDB/mockBrands";
-import mockGenders from "../../mockDB/mockGenders";
-import mockSports from "../../mockDB/mockSports";
+import { createShoe } from "../../../Redux/Actions";
+import mockBrands from "../../../mockDB/mockBrands";
+import mockGenders from "../../../mockDB/mockGenders";
+import mockSports from "../../../mockDB/mockSports";
 import styles from "./Create.module.css"; // Asegúrate de importar el CSS
 
 // Relación de tallas

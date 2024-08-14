@@ -10,7 +10,7 @@ import Form from "./Components/Form/Form"
 import NotFound from "./Components/NotFound/NotFound"
 import SignUp from "./Components/SignUp/SignUp"
 import UserDashboard from "./Components/UserDashboard/UserDashboard"
-import AdminDashboard from "./Components/AdminDashboard/AdminDashboard"
+import AdminDashboard from "./Components/Admin/AdminDashboard/AdminDashboard"
 import { useEffect } from "react";
 import 'typeface-montserrat';
 import { useDispatch, useSelector } from "react-redux";

@@ -2,38 +2,101 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
 }
 
 .item {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    max-width: 800px;
     padding: 20px;
-    margin: 10px;
-    background-color: #ff000077;
-    border: 2px solid black;
-    border-radius: 15px;
+    margin: 10px 0;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .item img {
-    width: 300px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.item img:hover {
+    transform: scale(1.1);
+}
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.itemDetails h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.itemDetails h3 {
+    margin: 5px 0;
+    font-size: 1.2em;
+    color: #666;
 }
 
 .cantidad {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.cantidad span {
-    background-color: #00000077;
-    padding: 5px;
-    border: 2px solid #00000022;
-    border-radius: 7px;
+.cantidad i {
+    font-size: 1.2em;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.cantidad i:hover {
+    color: #000;
+}
+
+.cantidad h4 {
+    margin: 0 10px;
+    font-size: 1em;
+    color: #333;
 }
 
 .item button {
-    
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.item button:hover {
+    background-color: #949494;
+    transform: scale(1.05);
 }

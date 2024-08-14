@@ -1,0 +1,52 @@
+.formContainer {
+    width: 500px; /* Ajusta el ancho del contenedor según tus necesidades */
+    margin: 0 auto;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; /* Añade espacio entre los elementos del formulario */
+  }
+  
+  .pField {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .pField label {
+    flex: 0 0 150px; /* Ajusta el ancho de los labels según tu diseño */
+    margin-right: 1rem;
+    text-align: right;
+  }
+  
+  .pField .p-inputtext,
+  .pField .p-dropdown,
+  .pField .p-multiselect,
+  .pField .p-inputtextarea,
+  .pField .p-fileupload {
+    flex: 1;
+  }
+  
+  .pField .p-card-footer {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .pFieldButton {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+    width: 100%;
+    background-color: #949494 !important; /* Asegura que el color de fondo del botón sea gris */
+    color: rgb(255, 255, 255); /* Color del texto del botón */
+    border: none; /* Elimina el borde del botón si es necesario */
+    border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
+    font-size: 1em; /* Tamaño de fuente del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  }
+  
+  .pFieldButton:disabled {
+    background-color: #d3d3d3; /* Color de fondo cuando el botón está deshabilitado */
+    cursor: not-allowed;
+  }

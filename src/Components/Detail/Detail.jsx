@@ -47,7 +47,7 @@ export default function Detail() {
     }
 
     const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => size.value).join(', ') : 'No disponible';
-
+    console.log(shoeDetail)
     return (
         <div className={styles.container}>
             <Card title={shoeDetail.brand} className={styles.productCard}>
@@ -97,6 +97,10 @@ export default function Detail() {
                                 <tr>
                                     <td className={styles.boldTd}>Talles</td>
                                     <td>{sizes || 'No disponible'}</td>
+                                </tr>
+                                <tr>
+                                    <td className={styles.boldTd}>Stock</td>
+                                    <td>{ shoeDetail.stock? "Si" : "No" }</td>
                                 </tr>
                                 <tr>
                                     <td className={styles.boldTd}>Género</td>

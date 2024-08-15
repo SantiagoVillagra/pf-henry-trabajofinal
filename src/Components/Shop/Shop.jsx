@@ -6,6 +6,7 @@ import { removeFromCart, addItem, takeItem } from "../../Redux/Actions";
 import { DataScroller } from 'primereact/datascroller';
 import { Button } from 'primereact/button';
 import { useState } from "react";
+import alertSwal from "../../funcs/alertSwal"
 
 export default function Shop() {
     const dispatch = useDispatch();
@@ -52,14 +53,25 @@ export default function Shop() {
     return (
         <div>
         <div className={styles.shopContainer}>
-            <DataScroller value={cart} itemTemplate={itemTemplate} rows={10} inline scrollHeight="500px"    className={ styles.DataScroller}/>
+        {cart.length === 0 ? (
+                <p className={styles.emptyMessage}>Tu carrito está vacío</p>
+            ) : (
+                <DataScroller
+                    value={cart}
+                    itemTemplate={itemTemplate}
+                    rows={10}
+                    inline
+                    scrollHeight="500px"
+                    className={styles.DataScroller}
+                />
+            )}
         </div>
         <div className={styles.totalContainer}>
                 <p className={styles.totalText}>El total de tu compra es ${calculateTotal().toFixed(2)}</p>
                 <Button
                     label="Finalizar Compra"
                     className="p-button-success"
-                    onClick={() => navigate('/checkout')} // Redirige a la página de checkout o realiza alguna acción
+                    onClick={() => !cart.length ? alertSwal("El carrito esta vacío") : navigate('/checkout')} // Redirige a la página de checkout o realiza alguna acción
                 />
             </div>
         </div>

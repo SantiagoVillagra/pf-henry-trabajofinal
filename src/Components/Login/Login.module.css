@@ -1,3 +1,10 @@
+.background{
+    background-color: #dfdfdf31;
+    background-color: #ffffff;
+
+}
+
+
 
 .button {
     margin: 5px;
@@ -19,6 +26,7 @@
     width: 50%;
 }
 
+
 .input {
     width: 100%; /* Asegurar que el input ocupe todo el ancho disponible */
     padding: 0.5rem; /* Padding interno del input */
@@ -26,7 +34,6 @@
     border: 1px solid #ccc; /* Borde del input */
     border-radius: 4px; /* Bordes redondeados */
 }
-
 .input:focus {
     border-color: #000000; /* Color del borde al enfocar */
     box-shadow: 0 0 4px rgba(3, 85, 172, 0.25); /* Sombra al enfocar */
@@ -35,4 +42,35 @@
 .googleButton{
     background-color: #949494;
     border-radius: 6px;
+}
+
+.logInContainer {
+    background-color: #dfdfdf; /* Fondo gris claro para el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 400px; /* Ancho máximo del contenedor */
+    margin: auto; /* Centrar el contenedor */
+    padding: 2rem; /* Padding interno */
+    margin-top: 2rem;
+    
+    
+}
+
+.logInForm {
+    width: 100%;
+}
+.errorContainer {
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    width: 100%; /* Ancho completo del contenedor */
+    margin-top: 0.5rem; /* Separación superior */
+}
+
+.error {
+    color: #000000; /* Color rojo para los errores */
+    font-size: 0.8rem; /* Tamaño de fuente más pequeño */
+    display: flex; /* Usar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
 }

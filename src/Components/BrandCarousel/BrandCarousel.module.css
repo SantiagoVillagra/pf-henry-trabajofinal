@@ -1,0 +1,25 @@
+.custom-carousel .p-carousel-item {
+    display: flex;
+    justify-content: center; /* Centra el contenido dentro de cada item */
+    align-items: center; /* Alinea verticalmente el contenido */
+    padding: 0 15px; /* Espacio horizontal alrededor de cada imagen */
+}
+
+.custom-carousel .product-item {
+    display: flex;
+    flex-direction: column; /* Alinea imagen y título verticalmente */
+    align-items: center; /* Centra el contenido dentro de cada item */
+    text-align: center;
+    width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
+}
+
+.custom-carousel .product-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px; /* Espacio entre la imagen y el título */
+}
+
+.custom-carousel .product-detail h4 {
+    margin: 0; /* Elimina margen adicional del título */
+}

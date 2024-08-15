@@ -1,3 +1,11 @@
+.background{
+    background-color: #dfdfdf31;
+    background-color: #ffffff;
+
+}
+
+
+
 .button {
     margin: 5px;
     margin-left: 0;
@@ -44,6 +52,7 @@
     margin: auto; /* Centrar el contenedor */
     padding: 2rem; /* Padding interno */
     margin-top: 2rem;
+    
     
 }
 

@@ -5,6 +5,8 @@ import adidas from "../../Assets/land3.jpg";
 import LogoNav from "../../Assets/LogoNav.png";
 import style from "../Landing/Landing.module.css";
 import { Galleria } from 'primereact/galleria';
+import BrandCarousel from "../BrandCarousel/BrandCarousel";
+
 
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
@@ -63,13 +65,14 @@ export default function Landing() {
           style={{ width: "100%", height: "100vh" }}
           showItemNavigators
           showItemNavigatorsOnHover
-          showIndicators
+          showIndicators={false}
           showThumbnails={false} // No mostrar miniaturas
           item={itemTemplate} // Usa la plantilla para los elementos
           transitionInterval={3000} // Duración de cada transición en milisegundos (3 segundos en este caso)
           autoPlay // Activa el autoplay
         />
       </div>
+      <BrandCarousel></BrandCarousel>
     </div>
   );
 }

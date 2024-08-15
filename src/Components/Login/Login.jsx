@@ -95,6 +95,9 @@ export default function Login() {
       }
 
     return (
+        <div className={styles.background}>
+
+      
         <div className={styles.logInContainer}>
             <form onSubmit={handleSubmit} className="flex flex-column md:flex-row align-items-center justify-content-center">
                 <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
@@ -148,6 +151,7 @@ export default function Login() {
                     </Link>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

@@ -1,11 +1,4 @@
-.ShoeLanding {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin: 0 auto; 
-    max-width: 100%; 
-    height: auto; 
-}
+
 
 h1{
     font-family: sans-serif;  

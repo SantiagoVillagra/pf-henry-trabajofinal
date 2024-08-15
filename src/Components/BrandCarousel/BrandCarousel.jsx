@@ -83,7 +83,7 @@ export default function BrandCarousel() {
     return (
         <Carousel
             value={images}
-            numVisible={3} // Muestra 4 imágenes a la vez
+            numVisible={5} // Muestra 4 imágenes a la vez
               // Desplaza 2 imágenes a la vez
             responsiveOptions={responsiveOptions}
             className="custom-carousel"

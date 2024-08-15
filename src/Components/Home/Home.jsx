@@ -11,6 +11,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import Card2 from "../Card/Card2"
 import { Paginator } from "primereact/paginator";
+import BrandCarousel from "../BrandCarousel/BrandCarousel";
 
 export default function Home() {
 
@@ -149,7 +150,11 @@ export default function Home() {
  
 
   return (
-    <div className={styles.Home}>
+    <div>
+        <div>
+      <BrandCarousel></BrandCarousel>
+      </div>
+      <div className={styles.Home}>
       <div className={styles.FiltrosYOrden}>
         <h2>Buscá tus zapatillas por:</h2>
 
@@ -271,5 +276,9 @@ export default function Home() {
         />
       </div>
     </div>
+
+
+    </div>
+   
   );
 }

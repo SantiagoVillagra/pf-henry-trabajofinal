@@ -13,7 +13,11 @@ import {
   ADD_WISH,
   REMOVE_WISH,
   DELETE_SHOE,
-  UPDATE_SHOE
+  UPDATE_SHOE,
+  SET_USERS,
+  SET_USERS_ERROR,
+  UPDATE_USER_BAN_STATUS,
+  DELETE_USER
 } from "./ActionsTypes";
 
 const initialState = {
@@ -23,6 +27,8 @@ const initialState = {
   loggedUserData: JSON.parse(localStorage.getItem("userData")) || {},
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   detail: [],
+  users: [],
+  error: null,
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -81,11 +87,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
       }
 
       return { ...state, orderAndFilter: filteredSneakers };
-    
-    case LOGIN_USER: 
-    
-      const {isAdmin, username, wishList, shoppingHistory} = payload
-      return {...state, loggedUserData: {isAdmin, username, wishList, shoppingHistory}}
+
+    case LOGIN_USER:
+      const { isAdmin, username, wishList, shoppingHistory } = payload;
+      return {
+        ...state,
+        loggedUserData: { isAdmin, username, wishList, shoppingHistory },
+      };
 
     case LOGOUT_USER:
       return { ...state, loggedUserData: {} };
@@ -142,31 +150,60 @@ const rootReducer = (state = initialState, { type, payload }) => {
         allShoes: [...state.allShoes, payload],
       };
 
-      case DELETE_SHOE:
-        return { ...state, allShoes: state.allShoes.filter(shoe => shoe.ID !== payload) };
+    case DELETE_SHOE:
+      return {
+        ...state,
+        allShoes: state.allShoes.filter((shoe) => shoe.ID !== payload),
+      };
 
-            case ADD_WISH:
-              return {
-                ...state,
-                loggedUserData: {...state.loggedUserData, }
-              }
+    case ADD_WISH:
+      return {
+        ...state,
+        loggedUserData: { ...state.loggedUserData },
+      };
 
-              case UPDATE_SHOE:
-                if (payload.error) {
-                    return {
-                        ...state,
-                        updateError: payload.error,
-                    };
-                } else {
-                    return {
-                        ...state,
-                        detail: {
-                            ...state.detail,
-                            [payload.data.id]: payload.data,
-                        },
-                        updateError: null,
-                    };
-                }
+    case UPDATE_SHOE:
+      if (payload.error) {
+        return {
+          ...state,
+          updateError: payload.error,
+        };
+      } else {
+        return {
+          ...state,
+          detail: {
+            ...state.detail,
+            [payload.data.id]: payload.data,
+          },
+          updateError: null,
+        };
+      }
+
+    case SET_USERS:
+      return {
+        ...state,
+        users: payload,
+      };
+    case UPDATE_USER_BAN_STATUS:
+      return {
+        ...state,
+        users: state.users.map((user) =>
+          user.id === payload.id ? payload : user
+        ),
+      };
+      
+
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== payload),
+      };
+      
+    case SET_USERS_ERROR:
+      return {
+        ...state,
+        error: payload,
+      };
 
     default:
       return { ...state };

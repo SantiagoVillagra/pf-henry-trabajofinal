@@ -1,0 +1,42 @@
+.custom-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Asegura que el carrusel ocupe el ancho completo */
+}
+
+.custom-carousel .p-carousel-items {
+    display: flex;
+    align-items: center; /* Centra verticalmente los items */
+}
+
+.custom-carousel .p-carousel-item {
+    flex: 0 0 auto; /* Evita que los items se estiren */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    padding: 0 15px; /* Espacio horizontal alrededor de cada imagen */
+}
+
+.custom-carousel .p-carousel-item img {
+    max-width: 100%;
+    height: auto; /* Mantiene la relación de aspecto de las imágenes */
+    
+}
+
+/* Si quieres una animación de desplazamiento continuo */
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.custom-carousel .product-item {
+    display: flex;
+    flex-direction: column; /* Alinea imagen y título verticalmente */
+    align-items: center; /* Centra el contenido dentro de cada item */
+    text-align: center;
+    width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
+    margin-left: 2rem;
+}

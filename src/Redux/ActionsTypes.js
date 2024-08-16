@@ -27,3 +27,11 @@ export const ADD_WISH = "ADD_WISH"
 export const REMOVE_WISH = "REMOVE_WISH"
 
 export const UPDATE_SHOE = "UPDATE_SHOE"
+
+export const SET_USERS = 'SET_USERS'
+
+export const UPDATE_USER_BAN_STATUS = 'UPDATE_USER_BAN_STATUS'
+
+export const SET_USERS_ERROR = 'SET_USERS_ERROR'
+
+export const DELETE_USER = "DELETE_USER"

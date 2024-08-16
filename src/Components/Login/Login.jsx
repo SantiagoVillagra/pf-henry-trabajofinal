@@ -8,7 +8,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
 import { GoogleLogin } from "@react-oauth/google";
-import logoNav from "../../Assets/LogoNav_Mesa de trabajo 1 copia.png";
+import logoNav from "../../Assets/LogoNav.png";
 import axios from "axios";
 import alertSwal from "../../funcs/alertSwal"
 import styles from "./Login.module.css"
@@ -52,6 +52,9 @@ export default function Login() {
             dispatch(loginUser(userData))
             navigate("/home")
         })
+        .catch(error => {
+            console.log(error.message)
+        })
 
     };
 
@@ -92,10 +95,13 @@ export default function Login() {
       }
 
     return (
-        <div className="card">
-            <form onSubmit={handleSubmit} className="flex flex-column md:flex-row">
+        <div className={styles.background}>
+
+      
+        <div className={styles.logInContainer}>
+            <form onSubmit={handleSubmit} className="flex flex-column md:flex-row align-items-center justify-content-center">
                 <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
-                    
+                    <img src={logoNav} alt="logo shopsport" className={`mb-4 w-10rem ${styles.logo}`} />
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label htmlFor="email" className="w-6rem">Email</label>
                         <InputText
@@ -124,7 +130,7 @@ export default function Login() {
                         <span className="p-error">{errors.password}</span>
                     </div>
 
-                    <Button type="submit" label="Login" icon="pi pi-user" className={styles.button}  />
+                    <Button type="submit" label="Login" icon="pi pi-user" className={styles.button} />
 
                     <div>
                         <GoogleLogin
@@ -133,26 +139,19 @@ export default function Login() {
                             className={styles.googleButton}
                         />
                     </div>
-
-                  
-
                 </div>
 
-                <div className="w-full md:w-2">
-                    <Divider layout="vertical" className="hidden md:flex">
-                        <b>OR</b>
-                    </Divider>
-                    <Divider layout="horizontal" className="flex md:hidden" align="center">
-                        <b>OR</b>
-                    </Divider>
-                </div>
-                 
+                
+                <Divider align="center" className="w-full mb-3">
+                    <b>OR</b>
+                </Divider>
                 <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
                     <Link to={"/signup"}>
                         <Button label="Sign Up" icon="pi pi-user-plus" severity="success" className={styles.button} />
                     </Link>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

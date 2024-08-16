@@ -128,3 +128,14 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+.emptyMessage {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-top: 20px;
+}
+
+.checkoutContainer {
+    margin-top: 20px;
+    text-align: center;
+}

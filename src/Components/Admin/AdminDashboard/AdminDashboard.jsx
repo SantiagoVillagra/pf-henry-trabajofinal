@@ -6,6 +6,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import styles from "./AdminDashboard.module.css"
 import DeleteShoe from "../../Admin/Delete/Delete";
 import  UpdateShoe  from "../UpdateShoe/UpdateShoe";
+import UsersControl from "../UsersControl/UsersControl";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ export default function AdminDashboard() {
         </TabPanel>
         <TabPanel header="Usuarios">
           <div className={styles.tabContent}>
-
+            <UsersControl></UsersControl>
           </div>
         </TabPanel>
         <TabPanel header="Ordenes">

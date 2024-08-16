@@ -13,7 +13,11 @@ import {
   DELETE_SHOE,
   ADD_WISH,
   REMOVE_WISH,
-  UPDATE_SHOE
+  UPDATE_SHOE,
+  SET_USERS,
+  SET_USERS_ERROR,
+  UPDATE_USER_BAN_STATUS,
+  DELETE_USER
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -184,5 +188,52 @@ export const updateShoe = (shoeData) => async (dispatch) => {
           type: 'UPDATE_SHOE_FAIL',
           payload: error.response ? error.response.data : 'Network Error'
       });
+  }
+
+};
+export const getUsers = () => async dispatch => {
+  try {
+    const response = await axios.get('https://e-commerse-fc.onrender.com/api/users');
+    dispatch({
+      type: SET_USERS,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    dispatch({
+      type: SET_USERS_ERROR,
+      payload: error.message,
+    });
+  }
+};
+
+export const updateUserBanStatus = (userId, banStatus) => async dispatch => {
+  try {
+    const response = await axios.put(`https://e-commerse-fc.onrender.com/api/users/${userId}`, { ban: banStatus });
+    dispatch({
+      type: UPDATE_USER_BAN_STATUS,
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error('Error updating user ban status:', error);
+    // Puedes manejar errores aquí si lo deseas
+  }
+};
+export const deleteUser = (userId) => async (dispatch) => {
+  try {
+    // Enviar solicitud para eliminar el usuario
+    await axios.delete(`https://e-commerse-fc.onrender.com/api/users/${userId}`);
+    
+    // Dispatch de la acción para actualizar el estado en Redux
+    dispatch({
+      type: DELETE_USER,
+      payload: userId
+    });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    dispatch({
+      type: SET_USERS_ERROR,
+      payload: error.message
+    });
   }
 };

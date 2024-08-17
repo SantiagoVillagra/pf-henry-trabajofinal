@@ -11,6 +11,7 @@ import NotFound from "./Components/NotFound/NotFound"
 import SignUp from "./Components/SignUp/SignUp"
 import UserDashboard from "./Components/UserDashboard/UserDashboard"
 import AdminDashboard from "./Components/Admin/AdminDashboard/AdminDashboard"
+import Checkout from "./Components/Checkout/Checkout";
 import { useEffect } from "react";
 import 'typeface-montserrat';
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +37,9 @@ function App() {
         <Route path='/form' element={<Form/>}/>
         {
           !loggedUserData.isAdmin && <Route path='/shop' element={<Shop/>}/>
+        }
+        {
+          !loggedUserData.isAdmin && <Route path='/checkout' element={<Checkout/>}/>
         }
         {
           !loggedUserData.username && <Route path='/login' element={<Login/>}/>

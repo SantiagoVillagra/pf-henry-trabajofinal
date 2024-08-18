@@ -12,6 +12,8 @@ export default function Shop() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cart = useSelector(state => state.cart);
+    const loggedUserData = useSelector(state => state.loggedUserData)
+    console.log(loggedUserData);
 
     const itemTemplate = (product) => {
         return (
@@ -48,7 +50,21 @@ export default function Shop() {
         return cart.reduce((acc, product) => acc + product.item.price * product.qty, 0);
     };
 
+    const handleFinish = () => {
+        if (!cart.length) {
+            alertSwal("El carrito esta vacío")
+            return
+        }
 
+        if (!loggedUserData.username) {
+            alertSwal("Debes iniciar sesión para realizar una compra")
+            navigate("/login")
+            return
+        }
+
+        navigate("/checkout")
+        return
+    }
 
     return (
         <div>
@@ -71,7 +87,7 @@ export default function Shop() {
                 <Button
                     label="Finalizar Compra"
                     className="p-button-success"
-                    onClick={() => !cart.length ? alertSwal("El carrito esta vacío") : navigate('/checkout')} // Redirige a la página de checkout o realiza alguna acción
+                    onClick={() => handleFinish()} // Redirige a la página de checkout o realiza alguna acción
                 />
             </div>
         </div>

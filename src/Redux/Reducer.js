@@ -93,7 +93,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       const { isAdmin, username, wishList, shoppingHistory } = payload;
       return {
         ...state,
-        loggedUserData: { isAdmin, username,email, wishList, shoppingHistory, addresses, },
+        loggedUserData: { isAdmin, username, wishList, shoppingHistory,  }, // AGREGAR EMAIL Y ADRESSES addresses,,email
       };
 
     case LOGOUT_USER:

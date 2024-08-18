@@ -278,7 +278,7 @@ const mockOrders = [
   {
     "statuspago": "Pagado",
     "statusenvio": 1,
-    "fecha": "2024-07-10T011:10:00Z",
+    "fecha": "2024-07-10T11:10:00Z",
     "total": 68000,
     "shoes": [
       {

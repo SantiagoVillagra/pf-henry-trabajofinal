@@ -11,11 +11,15 @@ export default async function logIn (userData) {
     }
 
     try {
+        console.log(userData);
+        
         var existentUser = await axios.post(`https://e-commerse-fc.onrender.com/api/auth/login`, userData)
         console.log(existentUser)
-    } catch ({response: {data}}) {
-        const {message} = data
+    } catch (error) {
 
+        console.log(error)
+        const {message} = error.response.data
+        console.log(message)
         message === "Invalid email" ? alertSwal("Email no registrado") : alertSwal("Contraseña incorrecta")
         return
     }

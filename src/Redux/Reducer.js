@@ -17,7 +17,8 @@ import {
   SET_USERS,
   SET_USERS_ERROR,
   UPDATE_USER_BAN_STATUS,
-  DELETE_USER
+  DELETE_USER,
+  USER_INFO_CHANGE
 } from "./ActionsTypes";
 
 const initialState = {
@@ -92,7 +93,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       const { isAdmin, username, wishList, shoppingHistory } = payload;
       return {
         ...state,
-        loggedUserData: { isAdmin, username, wishList, shoppingHistory },
+        loggedUserData: { isAdmin, username, wishList, shoppingHistory,  }, // AGREGAR EMAIL Y ADRESSES addresses,,email
       };
 
     case LOGOUT_USER:
@@ -204,6 +205,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: payload,
       };
+
+      case USER_INFO_CHANGE:
+        return{
+          ...state,
+          loggedUserData:payload
+        }
 
     default:
       return { ...state };

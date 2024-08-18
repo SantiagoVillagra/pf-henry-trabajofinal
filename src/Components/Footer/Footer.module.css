@@ -1,0 +1,56 @@
+.footer {
+    background-color:  #d5050f;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.card {
+    padding: 2rem;
+    background-color:  #d5050f;
+    
+}
+
+.grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    margin-right: 1rem;
+    min-width: 200px; /* Ajusta el ancho mínimo según tus necesidades */
+}
+
+.column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.column ul li {
+    margin-bottom: 0.5rem;
+}
+
+.column ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.column ul li a:hover {
+    text-decoration: underline;
+}
+
+.textCenter {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        flex-direction: column;
+    }
+
+    .column {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}

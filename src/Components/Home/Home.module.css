@@ -80,6 +80,6 @@
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     margin-top: 20px; /* Espaciado opcional entre las tarjetas y el paginador */
-    background-color: #dfdfdf31;
+    background-color: #dfdfdf00;
 }
 

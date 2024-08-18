@@ -17,7 +17,8 @@ import {
   SET_USERS,
   SET_USERS_ERROR,
   UPDATE_USER_BAN_STATUS,
-  DELETE_USER
+  DELETE_USER,
+  USER_INFO_CHANGE
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -237,3 +238,17 @@ export const deleteUser = (userId) => async (dispatch) => {
     });
   }
 };
+
+export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
+
+  try {
+    const response = await axios.put(`https://e-commerse-fc.onrender.com/api/users/${userId}`, updatedData)
+
+    dispatch({
+      type: USER_INFO_CHANGE,
+      payload: response.data
+    });
+  } catch (error) {
+    console.log(error.message)
+  }
+}

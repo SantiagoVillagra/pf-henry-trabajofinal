@@ -7,6 +7,11 @@ import styles from "./AdminDashboard.module.css"
 import DeleteShoe from "../../Admin/Delete/Delete";
 import  UpdateShoe  from "../UpdateShoe/UpdateShoe";
 import UsersControl from "../UsersControl/UsersControl";
+import Orders from "../Orders/Orders"
+import SalesData from "../BussinesData/SalesData";
+import BrandsData from "../BussinesData/BrandsData";
+import MonthlySales from "../BussinesData/MonthlySales";
+import SportsData from "../BussinesData/SportsData"
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -45,12 +50,15 @@ export default function AdminDashboard() {
         </TabPanel>
         <TabPanel header="Ordenes">
           <div className={styles.tabContent}>
-        
+
           </div>
         </TabPanel>
         <TabPanel header="Diagramas de ventas">
           <div className={styles.tabContent}>
-            
+            <SalesData></SalesData>
+            <BrandsData></BrandsData>
+            <MonthlySales></MonthlySales>
+            <SportsData></SportsData>
           </div>
         </TabPanel>
       </TabView>

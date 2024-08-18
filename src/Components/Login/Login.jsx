@@ -48,7 +48,7 @@ export default function Login() {
         })
         .then(({data}) => {
             console.log(data);
-            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory}
+            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory, email: !data.email? "" : data.email, addresses: !data.addresses? [] : data.addresses}
             dispatch(loginUser(userData))
             navigate("/home")
         })

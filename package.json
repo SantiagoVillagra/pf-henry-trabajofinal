@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "axios": "^1.7.2",
+    "chart.js": "^4.4.3",
     "grid": "^4.10.8",
     "jwt-decode": "^4.0.0",
     "prime": "^0.5.0",

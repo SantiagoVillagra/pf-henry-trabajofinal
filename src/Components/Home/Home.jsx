@@ -12,6 +12,7 @@ import { Button } from "primereact/button";
 import Card2 from "../Card/Card2"
 import { Paginator } from "primereact/paginator";
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
+import Footer from "../Footer/Footer";
 
 export default function Home() {
 
@@ -276,7 +277,9 @@ export default function Home() {
         />
       </div>
     </div>
-
+<div>
+  <Footer/>
+</div>
 
     </div>
    

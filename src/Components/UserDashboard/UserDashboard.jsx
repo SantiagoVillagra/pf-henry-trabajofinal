@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { TabView, TabPanel } from 'primereact/tabview';
 import styles from "./UserDashboard.module.css"
+import userConfig from "./userConfig.jsx"
+import UserConfig from "./userConfig.jsx";
 
 export default function UserDashboard() {
 
@@ -48,7 +50,7 @@ export default function UserDashboard() {
                         }
                     </TabPanel>
                     <TabPanel header="Configuracion">
-
+                        <UserConfig></UserConfig>
                     </TabPanel>
                 </TabView>
             </div>

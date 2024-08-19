@@ -9,6 +9,7 @@ import { Dropdown } from 'primereact/dropdown';
 import styles from './Detail.module.css';
 import { addToCart, addItem } from '../../Redux/Actions';
 import Review from '../Reviews/Reviews';
+import Footer from "../Footer/Footer";
 
 export default function Detail() {
     const { ID } = useParams();
@@ -38,6 +39,7 @@ export default function Detail() {
     };
 
     const handleAddToCart = () => {
+        console.log({ ...shoeDetail, selectedSize })
         if (selectedSize) {
             dispatch(addToCart({ ...shoeDetail, selectedSize }));
         } else {
@@ -65,6 +67,7 @@ export default function Detail() {
     const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => ({ label: size.value, value: size.value })) : [];
 
     return (
+        <div>
         <div className={styles.container}>
             <Card title={shoeDetail.brand} className={styles.productCard}>
                 <div className={styles.contentWrapper}>
@@ -144,5 +147,9 @@ export default function Detail() {
                 <Review reviews={reviews} onSubmit={handleAddReview} />
             </Card>
         </div>
+    <div>
+        <Footer></Footer>
+    </div>
+</div>
     );
 }

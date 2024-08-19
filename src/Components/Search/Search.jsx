@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./Search.module.css";
 import Card2 from "../Card/Card2"
+import Footer from "../Footer/Footer";
 
 export default function Search() {
     const searchedShoes = useSelector(state => state.searchedShoes);
@@ -15,6 +16,9 @@ export default function Search() {
     };
 
     return (
+            <div>
+
+           
         <div className={styles.cardSearch}>
             {searchedShoes.length === 0 ? (
                 <p>No se encontraron productos.</p>
@@ -31,6 +35,11 @@ export default function Search() {
                     </div>
                 ))
             )}
+        </div>
+        <div>
+
+            <Footer></Footer>
+        </div>
         </div>
     );
 }

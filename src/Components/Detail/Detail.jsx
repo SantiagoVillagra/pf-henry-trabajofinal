@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
 import styles from './Detail.module.css';
 import { addToCart, addItem } from '../../Redux/Actions';
 import Review from '../Reviews/Reviews';
@@ -12,6 +14,7 @@ export default function Detail() {
     const { ID } = useParams();
     const [shoeDetail, setShoeDetail] = useState({});
     const [loading, setLoading] = useState(true);
+    const [selectedSize, setSelectedSize] = useState(null);
     const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
     const alreadyInCart = cart.find(cartItem => cartItem.item.id === parseInt(ID));
@@ -34,6 +37,19 @@ export default function Detail() {
         setReviews([...reviews, review]);
     };
 
+    const handleAddToCart = () => {
+        if (selectedSize) {
+            dispatch(addToCart({ ...shoeDetail, selectedSize }));
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Seleccione un talle',
+                text: 'Por favor, selecciona un talle antes de añadir el producto al carrito.',
+                confirmButtonText: 'Entendido'
+            });
+        }
+    };
+
     if (loading) {
         return (
             <div className={styles.loadingContainer}>
@@ -46,8 +62,8 @@ export default function Detail() {
         return <p>La zapatilla no fue encontrada.</p>;
     }
 
-    const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => size.value).join(', ') : 'No disponible';
-    console.log(shoeDetail)
+    const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => ({ label: size.value, value: size.value })) : [];
+
     return (
         <div className={styles.container}>
             <Card title={shoeDetail.brand} className={styles.productCard}>
@@ -61,6 +77,7 @@ export default function Detail() {
                     </div>
                     <div className={styles.detailsContainer}>
                         <h2>{shoeDetail.name}</h2>
+                       
                         {
                             alreadyInCart ? 
                             <>
@@ -77,7 +94,7 @@ export default function Detail() {
                                 label="Añadir al carrito"
                                 icon="pi pi-shopping-cart"
                                 className={styles.styledButton}
-                                onClick={() => dispatch(addToCart(shoeDetail))}
+                                onClick={handleAddToCart}
                             />
                         }
                         <table className={styles.sneakerTable}>
@@ -96,11 +113,17 @@ export default function Detail() {
                                 </tr> 
                                 <tr>
                                     <td className={styles.boldTd}>Talles</td>
-                                    <td>{sizes || 'No disponible'}</td>
+                                    <Dropdown
+                            value={selectedSize}
+                            options={sizes}
+                            onChange={(e) => setSelectedSize(e.value)}
+                            placeholder="Selecciona un talle"
+                            className={styles.sizeDropdown}
+                        />
                                 </tr>
                                 <tr>
                                     <td className={styles.boldTd}>Stock</td>
-                                    <td>{ shoeDetail.stock? "Si" : "No" }</td>
+                                    <td>{ shoeDetail.stock ? "Sí" : "No" }</td>
                                 </tr>
                                 <tr>
                                     <td className={styles.boldTd}>Género</td>

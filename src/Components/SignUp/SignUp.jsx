@@ -7,6 +7,7 @@ import logoNav from "../../Assets/LogoNav.png";
 import signUp from "../../mockDB/mockSignUp";
 import validation from "./validations";
 import styles from "./SignUp.module.css"
+import Footer from "../Footer/Footer";
 import 'primeicons/primeicons.css'; // icons
 
 export default function Signup() {
@@ -36,6 +37,7 @@ export default function Signup() {
     };
 
     return (
+        <div>
         <div className={`card p-4 md:p-6 flex flex-column align-items-center ${styles.signupContainer}`}>
             <form onSubmit={handleSubmit} className={`flex flex-column align-items-center w-full ${styles.signupForm}`}>
                 <img src={logoNav} alt="logo shopsport" className={`mb-4 w-10rem ${styles.logo}`} />
@@ -106,6 +108,10 @@ export default function Signup() {
                     <Button label="Log In" icon="pi pi-user" className={styles.buttonLogin} />
                 </Link>
             </form>
+        </div>
+            <div>
+                <Footer></Footer>
+            </div>
         </div>
     );
 }

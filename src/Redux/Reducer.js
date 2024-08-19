@@ -104,6 +104,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 
     case ADD_TO_CART:
       const shoeId = payload;
+      console.log(shoeId)
       return { ...state, cart: [...state.cart, { item: shoeId, qty: 1 }] };
 
     case REMOVE_FROM_CART:

@@ -12,6 +12,7 @@ import logoNav from "../../Assets/LogoNav.png";
 import axios from "axios";
 import alertSwal from "../../funcs/alertSwal"
 import styles from "./Login.module.css"
+import Footer from "../Footer/Footer";
 
 import 'primereact/resources/primereact.min.css'; // core css
 import 'primeicons/primeicons.css'; // icons
@@ -95,6 +96,7 @@ export default function Login() {
       }
 
     return (
+        <div>
         <div className={styles.background}>
 
       
@@ -152,6 +154,10 @@ export default function Login() {
                 </div>
             </form>
         </div>
+        </div>
+<div>
+    <Footer></Footer>
+</div>
         </div>
     );
 }

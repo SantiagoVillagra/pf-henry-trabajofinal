@@ -9,6 +9,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';  // O cualquier otro t
 
 import reportWebVitals from './reportWebVitals';
 import { sendToVercelAnalytics } from './vitals';
+import { SocketProvider } from "./Components/Socket/SocketContext";
 
 // Importar estilos de PrimeReact
 import 'primereact/resources/primereact.min.css';
@@ -21,9 +22,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        <App />
+        <SocketProvider>
+          <App />
+        </SocketProvider>
       </GoogleOAuthProvider>
     </BrowserRouter>
   </Provider>
-)
+);
+
 reportWebVitals(sendToVercelAnalytics);

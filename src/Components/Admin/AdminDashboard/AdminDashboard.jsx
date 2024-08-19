@@ -12,6 +12,7 @@ import SalesData from "../BussinesData/SalesData";
 import BrandsData from "../BussinesData/BrandsData";
 import MonthlySales from "../BussinesData/MonthlySales";
 import SportsData from "../BussinesData/SportsData"
+import AdminChat from "../Chat/AdminChat";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -61,6 +62,11 @@ export default function AdminDashboard() {
             <SportsData></SportsData>
           </div>
         </TabPanel>
+        <TabPanel header="Chat">
+            <div className={styles.tabContent}>
+              <AdminChat />
+            </div>
+          </TabPanel>
       </TabView>
 
       </div>

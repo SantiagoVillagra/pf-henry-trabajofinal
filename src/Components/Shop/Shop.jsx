@@ -14,10 +14,16 @@ export default function Shop() {
     const cart = useSelector(state => state.cart);
     const loggedUserData = useSelector(state => state.loggedUserData)
     console.log(loggedUserData);
+    
+
+
 
     const itemTemplate = (product) => {
         return (
+
+           
             <div className={styles.item}>
+                 {console.log(product.item.size)}
                 <img
                     src={product.item.image}
                     alt={product.item.name}
@@ -25,6 +31,7 @@ export default function Shop() {
                 />
                 <div className={styles.itemDetails}>
                     <h2>{product.item.name}</h2>
+                    <h3>Talle:{product.item.selectedSize}</h3>
                     <h3>Precio por unidad: ${product.item.price}</h3>
                     <div className={styles.cantidad}>
                         {product.qty > 1 ? (

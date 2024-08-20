@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode"
 import logIn from "../../mockDB/mockLogIn";
-import { loginUser } from "../../Redux/Actions";
+import { loginUser, logoutUser } from "../../Redux/Actions";
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Divider } from 'primereact/divider';
@@ -15,7 +15,7 @@ import styles from "./Login.module.css"
 import Footer from "../Footer/Footer";
 
 import 'primereact/resources/primereact.min.css'; // core css
-import 'primeicons/primeicons.css'; // icons
+import 'primeicons/primeicons.css'; // icons    
 import 'primeflex/primeflex.css'; // PrimeFlex
 
 export default function Login() {
@@ -35,20 +35,20 @@ export default function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         await logIn(userData)
         .then(({data: {token}}) =>{
             const decodedToken = jwtDecode(token)
-            console.log(decodedToken)
             return decodedToken
         })
         .then(async ({id}) => {
-          console.log(id)
           const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
-          console.log(user)
           return user
         })
         .then(({data}) => {
-            console.log(data);
+            // const loginTime = new Date().getTime();
+            // localStorage.setItem('loginTime', loginTime);
+            // console.log(loginTime)
             const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory, email: !data.email? "" : data.email, addresses: !data.addresses? [] : data.addresses}
             dispatch(loginUser(userData))
             navigate("/home")

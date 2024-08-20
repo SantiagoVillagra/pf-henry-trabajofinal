@@ -1,11 +1,12 @@
 .transparentIcon {
     background-color: transparent !important;
-    color: white; /* Mantiene el color del icono según el contexto */
-    border: inherit; /* Elimina cualquier borde que pueda estar presente */
-    font-size: 1.5em; /* Agranda el tamaño del icono */
+    color: white;
+    border: none; /* Asegura que no haya bordes */
+    font-size: 1.5em;
     cursor: pointer;
+    outline: none;
+    box-shadow: none; /* Elimina cualquier sombra */
 }
-
 
 .searchbar {
     display: flex;

@@ -11,6 +11,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import Card2 from "../Card/Card2"
 import { Paginator } from "primereact/paginator";
+import Chat from "../Chat/Chat"
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
 import Footer from "../Footer/Footer";
 
@@ -276,6 +277,7 @@ export default function Home() {
           onPageChange={handlePageChange}
         />
       </div>
+      <Chat></Chat>
     </div>
 <div>
   <Footer/>

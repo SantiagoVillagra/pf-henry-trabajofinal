@@ -29,11 +29,11 @@ export default function AdminDashboard() {
        
       <div>
       <TabView className={styles.tabView}>
-        <TabPanel header="Carga nuevas zapatillas">
-          <div className={styles.tabContent}>
-            <Create />
-          </div>
-        </TabPanel>
+      <TabPanel header="Carga nuevas zapatillas">
+            <div className={styles.tabContent}>
+              <Create />
+            </div>
+          </TabPanel>
         <TabPanel header="Elimina/oculta productos">
           <div className={styles.tabContent}>
             <DeleteShoe></DeleteShoe>

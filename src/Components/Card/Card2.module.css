@@ -21,6 +21,7 @@
     display: flex;
     justify-content: center; /* Centra la imagen horizontalmente */
     align-items: center; /* Centra la imagen verticalmente */
+   
 }
 
 .card-header img {
@@ -83,4 +84,21 @@
     display: inline-flex; /* Alinea el botón en línea */
     align-items: center; /* Alinea el contenido verticalmente en el centro */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+}
+.wishlistButton {
+    background: none;
+    border: inherit !important;
+    color: grey; /* Color por defecto */
+    font-size: 1.5rem; /* Tamaño del icono */
+    cursor: pointer;
+    transition: color 0.3s ease;
+    
+    top: 10px; /* Ajusta esta medida según el espacio que necesites desde la parte superior */
+    right: 10px; /* Ajusta esta medida según el espacio que necesites desde la parte derecha */
+    z-index: 10; /* Asegura que el botón esté por encima de otros elementos */
+}
+
+.wishlistButton.active {
+    color: red; /* Color del icono cuando está en la wishlist */
+
 }

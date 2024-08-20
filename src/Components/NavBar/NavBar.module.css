@@ -7,7 +7,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    
     box-sizing: border-box; /* Incluye el padding y border en el ancho total */
 }
 
@@ -23,20 +22,28 @@
     display: flex;
     align-items: center; /* Alinea verticalmente los elementos */
     gap: 10px; /* Espacio entre los elementos */
-    flex-grow: 1; /* Permite que este contenedor se expanda para ocupar el espacio disponible */
-    justify-content: flex-start; /* Alinea los elementos al inicio del contenedor */
-}
+    display: flex
+    }
 
 /* Ajustes específicos para la barra de búsqueda */
 .searchbar {
-    margin: 0;
-    padding: 0;
+    display: flex;
+    align-items: center; /* Alinea verticalmente la barra de búsqueda y el botón */
+    display: flex
 }
 
-/* Estilos transparentes para íconos */
-.transparentIcon{
+.searchInput {
+    display: none; /* Ocultamos el campo de entrada por defecto */
+}
+
+.searchbar.visible .searchInput {
+    display: block; /* Mostramos el campo de entrada cuando está visible */
+    margin-right: 10px; /* Espacio entre el campo de entrada y el botón de búsqueda */
+}
+
+.transparentIcon {
     background-color: transparent !important;
     color: white; /* Mantiene el color del icono según el contexto */
-    border: none; /* Elimina cualquier borde que pueda estar presente */
+    border: none !important; /* Elimina cualquier borde que pueda estar presente */
     font-size: 1.5em; /* Agranda el tamaño del icono */
 }

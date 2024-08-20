@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { ScrollPanel } from "primereact/scrollpanel";
-import socket from "../../Socket/socket";
+import socket from "../Socket/Socket"
 import styles from "./Chat.module.css";
 
 export default function ChatComponent() {
@@ -62,7 +62,7 @@ export default function ChatComponent() {
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
               className={styles.chatInputText}
-              placeholder="Escribe un mensaje..."
+              placeholder="¿En que podemos ayudarte?"
             />
             <Button
               icon="pi pi-send"

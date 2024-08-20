@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getShoeById } from '../../Redux/Actions'; // Ajusta la ruta según tu estructura de proyecto
+import { getShoeById, addWish, removeWish } from '../../Redux/Actions'; // Ajusta la ruta según tu estructura de proyecto
 import { Card as PrimeCard } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { ToggleButton } from 'primereact/togglebutton';
@@ -13,7 +13,12 @@ import styles from './Card2.module.css'; // Ajusta la ruta según tu estructura 
 export default function Card2({ id, name, price, image, brand }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [isInWishlist, setIsInWishlist] = useState(false);
+    const loggedUserData = useSelector(state => state.loggedUserData)
+    const [isInWishlist, setIsInWishlist] = useState(() => {
+        const isInWishlistGlobal = loggedUserData.wishList?.find(shoe => shoe.id === id)
+
+        return isInWishlistGlobal ? true : false
+    });
 
     const handleClick = () => {
         if (id) {
@@ -26,7 +31,13 @@ export default function Card2({ id, name, price, image, brand }) {
 
     const handleWishlistClick = () => {
         setIsInWishlist(!isInWishlist);
-        // Aquí puedes despachar una acción para agregar o eliminar de la wishlist en tu estado global
+        
+        if (!isInWishlist) {           //Hay que ponerlo así por que el estado todavía no se actualizó
+            dispatch(addWish(id))
+        } else {
+            dispatch(removeWish(id))
+        }
+
     };
 
     const header = (
@@ -54,12 +65,15 @@ export default function Card2({ id, name, price, image, brand }) {
                 onClick={handleWishlistClick}
             /> */}
 
-<ToggleButton 
-    onLabel="Quitar de favoritos" 
-    offLabel="Añadir a favoritos" 
-    checked={isInWishlist} 
-    onChange={(e) => setIsInWishlist(e.value)} 
-/>
+            {
+                loggedUserData.username && !loggedUserData.isAdmin &&
+            <ToggleButton 
+                onLabel="Quitar de favoritos" 
+                offLabel="Añadir a favoritos" 
+                checked={isInWishlist} 
+                onChange={handleWishlistClick} 
+            />
+            }
 
             <div className={styles['card-content']}>
                 <div className={styles['card-title']}>{name}</div>

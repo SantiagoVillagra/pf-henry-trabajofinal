@@ -2,6 +2,7 @@ import { logoutUser } from "../../Redux/Actions"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { TabView, TabPanel } from 'primereact/tabview';
+import Card2 from "../Card/Card2.jsx";
 import styles from "./UserDashboard.module.css"
 import userConfig from "./userConfig.jsx"
 import UserConfig from "./userConfig.jsx";
@@ -27,10 +28,17 @@ export default function UserDashboard() {
                         {
                             !loggedUserData.wishList.length
                             ? <h3>No hay zapatillas en tu lista de deseos</h3>
-                            : loggedUserData.wishList.map(list => {
+                            : loggedUserData.wishList.map(({ id, name, price, image, brand }) => {
                                 return (
                                     <div>
-
+                                        <Card2
+                                        key={id}
+                                        id={id}
+                                        brand={brand}
+                                        name={name}
+                                        price={price}
+                                        image={image}
+                                        />
                                     </div>
                                 )
                             })

@@ -160,17 +160,22 @@ export const addItem = (item) => {
   };
 }
 
-export const addWish = (shoe) => {
-    return {
-        type: ADD_WISH,
-        payload: shoe
-    }
+export const addWish = (id) => {
+  return function (dispatch) {
+    axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
+      .then(({ data }) => {
+        dispatch({ type: ADD_WISH, payload: data });
+      })
+      .catch((error) => {
+        console.error("Error fetching shoe data:", error);
+      });
+  };
 }
 
-export const removeWish = (shoe) => {
+export const removeWish = (id) => {
     return {
         type: REMOVE_WISH,
-        payload: shoe
+        payload: id
     }
 }
 export const updateShoe = (shoeData) => async (dispatch) => {

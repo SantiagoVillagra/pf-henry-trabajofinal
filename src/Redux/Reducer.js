@@ -159,10 +159,26 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADD_WISH:
+      const updatedWishlist = [...state.loggedUserData.wishList, payload]
+      const updatedLoggedUserData = {...state.loggedUserData, wishList: updatedWishlist}
+      console.log(updatedLoggedUserData)
+      // return {
+      //   ...state,
+      //   loggedUserData: { ...state.loggedUserData, [state.loggedUserData.wishList]: [...state.loggedUserData.wishList, payload] }
+      // };
       return {
         ...state,
-        loggedUserData: { ...state.loggedUserData },
-      };
+        loggedUserData: updatedLoggedUserData
+      }
+
+    case REMOVE_WISH:
+      const updatedWishlistRemove = state.loggedUserData.wishList.filter(shoe => shoe.id !== payload)
+      const updatedLoggedUserDataRemove = {...state.loggedUserData, wishList: updatedWishlistRemove}
+      console.log(updatedLoggedUserDataRemove)
+      return {
+        ...state,
+        loggedUserData: updatedLoggedUserDataRemove
+      }
 
     case UPDATE_SHOE:
       if (payload.error) {

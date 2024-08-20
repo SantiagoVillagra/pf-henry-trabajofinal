@@ -15,6 +15,7 @@ import Checkout from "./Components/Checkout/Checkout";
 import { useEffect } from "react";
 import 'typeface-montserrat';
 import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "./Redux/Actions";
 import sneakers from "./mockDB/mockDB";
 import 'primereact/resources/themes/saga-blue/theme.css';  // O cualquier otro tema que prefieras
 
@@ -25,6 +26,28 @@ function App() {
   const dispatch = useDispatch()
   const loggedUserData = useSelector(state => state.loggedUserData)
   let location = useLocation()
+
+  // const checkSession = () => {
+  //   const sessionDuration = 5000
+  //   const loginTime = localStorage.getItem('loginTime');
+  //   if (loginTime) {
+  //       const currentTime = new Date().getTime();
+  //       console.log(currentTime)
+  //       console.log(loginTime)
+  //       console.log(currentTime-loginTime)
+  //       if (currentTime - loginTime > sessionDuration) {
+  //           localStorage.removeItem('loginTime')
+  //           dispatch(logoutUser)
+  //       } else {
+  //           // Actualizar la hora de inicio de sesión si aún es válida
+  //           localStorage.setItem('loginTime', currentTime);
+  //       }
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   checkSession()
+  // }, [])
 
   return (
     <div>

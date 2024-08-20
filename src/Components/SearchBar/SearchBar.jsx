@@ -9,10 +9,10 @@ import { FaSearch } from 'react-icons/fa';
 import styles from "./SearchBar.module.css";
 import { searchShoes } from "../../Redux/Actions";
 
-export default function SearchBar() {
+
+export default function SearchBar({ isSearchBarVisible, toggleSearchBar }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
     const [searchShoe, setSearchShoe] = useState('');
 
     const handleChange = (event) => {
@@ -25,10 +25,6 @@ export default function SearchBar() {
         navigate(`/search?query=${encodeURIComponent(searchShoe)}`);
     };
 
-    const toggleSearchBar = () => {
-        setIsSearchBarVisible(!isSearchBarVisible);
-    };
-
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSearch(event);
@@ -36,23 +32,17 @@ export default function SearchBar() {
     };
 
     return (
-        <div className={styles.searchContainer}>
-            <div className={styles.searchbar}>
-                {isSearchBarVisible && (
-                    <InputText
-                        className={styles.searchInput}
-                        placeholder="Buscar..."
-                        value={searchShoe}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                    />
-                )}
-                <Button
-                    icon={<FaSearch />}
-                    className={styles.transparentIcon}
-                    onClick={toggleSearchBar}
+        <div className={styles.searchbar}>
+            {isSearchBarVisible && (
+                <InputText
+                    className={styles.searchInput}
+                    placeholder="Buscar..."
+                    value={searchShoe}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
                 />
-            </div>
+            )}
+            
         </div>
     );
 }

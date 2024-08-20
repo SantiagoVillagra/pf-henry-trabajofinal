@@ -160,7 +160,7 @@ export default function Create() {
             auto
             uploadHandler={handleImageUpload}
             chooseLabel="Seleccionar Imagen"
-            className={styles.pFieldButton}
+           
           />
         </div>
         <div className={styles.pField}>

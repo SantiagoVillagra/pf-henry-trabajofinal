@@ -1,25 +1,26 @@
 .formContainer {
-  width: 500px; 
+  width: 100%;
+  max-width: 600px; /* Ajusta el ancho máximo según sea necesario */
   margin: 0 auto;
+  padding: 1rem;
 }
 
 form {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column; /* Cambiado de wrap a column */
+  gap: 1rem; /* Espacio entre los campos del formulario */
 }
 
 .pField {
   display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  flex-direction: column; /* Alinea los elementos en columna */
+  gap: 0.5rem; /* Espacio entre el label y el campo de entrada */
   width: 100%;
 }
 
 .pField label {
-  flex: 0 0 150px;
-  margin-right: 1rem;
-  text-align: right;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .pField .p-inputtext,
@@ -27,7 +28,11 @@ form {
 .pField .p-multiselect,
 .pField .p-inputtextarea,
 .pField .p-fileupload {
-  flex: 1;
+  width: 100%;
+  border-radius: 4px; /* Bordes redondeados para los campos */
+  border: 1px solid #ccc; /* Borde gris claro para los campos */
+  padding: 0.5rem; /* Espaciado interno */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Sombra interna para un efecto de profundidad */
 }
 
 .pField .p-card-footer {
@@ -36,18 +41,24 @@ form {
 }
 
 .pFieldButton {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
   width: 100%;
-  background-color: #949494 !important;
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 4px;
-  font-size: 1em;
-  cursor: pointer;
+  background-color: #949494 !important; /* Asegura que el color de fondo del botón sea gris */
+  color: rgb(255, 255, 255); /* Color del texto del botón */
+  border: none; /* Elimina el borde del botón si es necesario */
+  border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
+  font-size: 1em; /* Tamaño de fuente del botón */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  text-align: center; /* Alinea el texto en el centro */
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.pFieldButton:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el ratón */
 }
 
 .pFieldButton:disabled {
-  background-color: #d3d3d3;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
@@ -67,10 +78,13 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-height: none;
 }
-.searchButton{
-  justify-content: center;
+
+.searchButton {
   background-color: #949494;
-  font-size: bold;
+  font-weight: bold; /* Cambiado de font-size: bold a font-weight: bold */
+  text-align: center; /* Alinea el texto en el centro */
+}
+.separated{
+  margin-left: 3rem;
 }

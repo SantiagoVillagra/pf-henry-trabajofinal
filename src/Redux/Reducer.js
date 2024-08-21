@@ -18,7 +18,10 @@ import {
   SET_USERS_ERROR,
   UPDATE_USER_BAN_STATUS,
   DELETE_USER,
-  USER_INFO_CHANGE
+  USER_INFO_CHANGE,
+  ADD_ADDRESS,
+  DELETE_ADDRESS,
+  EDIT_ADDRESS
 } from "./ActionsTypes";
 
 const initialState = {
@@ -202,14 +205,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         users: payload,
       };
-    case UPDATE_USER_BAN_STATUS:
-      return {
+    
+      case UPDATE_USER_BAN_STATUS:
+    return {
         ...state,
-        users: state.users.map((user) =>
-          user.id === payload.id ? payload : user
+        users: state.users.map(user =>
+            user.id === payload.id
+                ? { ...user, ban: payload.ban }
+                : user
         ),
-      };
-      
+    };
 
     case DELETE_USER:
       return {
@@ -229,6 +234,33 @@ const rootReducer = (state = initialState, { type, payload }) => {
           loggedUserData:payload
         }
 
+      case ADD_ADDRESS: 
+        return {
+          ...state,
+          loggedUserData: {...state.loggedUserData, addresses: [...state.loggedUserData.addresses, payload]}
+        }
+
+    case DELETE_ADDRESS: 
+        const addressesCopy = [...state.loggedUserData.addresses]
+        const addressesAfterDelete = addressesCopy.filter((address, index) => index !== payload)
+        return {
+          ...state,
+          loggedUserData: {...state.loggedUserData, addresses: addressesAfterDelete}
+        }
+    
+    case EDIT_ADDRESS: 
+        const addressesCopy2 = [...state.loggedUserData.addresses]
+        const { indexToEdit, editedAddress } = payload
+        const addressesAfterEdit = addressesCopy2.map((addss, idx) => {
+          if (idx === indexToEdit) {
+            return editedAddress
+          }
+          return addss
+        })
+        return {
+          ...state,
+          loggedUserData: {...state.loggedUserData, addresses: addressesAfterEdit}
+        }
     default:
       return { ...state };
   }

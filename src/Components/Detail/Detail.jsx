@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import alertSwal from "../../funcs/alertSwal"
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
@@ -25,7 +26,7 @@ export default function Detail() {
         setLoading(true);
         axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${ID}`)
             .then(({ data }) => {
-                setShoeDetail(data);
+                setShoeDetail(data)
                 setLoading(false);
             })
             .catch((error) => {
@@ -97,7 +98,8 @@ export default function Detail() {
                                 label="Añadir al carrito"
                                 icon="pi pi-shopping-cart"
                                 className={styles.styledButton}
-                                onClick={handleAddToCart}
+                                onClick={() => {
+                                    return shoeDetail.stock && shoeDetail.sizes.length ? handleAddToCart() : alertSwal("Lo sentimos, no hay stock de este producto en este momento")}}
                             />
                         }
                         <table className={styles.sneakerTable}>

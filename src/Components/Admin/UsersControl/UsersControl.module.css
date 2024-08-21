@@ -59,3 +59,24 @@
 .deleteButton:hover {
     background-color: #ff0800; /* Color de fondo cuando el botón es hovered */
 }
+.banButton {
+    background-color: #c40802; /* Rojo para banear */
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.banButton:hover {
+    background-color: #ff0800; /* Rojo más claro cuando el botón es hovered */
+}
+
+.unbanButton {
+    background-color: #28a745; /* Verde para desbanear */
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.unbanButton:hover {
+    background-color: #218838; /* Verde más oscuro cuando el botón es hovered */
+}

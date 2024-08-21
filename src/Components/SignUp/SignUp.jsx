@@ -37,7 +37,7 @@ export default function Signup() {
     validation(userData, setErrors, errors);
     const flag = signUp(userData, errors);
     if (flag === "flag") {
-      navigate("/login");
+      navigate("/home");
     }
   };
 

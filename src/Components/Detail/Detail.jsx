@@ -144,7 +144,7 @@ export default function Detail() {
                         </table>
                     </div>
                 </div>
-                <Review reviews={reviews} onSubmit={handleAddReview} />
+                {/* <Review reviews={reviews} onSubmit={handleAddReview} /> */}
             </Card>
         </div>
     <div>

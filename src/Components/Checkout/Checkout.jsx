@@ -1,5 +1,6 @@
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from "axios"
 import styles from "./Checkout.module.css"
@@ -10,6 +11,9 @@ import { RadioButton } from 'primereact/radiobutton';
 
 
 export default function Checkout() {
+
+    const navigate = useNavigate()
+
     initMercadoPago('APP_USR-1350f145-a406-4674-bd19-5a5799cec260', {
         locale: "es-AR"
     });
@@ -111,14 +115,18 @@ export default function Checkout() {
                     />
                     <label htmlFor="Local">
                       <div>
-                        <h5>Retirar por Shopsport</h5>
+                        <h4>Retirar por Shopsport</h4>
                         <p>Calle FGH 456 - ShopCity, ShopProvince - ShopCountry</p>
                       </div>
                     </label>
 
                   </div>
-                  {
-                    loggedUserData.addresses.map((address, index) => {
+                  { !loggedUserData.addresses.length 
+                    ? <div className={styles.PairRadioLabel}>
+                        <h4>Puedes añadir tus direcciones desde tu panel de Usuario</h4>
+                        <Button onClick={() => navigate("/dashboard")}>PANEL DE USUARIO</Button>
+                    </div>
+                    : loggedUserData.addresses.map((address, index) => {
                       return (
                         <div className={styles.PairRadioLabel}>
                           <RadioButton

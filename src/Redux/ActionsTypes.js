@@ -37,3 +37,9 @@ export const SET_USERS_ERROR = 'SET_USERS_ERROR'
 export const DELETE_USER = "DELETE_USER"
 
 export const USER_INFO_CHANGE = "USER_INFO_CHANGE"
+
+export const ADD_ADDRESS = "ADD_ADDRESS"
+
+export const DELETE_ADDRESS = "DELETE_ADDRESS"
+
+export const EDIT_ADDRESS = "EDIT_ADDRESS"

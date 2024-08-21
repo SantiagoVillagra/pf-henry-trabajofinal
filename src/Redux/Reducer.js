@@ -93,10 +93,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, orderAndFilter: filteredSneakers };
 
     case LOGIN_USER:
-      const { isAdmin, username, email, wishList, shoppingHistory, addresses } = payload;
+      const { isAdmin, username, email, wishList, shoppingHistory, addresses,id } = payload;
       return {
         ...state,
-        loggedUserData: { isAdmin, username, wishList, shoppingHistory, email, addresses },
+        loggedUserData: { isAdmin, username, wishList, shoppingHistory, email, addresses,id },
       };
 
     case LOGOUT_USER:

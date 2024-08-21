@@ -5,13 +5,19 @@ import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import logoNav from "../../Assets/LogoNav.png";
 import signUp from "../../mockDB/mockSignUp";
+import logIn from "../../mockDB/mockLogIn";
 import validation from "./validations";
 import styles from "./SignUp.module.css";
 import Footer from "../Footer/Footer";
+import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode"
+import { loginUser } from "../../Redux/Actions";
+import axios from "axios";
 import "primeicons/primeicons.css"; // icons
 
 export default function Signup() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [userData, setUserData] = useState({
     username: "",
@@ -32,12 +38,35 @@ export default function Signup() {
     );
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     validation(userData, setErrors, errors);
-    const flag = signUp(userData, errors);
+    const flag = await signUp(userData, errors);
+    console.log(flag)
     if (flag === "flag") {
-      navigate("/home");
+
+      await logIn(userData)
+      .then(({data: {token}}) =>{
+          const decodedToken = jwtDecode(token)
+          return decodedToken
+      })
+      .then(async ({id}) => {
+        const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
+        return user
+      })
+      .then(({data}) => {
+          // const loginTime = new Date().getTime();
+          // localStorage.setItem('loginTime', loginTime);
+          // console.log(loginTime)
+          const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory, email: !data.email? "" : data.email, addresses: !data.addresses? [] : data.addresses}
+          dispatch(loginUser(userData))
+          navigate("/home")
+      })
+      .catch(error => {
+          console.log(error.message)
+      })
+      navigate("/home")
+
     }
   };
 

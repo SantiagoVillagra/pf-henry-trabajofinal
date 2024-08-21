@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'primereact/button';
@@ -31,7 +30,7 @@ export default function UpdateShoeForm() {
 
   const dispatch = useDispatch();
   const allShoes = useSelector(state => state.allShoes);
-  const updateError = useSelector(state => state.updateError); // Obtener error del estado global
+  const updateError = useSelector(state => state.updateError);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -69,8 +68,20 @@ export default function UpdateShoeForm() {
     );
     if (foundShoe) {
       setSelectedShoe(foundShoe);
-      const inStockSizes = foundShoe.sizes.map(size => size.value)
-      setFormData({ ...foundShoe, sizes: inStockSizes });
+      // Inicializar formData con los detalles del zapato seleccionado
+      const sizes = foundShoe.sizes.reduce((acc, size) => {
+        // Solo asignar si shoesizes está definido
+        if (size.shoesizes) {
+          acc[size.value] = size.shoesizes.quantity;
+        } else {
+          acc[size.value] = 0; // Asignar 0 si no hay cantidad definida
+        }
+        return acc;
+      }, {});
+      setFormData({
+        ...foundShoe,
+        sizes: sizes,
+      });
     } else {
       setSelectedShoe(null);
       Swal.fire({
@@ -79,7 +90,7 @@ export default function UpdateShoeForm() {
         text: 'No se encontró ninguna zapatilla con ese nombre.',
       });
     }
-  };
+};
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -101,46 +112,40 @@ export default function UpdateShoeForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setUploadStatus('pending'); // Indica que la carga está en proceso
+    setUploadStatus('pending');
   
     try {
-      // Ejecuta la acción de actualización
       await dispatch(updateShoe(formData));
-      
-      // Muestra una alerta de éxito si la actualización fue exitosa
       Swal.fire({
         icon: 'success',
         title: 'Éxito',
         text: 'Zapatilla actualizada con éxito.',
       });
     } catch (error) {
-      // Muestra una alerta de error si algo salió mal
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Hubo un problema al actualizar la zapatilla.',
       });
     } finally {
-      // Actualiza el estado de carga a 'idle' cuando la operación finaliza
       setUploadStatus('idle');
     }
   };
 
   return (
     <div className={styles.formContainer}>
-       <div className={styles.pField}>
-          <label htmlFor="search">Buscar zapatilla por nombre</label>
-          <InputText
-            id="search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Nombre de la zapatilla"
-          />
-          <Button label="Buscar" onClick={handleSearch} className={styles.searchButton} />
-        </div>
+      <div className={styles.pField}>
+        <label htmlFor="search">Buscar zapatilla por nombre</label>
+        <InputText
+          id="search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Nombre de la zapatilla"
+        />
+        <Button label="Buscar" onClick={handleSearch} className={styles.searchButton} />
+      </div>
 
       <form onSubmit={handleSubmit}>
-       
         {selectedShoe && (
           <>
             <div className={styles.imagePreview}>
@@ -183,21 +188,17 @@ export default function UpdateShoeForm() {
             <div className={styles.pField}>
               <label htmlFor="sizes">Talles</label>
               <div className={styles.sizeFieldContainer}>
-                {Object.keys(sizeMapping).map(size => {
-                    const isInFormData = formData.sizes.find(sizeForm => sizeForm === size)
-                    return(
+                {Object.keys(sizeMapping).map(size => (
                   <div key={size}>
                     <label>{size}</label>
                     <InputNumber
-                      value={isInFormData ? 1 : 0}
+                      value={formData.sizes[size] || 0}
                       onValueChange={(e) => handleSizeChange(size, e.value)}
                       min={0}
                       className={styles.separated}
-
                     />
                   </div>
-                )}
-                )}
+                ))}
               </div>
             </div>
             <div className={styles.pField}>

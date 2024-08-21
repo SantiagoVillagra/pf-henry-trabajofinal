@@ -308,12 +308,17 @@ export const addAddress = (address) =>  async (dispatch) =>{
   
 }
 
-export const deleteAddress = (idx) => {
-  return {
-    type: DELETE_ADDRESS,
-    payload: idx
-  }
-}
+// export const deleteAddress = (idx) =>  async (dispatch) =>{
+//  try {
+//   const response = await axios.delete(`https://e-commerse-fc.onrender.com/api/useraddresses`)
+//   dispatch({
+//     type:DELETE_ADDRESS,
+//     payload: 
+//   })
+//  } catch (error) {
+ 
+//  }
+// }
 
 export const editAddress = (index, address) => {
   return {

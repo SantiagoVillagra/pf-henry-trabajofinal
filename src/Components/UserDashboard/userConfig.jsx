@@ -129,7 +129,7 @@ export default function UserConfig() {
     }
 
     const handleDeleteAddress = (idx) => {
-        dispatch(deleteAddress(idx))
+        dispatch(deleteAddress(loggedUserData.addresses[idx].id))
     }
 
     return (

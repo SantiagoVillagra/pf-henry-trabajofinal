@@ -300,7 +300,7 @@ export const addAddress = (address) =>  async (dispatch) =>{
     console.log(response.data)
     dispatch( {
       type: ADD_ADDRESS,
-      payload: response.data
+      payload: response.data.addresses
     })
   } catch (error) {
     console.log(error)

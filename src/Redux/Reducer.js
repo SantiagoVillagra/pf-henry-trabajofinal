@@ -237,7 +237,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       case ADD_ADDRESS: 
         return {
           ...state,
-          loggedUserData: {...state.loggedUserData, addresses: [...state.loggedUserData.addresses, payload]}
+          loggedUserData: {...state.loggedUserData, addresses:payload}
         }
 
     case DELETE_ADDRESS: 

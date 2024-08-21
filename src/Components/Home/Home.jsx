@@ -254,15 +254,19 @@ export default function Home() {
           ))}
         </div> */}
         <div className={styles.Cards}>
-          {paginatedData.map(({ id, name, price, image, brand }) => (
-            <Card2
-              key={id}
-              id={id}
-              brand={brand}
-              name={name}
-              price={price}
-              image={image}
-            />
+          {paginatedData.map(({ id, name, price, image, brand, enable }) => (
+            <>
+              { !enable &&
+              <Card2
+                key={id}
+                id={id}
+                brand={brand}
+                name={name}
+                price={price}
+                image={image}
+              />
+              }
+            </>
 
             
           ))}

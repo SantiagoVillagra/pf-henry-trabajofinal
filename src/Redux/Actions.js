@@ -18,7 +18,10 @@ import {
   SET_USERS_ERROR,
   UPDATE_USER_BAN_STATUS,
   DELETE_USER,
-  USER_INFO_CHANGE
+  USER_INFO_CHANGE,
+  ADD_ADDRESS,
+  DELETE_ADDRESS,
+  EDIT_ADDRESS
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -255,5 +258,26 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
     });
   } catch (error) {
     console.log(error.message)
+  }
+}
+
+export const addAddress = (address) => {
+  return {
+    type: ADD_ADDRESS,
+    payload: address
+  }
+}
+
+export const deleteAddress = (idx) => {
+  return {
+    type: DELETE_ADDRESS,
+    payload: idx
+  }
+}
+
+export const editAddress = (index, address) => {
+  return {
+    type: EDIT_ADDRESS,
+    payload: {indexToEdit: index, editedAddress: address}
   }
 }

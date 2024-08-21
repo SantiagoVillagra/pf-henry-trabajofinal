@@ -93,10 +93,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, orderAndFilter: filteredSneakers };
 
     case LOGIN_USER:
-      const { isAdmin, username, email, wishList, shoppingHistory, addresses } = payload;
+      const { isAdmin, username, email, wishList, shoppingHistory, addresses,id } = payload;
       return {
         ...state,
-        loggedUserData: { isAdmin, username, wishList, shoppingHistory, email, addresses },
+        loggedUserData: { isAdmin, username, wishList, shoppingHistory, email, addresses,id },
       };
 
     case LOGOUT_USER:
@@ -205,14 +205,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         users: payload,
       };
-    case UPDATE_USER_BAN_STATUS:
-      return {
+    
+      case UPDATE_USER_BAN_STATUS:
+    return {
         ...state,
-        users: state.users.map((user) =>
-          user.id === payload.id ? payload : user
+        users: state.users.map(user =>
+            user.id === payload.id
+                ? { ...user, ban: payload.ban }
+                : user
         ),
-      };
-      
+    };
 
     case DELETE_USER:
       return {
@@ -235,7 +237,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       case ADD_ADDRESS: 
         return {
           ...state,
-          loggedUserData: {...state.loggedUserData, addresses: [...state.loggedUserData.addresses, payload]}
+          loggedUserData: {...state.loggedUserData, addresses:payload}
         }
 
     case DELETE_ADDRESS: 

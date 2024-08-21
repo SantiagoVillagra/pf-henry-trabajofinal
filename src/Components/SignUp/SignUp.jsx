@@ -44,6 +44,7 @@ export default function Signup() {
     const flag = await signUp(userData, errors);
     console.log(flag)
     if (flag === "flag") {
+
       await logIn(userData)
       .then(({data: {token}}) =>{
           const decodedToken = jwtDecode(token)
@@ -65,6 +66,7 @@ export default function Signup() {
           console.log(error.message)
       })
       navigate("/home")
+
     }
   };
 

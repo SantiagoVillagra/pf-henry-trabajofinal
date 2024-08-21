@@ -33,13 +33,13 @@
 .cardButton {
     align-self: flex-end; /* Alinea el botón de ban a la derecha dentro del contenedor de la tarjeta */
     margin-top: 20px; /* Añade un margen superior para separarlo del contenido */
-    background-color: #c82333;
+    background-color: #c40802;
     border:none;
     cursor: pointer;
 
 }
 .cardButton:hover {
-    background-color: #c823339c; /* Color de fondo cuando el botón es hovered */
+    background-color: #ff0800; /* Color de fondo cuando el botón es hovered */
 }
 
 .deleteButton {
@@ -47,7 +47,7 @@
     top: 4rem; /* Ajusta la distancia desde el borde superior de la tarjeta */
     right: 10px; /* Ajusta la distancia desde el borde derecho de la tarjeta */
     z-index: 1; /* Asegura que el botón esté por encima del contenido de la tarjeta */
-    background-color: #dc3545; /* Color de fondo del botón */
+    background-color: #c40802; /* Color de fondo del botón */
     color: white; /* Color del texto del botón */
     border: none; /* Sin borde */
     padding: 8px 16px; /* Espaciado interno del botón */
@@ -57,5 +57,5 @@
 }
 
 .deleteButton:hover {
-    background-color: #c823339c; /* Color de fondo cuando el botón es hovered */
+    background-color: #ff0800; /* Color de fondo cuando el botón es hovered */
 }

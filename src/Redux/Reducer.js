@@ -184,22 +184,37 @@ const rootReducer = (state = initialState, { type, payload }) => {
         loggedUserData: updatedLoggedUserDataRemove
       }
 
+    // case UPDATE_SHOE:
+    //   if (payload.error) {
+    //     return {
+    //       ...state,
+    //       updateError: payload.error,
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       detail: {
+    //         ...state.detail,
+    //         [payload.data.id]: payload.data,
+    //       },
+    //       updateError: null,
+    //     };
+    //   }
     case UPDATE_SHOE:
-      if (payload.error) {
-        return {
-          ...state,
-          updateError: payload.error,
-        };
-      } else {
-        return {
-          ...state,
-          detail: {
-            ...state.detail,
-            [payload.data.id]: payload.data,
-          },
-          updateError: null,
-        };
-      }
+  if (payload.error) {
+    return {
+      ...state,
+      updateError: payload.error,
+    };
+  } else {
+    return {
+      ...state,
+      allShoes: state.allShoes.map((shoe) =>
+        shoe.id === payload.data.id ? payload.data : shoe
+      ),
+      updateError: null,
+    };
+  }
 
     case SET_USERS:
       return {

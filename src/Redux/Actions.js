@@ -27,7 +27,7 @@ import Swal from "sweetalert2";
 
 import axios from "axios";
 
-export function getAllShoes(sneakers) {
+export function getAllShoes() {
   return function (dispatch) {
     axios("https://e-commerse-fc.onrender.com/api/shoes")
       .then(({ data }) => dispatch({ type: GET_ALL_SHOES, payload: data }))
@@ -37,13 +37,14 @@ export function getAllShoes(sneakers) {
   };
 }
 
+
 export const createShoe = (shoeData) => async (dispatch) => {
   try {
     const formData = new FormData();
     formData.append("file", shoeData.image);
     formData.append("upload_preset", "wp5af07o"); // Tu upload preset
     formData.append("cloud_name", "dbkg9dzwt");   // Tu cloud name
-    console.log(shoeData.image)
+
     const uploadResponse = await axios.post(
       "https://api.cloudinary.com/v1_1/dbkg9dzwt/image/upload",
       formData
@@ -58,15 +59,11 @@ export const createShoe = (shoeData) => async (dispatch) => {
     );
 
     dispatch({ type: CREATE_SHOE, payload: response.data });
-
-    Swal.fire({ icon: 'success', title: '¡Éxito!', text: 'El producto se ha creado correctamente.' });
   } catch (error) {
     console.error("Error al crear el producto:", error);
-
-    Swal.fire({ icon: 'error', title: 'Error', text: 'Hubo un problema al crear el producto. Intenta nuevamente.' });
+    throw error; // Re-lanza el error para que pueda ser manejado en el componente
   }
 };
-
 export function getShoeById(id) {
   return function (dispatch) {
     axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
@@ -256,7 +253,7 @@ export const updateShoe = (shoeData) => async (dispatch) => {
         },
       }
     );
-
+console.log(response.data)
     // Despachar la acción para actualizar el estado en Redux
     dispatch({
       type: UPDATE_SHOE,

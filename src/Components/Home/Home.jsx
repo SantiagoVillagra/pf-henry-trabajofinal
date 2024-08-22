@@ -22,9 +22,10 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
 
   const allShoes = useSelector((state) => state.allShoes);
+  
   const orderAndFilter = useSelector((state) => state.orderAndFilter);
-
-  const totalRecords = orderAndFilter.length;
+  const orderAndFilterOnlyEnabled = orderAndFilter.filter(shoe => shoe.enable === true || shoe.enable === null);
+  const totalRecords = orderAndFilterOnlyEnabled.length;
 
   const handlePageChange = (event) => {
     setFirst(event.first);
@@ -32,8 +33,8 @@ export default function Home() {
   };
 
   // Cálculo de los datos que se mostrarán en la página actual
-  const paginatedData = orderAndFilter.slice(first, first + rows);
-
+  
+  const paginatedData = orderAndFilterOnlyEnabled.slice(first, first + rows);
   const dispatch = useDispatch();
 
 
@@ -144,6 +145,7 @@ export default function Home() {
         })
       );
       setIsLoading(false);
+      console.log(allShoes)
     }
   }, [dispatch, order, filters, allShoes]);
 
@@ -256,7 +258,7 @@ export default function Home() {
         <div className={styles.Cards}>
           {paginatedData.map(({ id, name, price, image, brand, enable }) => (
             <>
-              { !enable &&
+              
               <Card2
                 key={id}
                 id={id}
@@ -265,7 +267,7 @@ export default function Home() {
                 price={price}
                 image={image}
               />
-              }
+              
             </>
 
             

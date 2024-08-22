@@ -225,6 +225,20 @@ export const removeWish = (id) => {
 
 // };
 
+
+// export const removeWish = (id, userId) => {
+//   return async function (dispatch) {
+//     try {
+//       await axios.delete(`https://e-commerse-fc.onrender.com/api/userwishlist`, {id, userId}) // ! VERIFICAR CUAL VA A SER LA RUTA, VER QUE DEVUELVE
+//       const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`) //! VER COMO VIENE DATA, PARA MANDAR UN ARRAY
+//       dispatch({ type: REMOVE_WISH, payload: data })
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   };
+// }
+
+
 export const updateShoe = (shoeData) => async (dispatch) => {
   try {
     // Verificar que shoeData tenga un ID y todos los campos necesarios

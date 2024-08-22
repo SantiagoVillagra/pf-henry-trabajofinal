@@ -162,7 +162,6 @@ export const addItem = (item) => {
     payload: item,
   };
 }
-
 export const addWish = (id) => {
   return function (dispatch) {
     axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
@@ -174,6 +173,31 @@ export const addWish = (id) => {
       });
   };
 }
+
+
+// export const addWish = (id, userId) => {
+//   return async function (dispatch) {
+//     try {
+//       await axios.post(`https://e-commerse-fc.onrender.com/api/userwishlist`, {id, userId}) // ! POSIBLEMENTE SEA UN POST, VER QUE DEVUELVE
+//       const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`) //! VER COMO VIENE DATA, PARA MANDAR UN ARRAY
+//       dispatch({ type: ADD_WISH, payload: data })
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   };
+// }
+
+// export const removeWish = (id, userId) => {
+//   return async function (dispatch) {
+//     try {
+//       await axios.delete(`https://e-commerse-fc.onrender.com/api/userwishlist`, {id, userId}) // ! VERIFICAR CUAL VA A SER LA RUTA, VER QUE DEVUELVE
+//       const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`) //! VER COMO VIENE DATA, PARA MANDAR UN ARRAY
+//       dispatch({ type: REMOVE_WISH, payload: data })
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   };
+// }
 
 export const removeWish = (id) => {
     return {
@@ -200,6 +224,20 @@ export const removeWish = (id) => {
 //   }
 
 // };
+
+
+// export const removeWish = (id, userId) => {
+//   return async function (dispatch) {
+//     try {
+//       await axios.delete(`https://e-commerse-fc.onrender.com/api/userwishlist`, {id, userId}) // ! VERIFICAR CUAL VA A SER LA RUTA, VER QUE DEVUELVE
+//       const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`) //! VER COMO VIENE DATA, PARA MANDAR UN ARRAY
+//       dispatch({ type: REMOVE_WISH, payload: data })
+//     } catch (error) {
+//       console.log(error.message)
+//     }
+//   };
+// }
+
 
 export const updateShoe = (shoeData) => async (dispatch) => {
   try {
@@ -308,16 +346,37 @@ export const addAddress = (address) =>  async (dispatch) =>{
   
 }
 
-export const deleteAddress = (idx) => {
-  return {
-    type: DELETE_ADDRESS,
-    payload: idx
+export const deleteAddress = (indices) => async(dispatch) => {
+  try {
+    const {addressId, userId} = indices
+    const response = await axios.delete(`https://e-commerse-fc.onrender.com/api/useraddresses/${addressId}`)
+    console.log(response)
+    const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`)
+    console.log(data)
+
+    dispatch({
+      type: DELETE_ADDRESS,
+      payload: data
+    })
+  } catch (error) {
+    console.log(error.message)
   }
 }
 
-export const editAddress = (index, address) => {
-  return {
-    type: EDIT_ADDRESS,
-    payload: {indexToEdit: index, editedAddress: address}
+export const editAddress = (indices) => async(dispatch) => {
+
+  try {  
+    const {addressId, userId} = indices
+    const response = await axios.put(`https://e-commerse-fc.onrender.com/api/useraddresses/${addressId}`)
+    console.log(response)
+    const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`)
+    console.log(data)
+    
+    dispatch({
+      type: EDIT_ADDRESS,
+      payload: data
+    })
+  } catch (error) {
+    console.log(error.message)
   }
 }

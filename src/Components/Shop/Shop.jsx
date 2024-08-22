@@ -21,7 +21,6 @@ export default function Shop() {
 
     const itemTemplate = (product) => {
         return (
-
            
             <div className={styles.item}>
                  {console.log(product.item.size)}

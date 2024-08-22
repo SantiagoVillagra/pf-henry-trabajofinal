@@ -106,8 +106,8 @@ export default function UserConfig() {
         setIsEditing(false);
       };
 
-    const handleSaveEditAddress = (index, address) => {
-        dispatch(editAddress(index, address))
+    const handleSaveEditAddress = (index) => {
+        dispatch(editAddress({addressId: loggedUserData.addresses[index].id, userId: loggedUserData.id}))
         setIsEditingAddress({
             editing: false,
             index: -1
@@ -129,7 +129,7 @@ export default function UserConfig() {
     }
 
     const handleDeleteAddress = (idx) => {
-        dispatch(deleteAddress(loggedUserData.addresses[idx].id))
+        dispatch(deleteAddress({addressId: loggedUserData.addresses[idx].id, userId: loggedUserData.id}))
     }
 
     return (

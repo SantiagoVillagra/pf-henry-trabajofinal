@@ -7,6 +7,7 @@ import { DataScroller } from 'primereact/datascroller';
 import { Button } from 'primereact/button';
 import { useState } from "react";
 import alertSwal from "../../funcs/alertSwal"
+import Footer from "../Footer/Footer"
 
 export default function Shop() {
     const dispatch = useDispatch();
@@ -74,6 +75,7 @@ export default function Shop() {
 
     return (
         <div>
+        <div>
         <div className={styles.shopContainer}>
         {cart.length === 0 ? (
                 <p className={styles.emptyMessage}>Tu carrito está vacío</p>
@@ -96,6 +98,11 @@ export default function Shop() {
                     onClick={() => handleFinish()} // Redirige a la página de checkout o realiza alguna acción
                 />
             </div>
+        </div>
+        <div>
+            <Footer></Footer>
+        </div>
+
         </div>
 
     );

@@ -22,20 +22,20 @@ export default function UserConfig() {
         addresses: loggedUserData.addresses
     });
     const [userDataAddresses, setUserDataAddresses] = useState({
-        address: "",
-        phone: "",
-        postalCode: "",
-        city: "",
-        province: "",
-        country: ""
+        direccion: "",
+        numberphone: "",
+        codigopostal: "",
+        ciudad: "",
+        provincia: "",
+        pais: ""
     })
     const [userDataEditAddresses, setUserDataEditAddresses] = useState({
-        address: "",
-        phone: "",
-        postalCode: "",
-        city: "",
-        province: "",
-        country: ""
+        direccion: "",
+        numberphone: "",
+        codigopostal: "",
+        ciudad: "",
+        provincia: "",
+        pais: ""
     })
 
     const handleClick = () => {
@@ -49,12 +49,12 @@ export default function UserConfig() {
                 index: idx
             });
             setUserDataEditAddresses({
-                address: addss.address,
-                phone: addss.phone,
-                postalCode: addss.postalCode,
-                city: addss.city,
-                province: addss.province,
-                country: addss.country
+                direccion: addss.direccion,
+                numberphone: addss.numberphone,
+                codigopostal: addss.codigopostal,
+                ciudad: addss.ciudad,
+                provincia: addss.provincia,
+                pais: addss.pais
             })
         } else if(isEditingAddress.index === idx) {
             setIsEditingAddress({
@@ -62,12 +62,12 @@ export default function UserConfig() {
                 index: -1
             });
             setUserDataEditAddresses({
-                address: "",
-                phone: "",
-                postalCode: "",
-                city: "",
-                province: "",
-                country: ""
+                direccion: "",
+                numberphone: "",
+                codigopostal: "",
+                ciudad: "",
+                provincia: "",
+                pais: ""
             })
         } else {
             alertSwal("Solo puedes editar una dirección por vez")
@@ -113,17 +113,18 @@ export default function UserConfig() {
             index: -1
         });
         setUserDataEditAddresses({
-            address: "",
-            phone: "",
-            postalCode: "",
-            city: "",
-            province: "",
-            country: ""
+            direccion: "",
+            numberphonephone: "",
+            codigopostal: "",
+            ciudad: "",
+            provincia: "",
+            pais: ""
         })
     }
 
     const handleSaveAddress = () => {
-        dispatch(addAddress(userDataAddresses))
+        const newUserDataAdresses = {...userDataAddresses, userid:loggedUserData.id}
+        dispatch(addAddress(newUserDataAdresses))
         setIsAddingAddress(!isAddingAddress)
     }
 
@@ -174,12 +175,12 @@ export default function UserConfig() {
                                 {
                                     !isBeingEdited &&
                                     <div>
-                                        <p>{address.address}</p>
-                                        <p>{address.phone}</p>
-                                        <p>{address.postalCode}</p>
-                                        <p>{address.city}</p>
-                                        <p>{address.province}</p>
-                                        <p>{address.country}</p>
+                                        <p>{address.direccion}</p>
+                                        <p>{address.numberphone}</p>
+                                        <p>{address.codigopostal}</p>
+                                        <p>{address.ciudad}</p>
+                                        <p>{address.provicia}</p>
+                                        <p>{address.pais}</p>
                                     </div>
                                 }
                                 <Button onClick={() => handleClickAddress(idx, address)}>{isBeingEdited ? "Cancelar" : "Editar"}</Button>
@@ -187,56 +188,56 @@ export default function UserConfig() {
                                 {isEditingAddress.editing && isEditingAddress.index === idx && (
                                     <Card title="Modificar Dirección">
                                         <div className="p-field">
-                                            <label htmlFor="address">Dirección</label>
+                                            <label htmlFor="direccion">Dirección</label>
                                             <InputText
-                                                id="address"
-                                                name="address"
-                                                value={userDataEditAddresses.address}
+                                                id="direccion"
+                                                name="direccion"
+                                                value={userDataEditAddresses.direccion}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
                                         <div className="p-field">
-                                            <label htmlFor="phone">Teléfono</label>
+                                            <label htmlFor="phonenumber">Teléfono</label>
                                             <InputText
-                                                id="phone"
-                                                name="phone"
-                                                value={userDataEditAddresses.phone}
+                                                id="phonenumber"
+                                                name="phonenumber"
+                                                value={userDataEditAddresses.phonenumber}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
                                         <div className="p-field">
-                                            <label htmlFor="postalCode">Código Postal</label>
+                                            <label htmlFor="codigopostal">Código Postal</label>
                                             <InputText
-                                                id="postalCode"
-                                                name="postalCode"
-                                                value={userDataEditAddresses.postalCode}
+                                                id="codigopostal"
+                                                name="codigopostal"
+                                                value={userDataEditAddresses.codigopostal}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
                                         <div className="p-field">
-                                            <label htmlFor="city">Ciudad</label>
+                                            <label htmlFor="ciudad">Ciudad</label>
                                             <InputText
-                                                id="city"
-                                                name="city"
-                                                value={userDataEditAddresses.city}
+                                                id="ciudad"
+                                                name="ciudad"
+                                                value={userDataEditAddresses.ciudad}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
                                         <div className="p-field">
-                                            <label htmlFor="province">Provincia</label>
+                                            <label htmlFor="provincia">Provincia</label>
                                             <InputText
-                                                id="province"
-                                                name="province"
-                                                value={userDataEditAddresses.province}
+                                                id="provincia"
+                                                name="provincia"
+                                                value={userDataEditAddresses.provincia}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
                                         <div className="p-field">
-                                            <label htmlFor="country">País</label>
+                                            <label htmlFor="pais">País</label>
                                             <InputText
-                                                id="country"
-                                                name="country"
-                                                value={userDataEditAddresses.country}
+                                                id="pais"
+                                                name="pais"
+                                                value={userDataEditAddresses.pais}
                                                 onChange={handleChangeEditAddress}
                                             />
                                         </div>
@@ -247,67 +248,67 @@ export default function UserConfig() {
                         )
                     })
                 }
-                <Button onClick={handleAddAddress}>Agregar dirección</Button>
-            </Card>
-
-            {isAddingAddress && (
-                <Card title="Agregar Dirección">
-                    <div className="p-field">
-                        <label htmlFor="address">Dirección</label>
-                        <InputText
-                            id="address"
-                            name="address"
-                            value={userDataAddresses.address}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <div className="p-field">
-                        <label htmlFor="phone">Teléfono</label>
-                        <InputText
-                            id="phone"
-                            name="phone"
-                            value={userDataAddresses.phone}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <div className="p-field">
-                        <label htmlFor="postalCode">Código Postal</label>
-                        <InputText
-                            id="postalCode"
-                            name="postalCode"
-                            value={userDataAddresses.postalCode}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <div className="p-field">
-                        <label htmlFor="city">Ciudad</label>
-                        <InputText
-                            id="city"
-                            name="city"
-                            value={userDataAddresses.city}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <div className="p-field">
-                        <label htmlFor="province">Provincia</label>
-                        <InputText
-                            id="province"
-                            name="province"
-                            value={userDataAddresses.province}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <div className="p-field">
-                        <label htmlFor="country">País</label>
-                        <InputText
-                            id="country"
-                            name="country"
-                            value={userDataAddresses.country}
-                            onChange={handleChangeAddress}
-                        />
-                    </div>
-                    <Button onClick={handleSaveAddress}>Guardar</Button>
+                    <Button onClick={handleAddAddress}>Agregar dirección</Button>
                 </Card>
+
+                {isAddingAddress && (
+                    <Card title="Agregar Dirección">
+                        <div className="p-field">
+                            <label htmlFor="direccion">Dirección</label>
+                            <InputText
+                                id="direccion"
+                                name="direccion"
+                                value={userDataAddresses.direccion}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <div className="p-field">
+                            <label htmlFor="phonenumber">Teléfono</label>
+                            <InputText
+                                id="phonenumber"
+                                name="phonenumber"
+                                value={userDataAddresses.phonenumber}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <div className="p-field">
+                            <label htmlFor="codigopostal">Código Postal</label>
+                            <InputText
+                                id="codigopostal"
+                                name="codigopostal"
+                                value={userDataAddresses.codigopostal}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <div className="p-field">
+                            <label htmlFor="ciudad">Ciudad</label>
+                            <InputText
+                                id="ciudad"
+                                name="ciudad"
+                                value={userDataAddresses.ciudad}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <div className="p-field">
+                            <label htmlFor="provincia">Provincia</label>
+                            <InputText
+                                id="provincia"
+                                name="provincia"
+                                value={userDataAddresses.provincia}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <div className="p-field">
+                            <label htmlFor="pais">País</label>
+                            <InputText
+                                id="pais"
+                                name="pais"
+                                value={userDataAddresses.pais}
+                                onChange={handleChangeAddress}
+                            />
+                        </div>
+                        <Button onClick={handleSaveAddress}>Guardar</Button>
+                    </Card>
             )}
 
         </div>

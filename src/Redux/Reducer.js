@@ -93,14 +93,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return { ...state, orderAndFilter: filteredSneakers };
 
     case LOGIN_USER:
-      const { isAdmin, username, email, wishList, shoppingHistory, addresses } = payload;
+      const { id, isAdmin, username, email, wishList, shoppingHistory, addresses } = payload;
       return {
         ...state,
-        loggedUserData: { isAdmin, username, wishList, shoppingHistory, email, addresses },
+        loggedUserData: { id, isAdmin, username, wishList, shoppingHistory, email, addresses },
       };
 
     case LOGOUT_USER:
-      return { ...state, loggedUserData: {} };
+      return { ...state, loggedUserData: {}, cart: [] };
 
     case GET_SHOE_BY_ID:
       return { ...state, detail: payload };
@@ -162,19 +162,20 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADD_WISH:
+      // const wishListAfterAdd = payload.wishList
+      // const updatedLoggedUserData = {...state.loggedUserData, wishList: wishListAfterAdd}
       const updatedWishlist = [...state.loggedUserData.wishList, payload]
       const updatedLoggedUserData = {...state.loggedUserData, wishList: updatedWishlist}
       console.log(updatedLoggedUserData)
-      // return {
-      //   ...state,
-      //   loggedUserData: { ...state.loggedUserData, [state.loggedUserData.wishList]: [...state.loggedUserData.wishList, payload] }
-      // };
+
       return {
         ...state,
         loggedUserData: updatedLoggedUserData
       }
 
     case REMOVE_WISH:
+      // const wishListAfterRemove = payload.wishList
+      // const updatedLoggedUserDataRemove = {...state.loggedUserData, wishList: wishListAfterRemove}
       const updatedWishlistRemove = state.loggedUserData.wishList.filter(shoe => shoe.id !== payload)
       const updatedLoggedUserDataRemove = {...state.loggedUserData, wishList: updatedWishlistRemove}
       console.log(updatedLoggedUserDataRemove)
@@ -239,22 +240,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         }
 
     case DELETE_ADDRESS: 
-        const addressesCopy = [...state.loggedUserData.addresses]
-        const addressesAfterDelete = addressesCopy.filter((address, index) => index !== payload)
+        const addressesAfterDelete = payload.addresses
         return {
           ...state,
           loggedUserData: {...state.loggedUserData, addresses: addressesAfterDelete}
         }
     
-    case EDIT_ADDRESS: 
-        const addressesCopy2 = [...state.loggedUserData.addresses]
-        const { indexToEdit, editedAddress } = payload
-        const addressesAfterEdit = addressesCopy2.map((addss, idx) => {
-          if (idx === indexToEdit) {
-            return editedAddress
-          }
-          return addss
-        })
+    case EDIT_ADDRESS:
+        const addressesAfterEdit = payload.addresses
         return {
           ...state,
           loggedUserData: {...state.loggedUserData, addresses: addressesAfterEdit}

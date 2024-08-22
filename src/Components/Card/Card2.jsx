@@ -33,9 +33,9 @@ export default function Card2({ id, name, price, image, brand }) {
         setIsInWishlist(!isInWishlist);
         
         if (!isInWishlist) {           //Hay que ponerlo así por que el estado todavía no se actualizó
-            dispatch(addWish(id))
+            dispatch(addWish(id, loggedUserData.id))
         } else {
-            dispatch(removeWish(id))
+            dispatch(removeWish(id, loggedUserData.id))
         }
 
     };

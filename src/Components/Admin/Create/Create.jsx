@@ -38,7 +38,8 @@ export default function Create() {
     image: null,
     description: '',
     stock: true,
-    sizes: []
+    sizes: [],
+    enable: true
   });
   const [uploadStatus, setUploadStatus] = useState('idle'); // Agregado para controlar el estado de la carga
 
@@ -189,6 +190,21 @@ export default function Create() {
             placeholder="Selecciona stock"
             required
           />
+          <div className={styles.pField}>
+          <label htmlFor="enable">Habilitar</label>
+          <Dropdown
+            id="enable"
+            name="enable"
+            value={formData.enable}
+            options={[
+              { label: 'Sí', value: true },
+              { label: 'No', value: false }
+            ]}
+            onChange={handleChange}
+            placeholder="Selecciona habilitar"
+            required
+          />
+        </div>
         </div>
         <Button type="submit" className={styles.pFieldButton}>
           Enviar formulario

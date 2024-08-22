@@ -10,10 +10,11 @@ import styles from './UsersControl.module.css';
 
 export default function UsersControl() {
     const dispatch = useDispatch();
-    const allUsers = useSelector(state => state.users); // Obtén todos los usuarios
+    const allUsers = useSelector(state => state.users);
     const error = useSelector(state => state.error);
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredUsers, setFilteredUsers] = useState(allUsers);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [loadingUserId, setLoadingUserId] = useState(null);
 
     useEffect(() => {
         dispatch(getUsers());
@@ -30,12 +31,43 @@ export default function UsersControl() {
             setFilteredUsers(allUsers);
         }
     }, [searchQuery, allUsers]);
-
     const handleBanToggle = (userId, currentBanStatus) => {
-        const newBanStatus = !currentBanStatus;
-        dispatch(updateUserBanStatus(userId, newBanStatus));
+        const action = currentBanStatus ? 'desbanear' : 'banear';
+        
+        Swal.fire({
+            title: `¿Estás seguro que quieres ${action} a este usuario?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: `Sí, ${action}`,
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setLoadingUserId(userId);
+                const newBanStatus = !currentBanStatus;
+                dispatch(updateUserBanStatus(userId, newBanStatus))
+                    .then(() => {
+                        setLoadingUserId(null);
+                        Swal.fire(
+                            'Actualizado!',
+                            `El usuario ha sido ${newBanStatus ? 'baneado' : 'desbaneado'} con éxito.`,
+                            'success'
+                        );
+                        dispatch(getUsers()); // Vuelve a obtener la lista de usuarios después de actualizar
+                    })
+                    .catch(() => {
+                        setLoadingUserId(null);
+                        Swal.fire(
+                            'Error!',
+                            'Hubo un problema al actualizar el estado del usuario.',
+                            'error'
+                        );
+                    });
+            }
+        });
     };
-
+    
     const handleDeleteUser = (userId) => {
         Swal.fire({
             title: '¿Estás seguro?',
@@ -80,7 +112,9 @@ export default function UsersControl() {
                 <Button
                     label={user.ban ? 'Unban' : 'Ban'}
                     onClick={() => handleBanToggle(user.id, user.ban)}
-                    className={styles.cardButton}
+                    className={user.ban ? styles.unbanButton : styles.banButton}
+                    icon={loadingUserId === user.id ? 'pi pi-spin pi-spinner' : ''} 
+                    disabled={loadingUserId === user.id}
                 />
             </Card>
         );
@@ -94,7 +128,6 @@ export default function UsersControl() {
                     onChange={handleSearchChange}
                     placeholder="Buscar por nombre o ID"
                 />
-               
             </div>
             {error && <p>Error: {error}</p>}
             <DataScroller

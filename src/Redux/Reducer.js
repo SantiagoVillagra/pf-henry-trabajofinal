@@ -206,14 +206,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         users: payload,
       };
-    case UPDATE_USER_BAN_STATUS:
-      return {
+    
+      case UPDATE_USER_BAN_STATUS:
+    return {
         ...state,
-        users: state.users.map((user) =>
-          user.id === payload.id ? payload : user
+        users: state.users.map(user =>
+            user.id === payload.id
+                ? { ...user, ban: payload.ban }
+                : user
         ),
-      };
-      
+    };
 
     case DELETE_USER:
       return {
@@ -236,7 +238,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       case ADD_ADDRESS: 
         return {
           ...state,
-          loggedUserData: {...state.loggedUserData, addresses: [...state.loggedUserData.addresses, payload]}
+          loggedUserData: {...state.loggedUserData, addresses:payload}
         }
 
     case DELETE_ADDRESS: 

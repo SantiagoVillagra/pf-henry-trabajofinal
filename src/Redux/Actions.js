@@ -193,37 +193,57 @@ export const removeWish = (id) => {
         payload: id
     }
 }
+// export const updateShoe = (shoeData) => async (dispatch) => {
+//   try {
+//       // Usamos shoeData.id para obtener el ID del zapato
+//       const response = await axios.put(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`, shoeData);
 
-// export const removeWish = (id, userId) => {
-//   return async function (dispatch) {
-//     try {
-//       await axios.delete(`https://e-commerse-fc.onrender.com/api/userwishlist`, {id, userId}) // ! VERIFICAR CUAL VA A SER LA RUTA, VER QUE DEVUELVE
-//       const {data} = await axios(`https://e-commerse-fc.onrender.com/api/users/${userId}`) //! VER COMO VIENE DATA, PARA MANDAR UN ARRAY
-//       dispatch({ type: REMOVE_WISH, payload: data })
-//     } catch (error) {
-//       console.log(error.message)
-//     }
-//   };
-// }
+//       dispatch({
+//           type: UPDATE_SHOE,
+//           payload: response.data // Esto asume que la API devuelve los datos actualizados
+//       });
+//   } catch (error) {
+//       console.error('Error updating shoe:', error);
+//       // Puedes manejar el error de diferentes formas, por ejemplo:
+//       dispatch({
+//           type: 'UPDATE_SHOE_FAIL',
+//           payload: error.response ? error.response.data : 'Network Error'
+//       });
+//   }
+
+// };
 
 export const updateShoe = (shoeData) => async (dispatch) => {
   try {
-      // Usamos shoeData.id para obtener el ID del zapato
-      const response = await axios.put(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`, shoeData);
+    // Verificar que shoeData tenga un ID y todos los campos necesarios
+    if (!shoeData.id) {
+      throw new Error('ID del zapato es requerido');
+    }
 
-      dispatch({
-          type: UPDATE_SHOE,
-          payload: response.data // Esto asume que la API devuelve los datos actualizados
-      });
+    // Realizar la solicitud PUT al servidor para actualizar el zapato
+    const response = await axios.put(
+      `https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`,
+      shoeData,
+      {
+        headers: {
+          'Content-Type': 'application/json', // Asegúrate de que el tipo de contenido sea correcto
+        },
+      }
+    );
+
+    // Despachar la acción para actualizar el estado en Redux
+    dispatch({
+      type: UPDATE_SHOE,
+      payload: response.data, // Esto asume que la API devuelve los datos actualizados
+    });
   } catch (error) {
-      console.error('Error updating shoe:', error);
-      // Puedes manejar el error de diferentes formas, por ejemplo:
-      dispatch({
-          type: 'UPDATE_SHOE_FAIL',
-          payload: error.response ? error.response.data : 'Network Error'
-      });
+    console.error('Error updating shoe:', error);
+    // Despachar una acción para manejar el error
+    dispatch({
+      type: 'UPDATE_SHOE_FAIL',
+      payload: error.response ? error.response.data : 'Network Error',
+    });
   }
-
 };
 export const getUsers = () => async dispatch => {
   try {
@@ -286,11 +306,18 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
   }
 }
 
-export const addAddress = (address) => {
-  return {
-    type: ADD_ADDRESS,
-    payload: address
+export const addAddress = (address) =>  async (dispatch) =>{
+  try {
+    const response = await axios.post(`https://e-commerse-fc.onrender.com/api/useraddresses`, address)
+    console.log(response.data)
+    dispatch( {
+      type: ADD_ADDRESS,
+      payload: response.data.addresses
+    })
+  } catch (error) {
+    console.log(error)
   }
+  
 }
 
 export const deleteAddress = (indices) => async(dispatch) => {

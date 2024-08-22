@@ -3,33 +3,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
-import { MultiSelect } from 'primereact/multiselect';
+import { InputNumber } from 'primereact/inputnumber';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { FileUpload } from 'primereact/fileupload';
-import { getAllShoes, updateShoe } from '../../../Redux/Actions'; // Asegúrate de tener esta acción
+import { getAllShoes, updateShoe } from '../../../Redux/Actions';
+import { Image } from 'primereact/image';
 import mockBrands from '../../../mockDB/mockBrands';
 import mockGenders from '../../../mockDB/mockGenders';
 import mockSports from '../../../mockDB/mockSports';
-import styles from './UpdateShoe.module.css'; // Asegúrate de importar el CSS
-
-// Relación de tallas
-const sizeMapping = {
-  '36': 1,
-  '37': 2,
-  '38': 3,
-  '39': 4,
-  '40': 5,
-  '41': 6,
-  '42': 7,
-  '43': 8,
-  '44': 9,
-  '45': 10,
-  '46': 11
-};
+import Swal from 'sweetalert2';
+import styles from './UpdateShoe.module.css';
 
 export default function UpdateShoeForm() {
+  const sizeMapping = {
+    '36': 1,
+    '37': 2,
+    '38': 3,
+    '39': 4,
+    '40': 5,
+    '41': 6,
+    '42': 7,
+    '43': 8,
+    '44': 9,
+    '45': 10,
+    '46': 11
+  };
+
   const dispatch = useDispatch();
   const allShoes = useSelector(state => state.allShoes);
+  const updateError = useSelector(state => state.updateError);
+
   const [formData, setFormData] = useState({
     name: '',
     brand: '',
@@ -39,23 +41,56 @@ export default function UpdateShoeForm() {
     image: null,
     description: '',
     stock: true,
-    sizes: []
+    sizes: {},
+    enable: true,
   });
-  const [selectedShoeId, setSelectedShoeId] = useState(null);
-  const [uploadStatus, setUploadStatus] = useState('idle'); // Agregado para controlar el estado de la carga
-
-  useEffect(() => {
-    if (selectedShoeId) {
-      const selectedShoe = allShoes.find(shoe => shoe.id === selectedShoeId);
-      if (selectedShoe) {
-        setFormData({ ...selectedShoe });
-      }
-    }
-  }, [selectedShoeId, allShoes]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedShoe, setSelectedShoe] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState('idle');
 
   useEffect(() => {
     dispatch(getAllShoes());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (updateError) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: updateError,
+      });
+    }
+  }, [updateError]);
+
+  const handleSearch = () => {
+    const foundShoe = allShoes.find(shoe =>
+      shoe.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    if (foundShoe) {
+      setSelectedShoe(foundShoe);
+      // Inicializar formData con los detalles del zapato seleccionado
+      const sizes = foundShoe.sizes.reduce((acc, size) => {
+        // Solo asignar si shoesizes está definido
+        if (size.shoesizes) {
+          acc[size.value] = size.shoesizes.quantity;
+        } else {
+          acc[size.value] = 0; // Asignar 0 si no hay cantidad definida
+        }
+        return acc;
+      }, {});
+      setFormData({
+        ...foundShoe,
+        sizes: sizes,
+      });
+    } else {
+      setSelectedShoe(null);
+      Swal.fire({
+        icon: 'info',
+        title: 'No encontrado',
+        text: 'No se encontró ninguna zapatilla con ese nombre.',
+      });
+    }
+};
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -65,39 +100,58 @@ export default function UpdateShoeForm() {
     });
   };
 
-  const handleSizeChange = (e) => {
-    const selectedSizes = e.value;
+  const handleSizeChange = (size, value) => {
     setFormData({
       ...formData,
-      sizes: selectedSizes.map((size) => sizeMapping[size])
+      sizes: {
+        ...formData.sizes,
+        [size]: value,
+      },
     });
   };
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setUploadStatus('pending'); // Cambiar estado a "pending" cuando comienza la carga
-    dispatch(updateShoe(formData)).finally(() => {
-      setUploadStatus('idle'); // Cambiar estado a "idle" cuando se complete la carga
-    });
+    setUploadStatus('pending');
+  
+    try {
+      await dispatch(updateShoe(formData));
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'Zapatilla actualizada con éxito.',
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Hubo un problema al actualizar la zapatilla.',
+      });
+    } finally {
+      setUploadStatus('idle');
+    }
   };
 
   return (
     <div className={styles.formContainer}>
+      <div className={styles.pField}>
+        <label htmlFor="search">Buscar zapatilla por nombre</label>
+        <InputText
+          id="search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Nombre de la zapatilla"
+        />
+        <Button label="Buscar" onClick={handleSearch} className={styles.searchButton} />
+      </div>
+
       <form onSubmit={handleSubmit}>
-        <div className={styles.pField}>
-          <label htmlFor="shoe">Selecciona la zapatilla a editar</label>
-          <Dropdown
-            id="shoe"
-            value={selectedShoeId}
-            options={allShoes.map(shoe => ({ label: shoe.name, value: shoe.id }))}
-            onChange={(e) => setSelectedShoeId(e.value)}
-            placeholder="Selecciona una zapatilla"
-            required
-          />
-        </div>
-        {selectedShoeId && (
+        {selectedShoe && (
           <>
+            <div className={styles.imagePreview}>
+              <Image src={selectedShoe.image} alt={selectedShoe.name} width="100%" />
+            </div>
+
             <div className={styles.pField}>
               <label htmlFor="name">Nombre</label>
               <InputText
@@ -133,19 +187,19 @@ export default function UpdateShoeForm() {
             </div>
             <div className={styles.pField}>
               <label htmlFor="sizes">Talles</label>
-              <MultiSelect
-                id="sizes"
-                name="sizes"
-                value={formData.sizes.map((sizeId) =>
-                  Object.keys(sizeMapping).find(
-                    (key) => sizeMapping[key] === sizeId
-                  )
-                )}
-                options={Object.keys(sizeMapping)}
-                onChange={handleSizeChange}
-                placeholder="Selecciona tallas"
-                required
-              />
+              <div className={styles.sizeFieldContainer}>
+                {Object.keys(sizeMapping).map(size => (
+                  <div key={size}>
+                    <label>{size}</label>
+                    <InputNumber
+                      value={formData.sizes[size] || 0}
+                      onValueChange={(e) => handleSizeChange(size, e.value)}
+                      min={0}
+                      className={styles.separated}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
             <div className={styles.pField}>
               <label htmlFor="gender">Género</label>
@@ -171,7 +225,6 @@ export default function UpdateShoeForm() {
                 required
               />
             </div>
-           
             <div className={styles.pField}>
               <label htmlFor="description">Descripción</label>
               <InputTextarea
@@ -199,10 +252,25 @@ export default function UpdateShoeForm() {
                 required
               />
             </div>
+            <div className={styles.pField}>
+              <label htmlFor="enable">Habilitado</label>
+              <Dropdown
+                id="enable"
+                name="enable"
+                value={formData.enable}
+                options={[
+                  { label: 'Sí', value: true },
+                  { label: 'No', value: false }
+                ]}
+                onChange={handleChange}
+                placeholder="Selecciona si está habilitado"
+                required
+              />
+            </div>
             <Button type="submit" className={styles.pFieldButton}>
               Guardar Cambios
             </Button>
-            {uploadStatus === 'pending' && <p>Subiendo imagen...</p>} {/* Mostrar mensaje de carga */}
+            {uploadStatus === 'pending' && <p>Subiendo imagen...</p>}
           </>
         )}
       </form>

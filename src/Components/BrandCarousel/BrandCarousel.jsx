@@ -90,7 +90,7 @@ export default function BrandCarousel() {
             circular // Hacer que el carrusel sea circular
             autoplayInterval={2000} // Tiempo de cambio automático
             itemTemplate={productTemplate}
-            infinite // Asegura el comportamiento de bucle
+        
             showIndicators={false}
             showThumbnails={false}
         />

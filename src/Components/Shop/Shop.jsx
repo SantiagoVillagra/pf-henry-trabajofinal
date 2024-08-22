@@ -15,7 +15,7 @@ export default function Shop() {
     const cart = useSelector(state => state.cart);
     const loggedUserData = useSelector(state => state.loggedUserData)
     console.log(loggedUserData);
-    
+    console.log(cart)
 
 
 

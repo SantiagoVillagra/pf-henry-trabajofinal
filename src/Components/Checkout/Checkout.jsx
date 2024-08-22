@@ -60,6 +60,7 @@ export default function Checkout() {
     const handleBuy = async () => {
         const id = await createPreference()
         if (id) {
+            //! ALMACENAR ID EN BDD - EN EL USER
             setPreferenceId(id)
         }
     }

@@ -305,12 +305,10 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
 
   try {
     const response = await axios.put(`https://e-commerse-fc.onrender.com/api/users/${userId}`, updatedData)
-
-    console.log(response.users)
-
+    console.log(response)
     dispatch({
       type: USER_INFO_CHANGE,
-      payload: response.users
+      payload: response.data.users
     });
   } catch (error) {
     console.log(error.message)

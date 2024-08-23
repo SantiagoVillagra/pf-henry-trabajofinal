@@ -14,6 +14,7 @@ import MonthlySales from "../BussinesData/MonthlySales";
 import SportsData from "../BussinesData/SportsData"
 import AdminChat from "../Chat/AdminChat";
 import Footer from "../../Footer/Footer";
+import OrdersMc from "../Orders/Orders";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ export default function AdminDashboard() {
         </TabPanel>
         <TabPanel header="Ordenes">
           <div className={styles.tabContent}>
-
+              <OrdersMc></OrdersMc>
           </div>
         </TabPanel>
         <TabPanel header="Diagramas de ventas">

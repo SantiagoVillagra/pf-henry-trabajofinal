@@ -2,11 +2,11 @@
 .footer {
     background-color: #e0e0e0;
     padding: 1rem 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
     color: #333;
     font-family: 'Arial', sans-serif;
     width: 100%;
-    height: 300px;
+    height: 320px;
     padding-bottom: none;
 }
 
@@ -20,20 +20,12 @@
     height: 97%;
     margin: 0 auto;
     padding-top: 0 !important;
+    
 }
 
-.henryLogoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 1rem;
-}
 
-.henryLogo {
-    width: 100px;
-    height: auto;
-    object-fit: contain;
-}
+
+
 
 @media (max-width: 768px) {
     .grid {

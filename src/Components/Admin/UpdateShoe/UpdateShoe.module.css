@@ -40,17 +40,13 @@ form {
   text-align: center;
 }
 
-.pFieldButton {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
+.searchInput {
   width: 100%;
-  background-color: #949494 !important; /* Asegura que el color de fondo del botón sea gris */
-  color: rgb(255, 255, 255); /* Color del texto del botón */
-  border: none; /* Elimina el borde del botón si es necesario */
-  border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
-  font-size: 1em; /* Tamaño de fuente del botón */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-  text-align: center; /* Alinea el texto en el centro */
-  transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+  margin-bottom: 10px; /* espacio entre el input y el botón */
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .pFieldButton:hover {

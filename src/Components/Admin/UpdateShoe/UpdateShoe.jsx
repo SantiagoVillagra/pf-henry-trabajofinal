@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Dropdown } from 'primereact/dropdown';
@@ -12,6 +13,7 @@ import mockGenders from '../../../mockDB/mockGenders';
 import mockSports from '../../../mockDB/mockSports';
 import Swal from 'sweetalert2';
 import styles from './UpdateShoe.module.css';
+import { AutoComplete } from 'primereact/autocomplete';
 
 export default function UpdateShoeForm() {
   const sizeMapping = {
@@ -29,6 +31,7 @@ export default function UpdateShoeForm() {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const allShoes = useSelector(state => state.allShoes);
   const updateError = useSelector(state => state.updateError);
 
@@ -46,6 +49,7 @@ export default function UpdateShoeForm() {
     enable: true,
   });
   const [searchTerm, setSearchTerm] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [selectedShoe, setSelectedShoe] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('idle');
 
@@ -63,15 +67,21 @@ export default function UpdateShoeForm() {
     }
   }, [updateError]);
 
+  const searchShoes = (event) => {
+    const query = event.query.toLowerCase();
+    const filteredShoes = allShoes.filter(shoe => 
+      shoe.name.toLowerCase().includes(query)
+    );
+    setSuggestions(filteredShoes.map(shoe => shoe.name));
+  };
 
-  const handleSearch = () => {
+  const handleSearch = (term = searchTerm) => {
     const foundShoe = allShoes.find(shoe =>
-      shoe.name.toLowerCase().includes(searchTerm.toLowerCase())
+      shoe.name.toLowerCase() === term.toLowerCase()
     );
     if (foundShoe) {
       setSelectedShoe(foundShoe);
   
-      // Suponiendo que sizeIds están disponibles en el objeto de la zapatilla
       const sizes = foundShoe.sizes.reduce((acc, size) => {
         acc[size.value] = size.shoesizes ? size.shoesizes.quantity : 0;
         return acc;
@@ -80,7 +90,7 @@ export default function UpdateShoeForm() {
       setFormData({
         ...foundShoe,
         sizes: sizes,
-        sizeIds: foundShoe.sizeIds || [] // Asegúrate de que sizeIds estén disponibles
+        sizeIds: foundShoe.sizeIds || []
       });
     } else {
       setSelectedShoe(null);
@@ -109,7 +119,6 @@ export default function UpdateShoeForm() {
       }
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadStatus('pending');
@@ -126,11 +135,14 @@ export default function UpdateShoeForm() {
     console.log('Datos formateados a enviar:', formattedData);
   
     try {
-      await dispatch(updateShoe(formattedData));
+      const updatedShoe = await dispatch(updateShoe(formattedData));
       Swal.fire({
         icon: 'success',
         title: 'Éxito',
         text: 'Zapatilla actualizada con éxito.',
+      }).then(() => {
+        // Redirigir a la página de detalles después de cerrar el Swal
+        navigate(`/detail/${updatedShoe.id}`);
       });
     } catch (error) {
       Swal.fire({
@@ -146,15 +158,23 @@ export default function UpdateShoeForm() {
   return (
     <div className={styles.formContainer}>
       <div className={styles.pField}>
-        <label htmlFor="search">Buscar zapatilla por nombre</label>
-        <InputText
-          id="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Nombre de la zapatilla"
-        />
-        <Button label="Buscar" onClick={handleSearch} className={styles.searchButton} />
-      </div>
+        <h3>Editar</h3>
+  <label htmlFor="search">Buscar zapatilla por nombre</label>
+  <AutoComplete
+    id="search"
+    value={searchTerm}
+    suggestions={suggestions}
+    completeMethod={searchShoes}
+    onChange={(e) => setSearchTerm(e.value)}
+    onSelect={(e) => {
+      setSearchTerm(e.value);
+      handleSearch(e.value);
+    }}
+    placeholder="Nombre de la zapatilla"
+    className={styles.searchInput}
+  />
+  <Button label="Buscar" onClick={() => handleSearch()} className={styles.searchButton} />
+</div>
 
       <form onSubmit={handleSubmit}>
         {selectedShoe && (
@@ -278,7 +298,7 @@ export default function UpdateShoeForm() {
                 required
               />
             </div>
-            <Button type="submit" className={styles.pFieldButton}>
+            <Button type="submit" className={styles.searchButton}>
               Guardar Cambios
             </Button>
             {uploadStatus === 'pending' && <p>Subiendo imagen...</p>}

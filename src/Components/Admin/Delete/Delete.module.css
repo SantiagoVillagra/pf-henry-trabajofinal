@@ -125,3 +125,8 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.searchInput {
+  width: 100%;
+  margin-bottom: 10px; /* espacio entre el input y el botón */
+}

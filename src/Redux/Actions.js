@@ -275,6 +275,7 @@ export const updateShoe = (shoeData) => async (dispatch) => {
     );
 
     dispatch({ type: UPDATE_SHOE, payload: response.data });
+    return response.data; // Asegúrate de devolver los datos actualizados
   } catch (error) {
     console.error("Error al actualizar el producto:", error);
     throw error;

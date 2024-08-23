@@ -166,3 +166,17 @@
     align-items: center; /* Alinea el contenido verticalmente en el centro */
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
 }
+.link {
+    text-decoration: none; /* Para quitar el subrayado */
+  }
+  
+  .link h4 {
+    color: #ff6347; /* Cambia esto por el color que desees */
+    font-size: 1.5rem; /* Cambia el tamaño de la fuente */
+    font-weight: bold; /* Puedes ajustar el grosor de la fuente */
+    transition: color 0.3s; /* Efecto de transición en el color */
+  }
+  
+  .link h4:hover {
+    color: #ffa07a; /* Color al hacer hover */
+  }

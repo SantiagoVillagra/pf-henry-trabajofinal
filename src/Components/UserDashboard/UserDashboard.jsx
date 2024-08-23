@@ -9,6 +9,7 @@ import styles from "./UserDashboard.module.css";
 import UserOrders from "./UserOrders.jsx";
 import { Button } from "primereact/button";
 import axios from "axios";
+import Footer from "../Footer/Footer.jsx"
 
 export default function UserDashboard() {
   const navigate = useNavigate();
@@ -52,23 +53,26 @@ export default function UserDashboard() {
         <div>
           <h2> Hola {loggedUserData.username}, bienvenido a tu panel de usuario:</h2>
           <TabView className={styles.tabView}>
-            <TabPanel header="Lista de deseos">
-              {
-                !loggedUserData.wishList.length
-                  ? <h3>No hay zapatillas en tu lista de deseos</h3>
-                  : loggedUserData.wishList.map(({ id, name, price, image, brand }) => (
-                    <div key={id}>
-                      <Card2
-                        id={id}
-                        brand={brand}
-                        name={name}
-                        price={price}
-                        image={image}
-                      />
-                    </div>
-                  ))
-              }
-            </TabPanel>
+          <TabPanel header="Lista de deseos">
+      { !loggedUserData.wishList.length
+        ? <h3>No hay zapatillas en tu lista de deseos</h3>
+        : (
+          <div className={styles.cardsContainer}>
+            { loggedUserData.wishList.map(({ id, name, price, image, brand }) => (
+              <div key={id} className={styles.card}>
+                <Card2
+                  id={id}
+                  brand={brand}
+                  name={name}
+                  price={price}
+                  image={image}
+                />
+              </div>
+            )) }
+          </div>
+        )
+      }
+    </TabPanel>
             <TabPanel header="Historial de compras">
               <UserOrders></UserOrders>
             </TabPanel>
@@ -82,6 +86,9 @@ export default function UserDashboard() {
             <button className={styles.logoutButton} onClick={logOut}>
               LOG OUT
             </button>
+          </div>
+          <div>
+            <Footer></Footer>
           </div>
         </div>
       );

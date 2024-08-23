@@ -94,7 +94,7 @@ export default function Shop() {
                 <p className={styles.totalText}>El total de tu compra es ${calculateTotal().toFixed(2)}</p>
                 <Button
                     label="Finalizar Compra"
-                    className="p-button-success"
+                    className={styles.buttonFinish}
                     onClick={() => handleFinish()} // Redirige a la página de checkout o realiza alguna acción
                 />
             </div>

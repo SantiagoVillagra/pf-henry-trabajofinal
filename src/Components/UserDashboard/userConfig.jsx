@@ -139,7 +139,7 @@ export default function UserConfig() {
             <Card title="Tus datos" className={styles.userInfoCard}>
                 <h2>Usuario: {loggedUserData.username}</h2>
                 <p>Email: {loggedUserData.email}</p>
-                <Button onClick={handleClick}>Cambia tu información</Button>
+                <Button onClick={handleClick} className={styles.button}>Cambia tu información</Button>
             </Card>
 
             {isEditing && (
@@ -226,14 +226,14 @@ export default function UserConfig() {
                                             value={userDataEditAddresses.pais}
                                             onChange={handleChangeEditAddress}
                                         />
-                                        <Button onClick={() => handleSaveEditAddress(idx, userDataEditAddresses)}>Guardar</Button>
+                                        <Button onClick={() => handleSaveEditAddress(idx, userDataEditAddresses)} className={styles.button}>Guardar</Button>
                                     </Card>
                                 )}
                             </div>
                         );
                     })
                 }
-                <Button onClick={handleAddAddress}>Añadir Dirección</Button>
+                <Button onClick={handleAddAddress} className={styles.button}>Añadir Dirección</Button>
                 {isAddingAddress && (
                     <Card title="Añadir Dirección" className={styles.cardContainer}>
                         <label htmlFor="direccion">Dirección</label>

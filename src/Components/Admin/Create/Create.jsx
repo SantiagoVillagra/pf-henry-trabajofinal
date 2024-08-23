@@ -80,7 +80,7 @@ export default function Create() {
 const handleSubmit = (e) => {
   e.preventDefault();
   setUploadStatus('pending');
-
+console.log(formData)
   dispatch(createShoe(formData))
     .then(() => {
       Swal.fire({

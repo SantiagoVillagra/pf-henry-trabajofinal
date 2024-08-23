@@ -94,72 +94,94 @@ console.log(loggedUserData)
     }, [shippingAddress]);
 
     return (
-        <div className={styles.checkout}>
-            <div className={styles.checkoutData}>
-                <Panel header="DATOS DE CONTACTO" className={styles.panel}>
-                <h5>Usuario:</h5>
-                <p>{loggedUserData.username}</p>
-                    <h5>EMAIL</h5>
-                    <p>{loggedUserData.email}</p>
-                    
-                </Panel>
-                <Panel header="ENTREGA" className={styles.panel}>
-                    <div>
-                        <div className={styles.PairRadioLabel}>
-                            <RadioButton
-                                inputId="Local"
-                                name="ShippingAddress"
-                                value="Local"
-                                onChange={handleChange}
-                                checked={shippingAddress === "Local"}
-                            />
-                            <label htmlFor="Local">
-                                <div>
-                                    <h4>Retirar por Shopsport</h4>
-                                    <p>Calle FGH 456 - ShopCity, ShopProvince - ShopCountry</p>
-                                </div>
-                            </label>
-                        </div>
-                        {!loggedUserData.addresses.length
-                            ? <div className={styles.PairRadioLabel}>
-                                <h4>Puedes añadir tus direcciones desde tu panel </h4>
-                                <Link to="/dashboard"><h4>panel de usuario</h4></Link>
-                                {/* <Button onClick={() => navigate("/dashboard") }className={styles.mpButton}>PANEL DE USUARIO</Button> */}
-                            </div>
-                            : loggedUserData.addresses.map((address, index) => {
-                                return (
-                                    <div className={styles.PairRadioLabel} key={index}>
-                                        <RadioButton
-                                            inputId={index}
-                                            name="ShippingAddress"
-                                            value={index}
-                                            onChange={handleChange}
-                                            checked={shippingAddress === loggedUserData.addresses[index]}
-                                        />
-                                        <label htmlFor={index}>
-                                            <h5>El pedido será enviado a:</h5>
-                                            <p>{`${address.direccion} - ${address.city}, ${address.province} - ${address.country}`}</p>
-                                        </label>
-                                    </div>
-                                );
-                            })
-                        }
-                    </div>
-                </Panel>
-                <Button onClick={handleBuy} className={styles.mpButton}>IR A PAGAR</Button>
-                {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} customization={{ texts: { valueProp: 'smart_option' } }} />}
-            </div>
-            <div className={styles.cart}>
-                <DataScroller
-                    value={cart}
-                    itemTemplate={itemTemplate}
-                    rows={10}
-                    inline
-                    scrollHeight="500px"
-                    className={styles.DataScroller}
+      <div className={styles.checkout}>
+        <div className={styles.checkoutData}>
+          <Panel header="DATOS DE CONTACTO" className={styles.panel}>
+            <h5>Usuario:</h5>
+            <p>{loggedUserData.username}</p>
+            <h5>EMAIL</h5>
+            <p>{loggedUserData.email}</p>
+          </Panel>
+          <Panel header="ENTREGA" className={styles.panel}>
+            <div>
+              <div className={styles.PairRadioLabel}>
+                <RadioButton
+                  inputId="Local"
+                  name="ShippingAddress"
+                  value="Local"
+                  onChange={handleChange}
+                  checked={shippingAddress === "Local"}
                 />
-                <p className={styles.totalText}>El total de tu compra es ${calculateTotal().toFixed(2)}</p>
+                <label htmlFor="Local">
+                  <div>
+                    <h4>Retirar por Shopsport</h4>
+                    <p>Calle FGH 456 - ShopCity, ShopProvince - ShopCountry</p>
+                  </div>
+                </label>
+              </div>
+              {!loggedUserData.addresses.length ? (
+                <div className={styles.PairRadioLabel}>
+                  <h4>Puedes añadir tus direcciones desde tu panel </h4>
+                  <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                    <h4
+                      style={{
+                        color: "#ff0f0f",
+                        fontSize: "1rem",
+                        fontWeight: "bolder",
+                        transition: "color 0.5s",
+                      }}
+                    >
+                      Panel de Usuario
+                    </h4>
+                  </Link>
+                  {/* <Button onClick={() => navigate("/dashboard") }className={styles.mpButton}>PANEL DE USUARIO</Button> */}
+                </div>
+              ) : (
+                loggedUserData.addresses.map((address, index) => {
+                  return (
+                    <div className={styles.PairRadioLabel} key={index}>
+                      <RadioButton
+                        inputId={index}
+                        name="ShippingAddress"
+                        value={index}
+                        onChange={handleChange}
+                        checked={
+                          shippingAddress === loggedUserData.addresses[index]
+                        }
+                      />
+                      <label htmlFor={index}>
+                        <h5>El pedido será enviado a:</h5>
+                        <p>{`${address.direccion} - ${address.city}, ${address.province} - ${address.country}`}</p>
+                      </label>
+                    </div>
+                  );
+                })
+              )}
             </div>
+          </Panel>
+          <Button onClick={handleBuy} className={styles.mpButton}>
+            IR A PAGAR
+          </Button>
+          {preferenceId && (
+            <Wallet
+              initialization={{ preferenceId: preferenceId }}
+              customization={{ texts: { valueProp: "smart_option" } }}
+            />
+          )}
         </div>
+        <div className={styles.cart}>
+          <DataScroller
+            value={cart}
+            itemTemplate={itemTemplate}
+            rows={10}
+            inline
+            scrollHeight="500px"
+            className={styles.DataScroller}
+          />
+          <p className={styles.totalText}>
+            El total de tu compra es ${calculateTotal().toFixed(2)}
+          </p>
+        </div>
+      </div>
     );
 }

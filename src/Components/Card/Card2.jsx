@@ -67,12 +67,13 @@ export default function Card2({ id, name, price, image, brand }) {
 
             {
                 loggedUserData.username && !loggedUserData.isAdmin &&
-            <ToggleButton 
-                onLabel="Quitar de favoritos" 
-                offLabel="Añadir a favoritos" 
-                checked={isInWishlist} 
-                onChange={handleWishlistClick} 
-            />
+                <ToggleButton
+                onLabel="Quitar de favoritos"
+                offLabel="Añadir a favoritos"
+                checked={isInWishlist}
+                onChange={handleWishlistClick}
+                className={`${styles.wishlistButton} ${isInWishlist ? 'p-highlight' : ''}`}
+              />
             }
 
             <div className={styles['card-content']}>

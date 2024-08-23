@@ -20,33 +20,6 @@ export default function UserDashboard() {
     dispatch(logoutUser());
     navigate("/home");
   };
-
-    const createOrder = async () => {
-        if (loggedUserData.preferenceId.length) {
-            const {response} = await axios.post(`https://e-commerse-fc.onrender.com/api/createorder/preferenceId`, {preferenceId: `${loggedUserData.preferenceId}`})
-    
-            const {payments, items} = response[0]
-
-            //! HAY QUE AGREGAR DIRECCOIN DE PEDIDO   
-            const createOrder = await axios.post(`https://e-commerse-fc.onrender.com/api/order/`, {
-                userId: loggedUserData.id,
-                statuspago: payments.status,
-                statusenvio: "pendiente",
-                fecha: payments.date_approved,
-                total: payments.transaction_amount
-            })
-            const itemsIds = items.map(item => {
-                return {
-                    orderId: createOrder.id,
-                    itemId: item.id,
-                    quantity: item.quantity
-                } 
-            })
-            const createOrderItems = await axios.post("", {
-                arrayItems: itemsIds,
-            })
-        }
-    }
     
     console.log(loggedUserData);
 

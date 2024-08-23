@@ -23,7 +23,9 @@ import {
   DELETE_ADDRESS,
   EDIT_ADDRESS,
   UPDATE_SHOE_FAIL,
-  
+
+  CREATE_ORDER
+
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -303,9 +305,10 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
 
   try {
     const response = await axios.put(`https://e-commerse-fc.onrender.com/api/users/${userId}`, updatedData)
+    console.log(response)
     dispatch({
       type: USER_INFO_CHANGE,
-      payload: response.data
+      payload: response.data.users
     });
   } catch (error) {
     console.log(error.message)
@@ -314,7 +317,7 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
 
 export const addAddress = (address) =>  async (dispatch) =>{
   try {
-    const response = await axios.post(`https://e-commerse-fc.onrender.com/api/useraddresses`, address)
+    const response = await axios.post(`https://e-commerse-fc.onrender.com/api/adresses/`, address)
     console.log(response.data)
     dispatch( {
       type: ADD_ADDRESS,
@@ -358,5 +361,12 @@ export const editAddress = (indices) => async(dispatch) => {
     })
   } catch (error) {
     console.log(error.message)
+  }
+}
+
+export const createOrder = (order ) => {
+  return {
+    type: CREATE_ORDER,
+    payload: order
   }
 }

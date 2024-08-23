@@ -22,7 +22,8 @@ import {
   ADD_ADDRESS,
   DELETE_ADDRESS,
   EDIT_ADDRESS,
-  UPDATE_SHOE_FAIL
+  UPDATE_SHOE_FAIL,
+  CREATE_ORDER
 } from "./ActionsTypes";
 
 const initialState = {
@@ -274,7 +275,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       case USER_INFO_CHANGE:
         return{
           ...state,
-          loggedUserData:payload
+          loggedUserData: {
+            ...state.loggedUserData,       // Mantener los valores actuales
+            ...payload,                    // Sobrescribir con los valores del payload, incluyendo isAdmin
+            isAdmin: state.loggedUserData.isAdmin // Restablecer isAdmin al valor original
+          }
         }
 
       case ADD_ADDRESS: 
@@ -297,7 +302,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
           loggedUserData: {...state.loggedUserData, addresses: addressesAfterEdit}
         }
     default:
-      return { ...state };
+    
+    case CREATE_ORDER:
+      return {
+        ...state,
+        loggedUserData: {...state.loggedUserData, shoppingHistory:payload}
+      }
   }
 };
 

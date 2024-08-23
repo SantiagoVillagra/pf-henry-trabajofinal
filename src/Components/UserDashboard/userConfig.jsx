@@ -104,7 +104,8 @@ export default function UserConfig() {
     };
 
     const handleSave = () => {
-        dispatch(userInfoChange(loggedUserData.id, userData));
+        console.log(userData)
+        dispatch(userInfoChange(loggedUserData.id, {email: userData.email, username: userData.username}));
         setIsEditing(false);
     };
 
@@ -126,8 +127,18 @@ export default function UserConfig() {
 
     const handleSaveAddress = () => {
         const newUserDataAdresses = { ...userDataAddresses, userid: loggedUserData.id };
+        console.log(newUserDataAdresses);
+        
         dispatch(addAddress(newUserDataAdresses));
         setIsAddingAddress(!isAddingAddress);
+        setUserDataAddresses({
+            direccion: "",
+            numberphone: "",
+            codigopostal: "",
+            ciudad: "",
+            provincia: "",
+            pais: ""
+        });
     };
 
     const handleDeleteAddress = (idx) => {
@@ -191,11 +202,11 @@ export default function UserConfig() {
                                             value={userDataEditAddresses.direccion}
                                             onChange={handleChangeEditAddress}
                                         />
-                                        <label htmlFor="phonenumber">Teléfono</label>
+                                        <label htmlFor="numberphone">Teléfono</label>
                                         <InputText
-                                            id="phonenumber"
-                                            name="phonenumber"
-                                            value={userDataEditAddresses.phonenumber}
+                                            id="numberphone"
+                                            name="numberphone"
+                                            value={userDataEditAddresses.numberphone}
                                             onChange={handleChangeEditAddress}
                                         />
                                         <label htmlFor="codigopostal">Código Postal</label>
@@ -243,11 +254,11 @@ export default function UserConfig() {
                             value={userDataAddresses.direccion}
                             onChange={handleChangeAddress}
                         />
-                        <label htmlFor="phonenumber">Teléfono</label>
+                        <label htmlFor="numberphone">Teléfono</label>
                         <InputText
-                            id="phonenumber"
-                            name="phonenumber"
-                            value={userDataAddresses.phonenumber}
+                            id="numberphone"
+                            name="numberphone"
+                            value={userDataAddresses.numberphone}
                             onChange={handleChangeAddress}
                         />
                         <label htmlFor="codigopostal">Código Postal</label>

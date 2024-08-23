@@ -41,7 +41,8 @@ export default function UpdateShoeForm() {
     image: null,
     description: '',
     stock: true,
-    sizes: [],
+    sizes: {},
+    sizeIds: [], // Asegúrate de tener este campo si es necesario
     enable: true,
   });
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,25 +63,24 @@ export default function UpdateShoeForm() {
     }
   }, [updateError]);
 
+
   const handleSearch = () => {
     const foundShoe = allShoes.find(shoe =>
       shoe.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     if (foundShoe) {
       setSelectedShoe(foundShoe);
-      // Inicializar formData con los detalles del zapato seleccionado
+  
+      // Suponiendo que sizeIds están disponibles en el objeto de la zapatilla
       const sizes = foundShoe.sizes.reduce((acc, size) => {
-        // Solo asignar si shoesizes está definido
-        if (size.shoesizes) {
-          acc[size.value] = size.shoesizes.quantity;
-        } else {
-          acc[size.value] = 0; // Asignar 0 si no hay cantidad definida
-        }
+        acc[size.value] = size.shoesizes ? size.shoesizes.quantity : 0;
         return acc;
       }, {});
+  
       setFormData({
         ...foundShoe,
         sizes: sizes,
+        sizeIds: foundShoe.sizeIds || [] // Asegúrate de que sizeIds estén disponibles
       });
     } else {
       setSelectedShoe(null);
@@ -90,7 +90,7 @@ export default function UpdateShoeForm() {
         text: 'No se encontró ninguna zapatilla con ese nombre.',
       });
     }
-};
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -101,21 +101,32 @@ export default function UpdateShoeForm() {
   };
 
   const handleSizeChange = (size, value) => {
-    setFormData({
-      ...formData,
+    setFormData(prevData => ({
+      ...prevData,
       sizes: {
-        ...formData.sizes,
-        [size]: value,
-      },
-    });
+        ...prevData.sizes,
+        [size]: value
+      }
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUploadStatus('pending');
   
+    // Formatear los datos antes de enviarlos
+    const formattedData = {
+      ...formData,
+      sizes: Object.entries(formData.sizes).map(([size, quantity]) => ({
+        id: sizeMapping[size],
+        quantity: quantity
+      })).filter(size => size.quantity > 0) // Solo enviar tamaños con cantidad > 0
+    };
+  
+    console.log('Datos formateados a enviar:', formattedData);
+  
     try {
-      await dispatch(updateShoe(formData));
+      await dispatch(updateShoe(formattedData));
       Swal.fire({
         icon: 'success',
         title: 'Éxito',

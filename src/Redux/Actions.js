@@ -269,24 +269,9 @@ export const removeWish = (id) => {
 
 export const updateShoe = (shoeData) => async (dispatch) => {
   try {
-    // Verifica si shoeData.sizes es un array
-    if (!Array.isArray(shoeData.sizes)) {
-      throw new Error("shoeData.sizes no es un array");
-    }
-
-    const transformedSizes = shoeData.sizes.map(size => ({
-      id: size.size,
-      quantity: size.quantity
-    }));
-
-    const newShoeData = {
-      ...shoeData,
-      sizes: transformedSizes
-    };
-
     const response = await axios.put(
       `https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`,
-      newShoeData
+      shoeData
     );
 
     dispatch({ type: UPDATE_SHOE, payload: response.data });
@@ -295,7 +280,6 @@ export const updateShoe = (shoeData) => async (dispatch) => {
     throw error;
   }
 };
-
 
 
 // // Acción para eliminar un zapato y luego crear uno nuevo

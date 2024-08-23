@@ -71,7 +71,7 @@ export default function Signup() {
   return (
     <div>
       <div
-        className={`card p-4 md:p-6 flex flex-column align-items-center ${styles.signupContainer}`}
+        className={styles.signupContainer}
       >
         <form
           onSubmit={handleSubmit}
@@ -80,7 +80,7 @@ export default function Signup() {
           <img
             src={logoNav}
             alt="logo shopsport"
-            className={`mb-4 w-10rem ${styles.logo}`}
+            className={styles.logo}
           />
 
           <div
@@ -94,7 +94,7 @@ export default function Signup() {
               type="text"
               name="username"
               value={userData.username}
-              placeholder="Nombre de usuario..."
+              placeholder="Nombre de usuario"
               className={`w-12rem ${styles.input}`}
               onChange={handleChange}
             />
@@ -116,7 +116,7 @@ export default function Signup() {
               type="email"
               name="email"
               value={userData.email}
-              placeholder="Email..."
+              placeholder="Email"
               className={`w-12rem ${styles.input}`}
               onChange={handleChange}
             />
@@ -138,7 +138,7 @@ export default function Signup() {
               type="password"
               name="password"
               value={userData.password}
-              placeholder="Contraseña..."
+              placeholder="Contraseña"
               className={`w-12rem ${styles.input}`}
               onChange={handleChange}
             />
@@ -160,7 +160,7 @@ export default function Signup() {
               type="password"
               name="passwordRepeat"
               value={userData.passwordRepeat}
-              placeholder="Repeti contraseña..."
+              placeholder="Repeti contraseña"
               className={`w-12rem ${styles.input}`}
               onChange={handleChange}
             />
@@ -170,7 +170,7 @@ export default function Signup() {
               </div>
             )}
           </div>
-
+<div className={styles.centered}>
           <Button
             type="submit"
             label="Sign Up"
@@ -182,13 +182,17 @@ export default function Signup() {
             <b>OR</b>
           </Divider>
 
-          <Link to="/login">
-            <Button
-              label="Log In"
-              icon="pi pi-user"
-              className={styles.buttonLogin}
-            />
-          </Link>
+          
+          <Button
+            type="Log In"
+            label="Log In"
+            icon=" pi pi-user"
+            className={styles.buttonLogin}
+            onClick={() => navigate('/login')}
+          />
+          
+
+</div>
         </form>
       </div>
       <div>

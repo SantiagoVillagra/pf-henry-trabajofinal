@@ -81,10 +81,19 @@ form {
 }
 
 .searchButton {
+  justify-content: center;
   background-color: #949494;
-  font-weight: bold; /* Cambiado de font-size: bold a font-weight: bold */
-  text-align: center; /* Alinea el texto en el centro */
+  font-size: bold;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
+.searchButton:hover {
+  background-color: #b0b0b0;
+}
+
 .separated{
   margin-left: 3rem;
 }

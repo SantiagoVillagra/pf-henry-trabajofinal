@@ -50,7 +50,7 @@ export default function UserDashboard() {
 
     return (
         <div>
-          <h2>{loggedUserData.username}, bienvenido a tu panel de usuario:</h2>
+          <h2> Hola {loggedUserData.username}, bienvenido a tu panel de usuario:</h2>
           <TabView className={styles.tabView}>
             <TabPanel header="Lista de deseos">
               {

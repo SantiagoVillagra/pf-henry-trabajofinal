@@ -46,3 +46,5 @@ export const EDIT_ADDRESS = "EDIT_ADDRESS"
 
 export const UPDATE_SHOE_FAIL = "UPDATE_SHOE_FAIL"
 
+export const CREATE_ORDER = "CREATE_ORDER"
+

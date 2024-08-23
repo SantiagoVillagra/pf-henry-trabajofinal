@@ -7,21 +7,26 @@
     margin: auto; /* Centrar el contenedor */
     padding: 2rem; /* Padding interno */
     margin-top: 2rem;
+    display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
     
 }
 
 .signupForm {
     width: 100%;
+    max-width: 400px; /* Limita el ancho máximo del formulario */
 }
 
 .logo {
-    width: 100px; /* Ancho del logo */
-    height: auto; /* Mantener la proporción del logo */
+    width: 50%;
+    max-width: 150px;
 }
 
 .inputGroup {
     width: 100%;
     margin-bottom: 1.5rem;
+    justify-content: center;
 }
 
 .label {
@@ -60,8 +65,8 @@
 }
 
 .buttonLogin {
-    margin: 5px;
-    margin-left: 0;
+    
+    width: 100%;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
     background-color: #949494 !important; /* Asegura que el color de fondo del botón sea rojo */
     color: rgb(255, 255, 255); /* Color del texto del botón */
@@ -70,7 +75,9 @@
     border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
     font-size: 1em; /* Tamaño de fuente del botón */
     cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    text-align: center; /* Alinea el texto en el centro */
-    display: inline-flex; /* Alinea el botón en línea */
-    align-items: center; /* Alinea el contenido verticalmente en el centro */
+  
+}
+.centered{
+    align-items: center;
+    justify-content: center !important;
 }

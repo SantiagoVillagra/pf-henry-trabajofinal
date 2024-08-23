@@ -67,21 +67,26 @@ export default function DeleteShoe() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleDelete}>
+    <div className={styles.formContainer}>
+      <form onSubmit={handleDelete} className={styles.pField}>
         <div className="p-field">
-          <h1 className={styles.centered}>Buscar zapatilla para eliminar</h1>
+        
 
-          <div className={styles.centered}>
-            <InputText
+          <div className={styles.pField}>
+          <label htmlFor="search">Buscar zapatilla por nombre</label>
+            <div>
+              
+              
+              </div><InputText
               id="shoe"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Busqueda"
+              placeholder="Nombre de la zapatilla"
               required
               onFocus={() => setShowSuggestions(true)}
               onBlur={() => setTimeout(() => setShowSuggestions(false), 100)}
             />
+           
             <Button
               type="button"
               onClick={() => handleSelectSuggestion(searchTerm)}

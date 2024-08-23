@@ -58,6 +58,7 @@
 /* Estilo del texto del label */
 .label {
     width: 6rem;
+    color: #333; /* Color del texto */
 }
 
 /* Estilo del input */
@@ -110,4 +111,3 @@
     justify-content: center;
     padding: 1rem 0;
 }
-

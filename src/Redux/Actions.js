@@ -21,7 +21,8 @@ import {
   USER_INFO_CHANGE,
   ADD_ADDRESS,
   DELETE_ADDRESS,
-  EDIT_ADDRESS
+  EDIT_ADDRESS,
+  UPDATE_SHOE_FAIL
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -38,6 +39,39 @@ export function getAllShoes() {
 }
 
 
+// export const createShoe = (shoeData) => async (dispatch) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append("file", shoeData.image);
+//     formData.append("upload_preset", "wp5af07o"); // Tu upload preset
+//     formData.append("cloud_name", "dbkg9dzwt");   // Tu cloud name
+
+//     const uploadResponse = await axios.post(
+//       "https://api.cloudinary.com/v1_1/dbkg9dzwt/image/upload",
+//       formData
+//     );
+
+//     const imageUrl = uploadResponse.data.secure_url;
+//     const newShoeData = { ...shoeData, image: imageUrl };
+// console.log("datos actions", newShoeData)
+//     const response = await axios.post(
+//       "https://e-commerse-fc.onrender.com/api/shoes",
+//       newShoeData
+//     );
+
+//     dispatch({ type: CREATE_SHOE, payload: response.data });
+//   } catch (error) {
+//     console.error("Error al crear el producto:", error);
+//     throw error; // Re-lanza el error para que pueda ser manejado en el componente
+//   }
+// };
+
+
+
+
+
+
+
 export const createShoe = (shoeData) => async (dispatch) => {
   try {
     const formData = new FormData();
@@ -51,7 +85,18 @@ export const createShoe = (shoeData) => async (dispatch) => {
     );
 
     const imageUrl = uploadResponse.data.secure_url;
-    const newShoeData = { ...shoeData, image: imageUrl };
+
+    // Transforma el formato de sizes
+    const transformedSizes = shoeData.sizes.map(size => ({
+      id: size.size, // Cambia `size` por `id`
+      quantity: size.quantity
+    }));
+
+    const newShoeData = {
+      ...shoeData,
+      image: imageUrl,
+      sizes: transformedSizes // Usa el formato transformado
+    };
 
     const response = await axios.post(
       "https://e-commerse-fc.onrender.com/api/shoes",
@@ -64,6 +109,12 @@ export const createShoe = (shoeData) => async (dispatch) => {
     throw error; // Re-lanza el error para que pueda ser manejado en el componente
   }
 };
+
+
+
+
+
+
 export function getShoeById(id) {
   return function (dispatch) {
     axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${id}`)
@@ -202,25 +253,6 @@ export const removeWish = (id) => {
         payload: id
     }
 }
-// export const updateShoe = (shoeData) => async (dispatch) => {
-//   try {
-//       // Usamos shoeData.id para obtener el ID del zapato
-//       const response = await axios.put(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`, shoeData);
-
-//       dispatch({
-//           type: UPDATE_SHOE,
-//           payload: response.data // Esto asume que la API devuelve los datos actualizados
-//       });
-//   } catch (error) {
-//       console.error('Error updating shoe:', error);
-//       // Puedes manejar el error de diferentes formas, por ejemplo:
-//       dispatch({
-//           type: 'UPDATE_SHOE_FAIL',
-//           payload: error.response ? error.response.data : 'Network Error'
-//       });
-//   }
-
-// };
 
 
 // export const removeWish = (id, userId) => {
@@ -235,40 +267,105 @@ export const removeWish = (id) => {
 //   };
 // }
 
-
 export const updateShoe = (shoeData) => async (dispatch) => {
-  console.log(shoeData)
   try {
-    // Verificar que shoeData tenga un ID y todos los campos necesarios
-    if (!shoeData.id) {
-      throw new Error('ID del zapato es requerido');
+    // Verifica si shoeData.sizes es un array
+    if (!Array.isArray(shoeData.sizes)) {
+      throw new Error("shoeData.sizes no es un array");
     }
 
-    // Realizar la solicitud PUT al servidor para actualizar el zapato
+    const transformedSizes = shoeData.sizes.map(size => ({
+      id: size.size,
+      quantity: size.quantity
+    }));
+
+    const newShoeData = {
+      ...shoeData,
+      sizes: transformedSizes
+    };
+
     const response = await axios.put(
       `https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`,
-      shoeData,
-      {
-        headers: {
-          'Content-Type': 'application/json', // Asegúrate de que el tipo de contenido sea correcto
-        },
-      }
+      newShoeData
     );
-console.log(response.data)
-    // Despachar la acción para actualizar el estado en Redux
-    dispatch({
-      type: UPDATE_SHOE,
-      payload: response.data, // Esto asume que la API devuelve los datos actualizados
-    });
+
+    dispatch({ type: UPDATE_SHOE, payload: response.data });
   } catch (error) {
-    console.error('Error updating shoe:', error);
-    // Despachar una acción para manejar el error
-    dispatch({
-      type: 'UPDATE_SHOE_FAIL',
-      payload: error.response ? error.response.data : 'Network Error',
-    });
+    console.error("Error al actualizar el producto:", error);
+    throw error;
   }
 };
+
+
+
+// // Acción para eliminar un zapato y luego crear uno nuevo
+// export const updateShoe = (shoeData) => async (dispatch) => {
+//   try {
+//     // Verificar que shoeData tenga un ID y todos los campos necesarios
+//     if (!shoeData.id) {
+//       throw new Error('ID del zapato es requerido');
+//     }
+
+//     // Realizar la solicitud DELETE al servidor para eliminar el zapato
+//     await axios.delete(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`);
+//     console.log(`Shoe with ID ${shoeData.id} deleted`);
+
+//     // Crear el nuevo zapato con la misma data después de eliminar el existente
+//     const formData = new FormData();
+//     formData.append("file", shoeData.image);
+//     formData.append("upload_preset", "wp5af07o"); // Tu upload preset
+//     formData.append("cloud_name", "dbkg9dzwt");   // Tu cloud name
+
+//     const uploadResponse = await axios.post(
+//       "https://api.cloudinary.com/v1_1/dbkg9dzwt/image/upload",
+//       formData
+//     );
+
+//     const imageUrl = uploadResponse.data.secure_url;
+//     const newShoeData = { ...shoeData, image: imageUrl };
+
+//     // Realizar la solicitud POST para crear el nuevo zapato
+//     const response = await axios.post(
+//       "https://e-commerse-fc.onrender.com/api/shoes",
+//       newShoeData,
+//       {
+//         headers: {
+//           'Content-Type': 'application/json', // Asegúrate de que el tipo de contenido sea correcto
+//         },
+//       }
+//     );
+
+//     // Despachar la acción para actualizar el estado en Redux
+//     dispatch({
+//       type: 'SHOE_UPDATE_SUCCESS', // Cambia el tipo a uno que prefieras para indicar éxito
+//       payload: response.data, // Esto asume que la API devuelve los datos del zapato creado
+//     });
+
+//   } catch (error) {
+//     console.error('Error updating shoe:', error);
+
+//     // Puedes despachar una acción general o específica para manejar el error, o simplemente loguear el error
+//     dispatch({
+//       type: 'SHOE_UPDATE_ERROR', // Cambia el tipo si tienes un tipo específico para manejar errores
+//       payload: error.response ? error.response.data : 'Network Error',
+//     });
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const getUsers = () => async dispatch => {
   try {
     const response = await axios.get('https://e-commerse-fc.onrender.com/api/users');

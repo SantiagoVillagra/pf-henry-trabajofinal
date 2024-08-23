@@ -70,7 +70,7 @@ export default function UserOrders() {
                                  </div>
                                  <img src={order.shoes[0].image} alt={order.shoes[0].name} />
                              </div>
-                             <Button onClick={() => navigate(`/orderdetail/${order.id}`)}>Ver Detalle</Button>
+                             <Button onClick={() => navigate(`/orderdetail/${order.id}`)} className={styles.button}>Ver Detalle</Button>
                          </div>
                      )}
                      rows={5} // Número de elementos a cargar por scroll

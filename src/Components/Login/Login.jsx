@@ -99,7 +99,8 @@ export default function Login() {
     return (
         <div className={styles.background}>
             <div className={styles.logInContainer}>
-                <form onSubmit={handleSubmit} className={styles.form}>
+             <form onSubmit={handleSubmit} className="flex flex-column md:flex-row align-items-center justify-content-center">
+
                     <div className={styles.inputContainer}>
                         <img src={logoNav} alt="logo shopsport" className={styles.logo} />
                         <div className={styles.inputWrapper}>

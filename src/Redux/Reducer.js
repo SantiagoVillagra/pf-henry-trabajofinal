@@ -21,7 +21,8 @@ import {
   USER_INFO_CHANGE,
   ADD_ADDRESS,
   DELETE_ADDRESS,
-  EDIT_ADDRESS
+  EDIT_ADDRESS,
+  UPDATE_SHOE_FAIL
 } from "./ActionsTypes";
 
 const initialState = {
@@ -201,20 +202,46 @@ const rootReducer = (state = initialState, { type, payload }) => {
     //     };
     //   }
     case UPDATE_SHOE:
-  if (payload.error) {
-    return {
-      ...state,
-      updateError: payload.error,
-    };
-  } else {
-    return {
-      ...state,
-      allShoes: state.allShoes.map((shoe) =>
-        shoe.id === payload.data.id ? payload.data : shoe
-      ),
-      updateError: null,
-    };
-  }
+      // Verifica si el payload contiene un error
+      if (payload.error) {
+        return {
+          ...state,
+          updateError: payload.error,
+        };
+      } else {
+        // Actualiza la lista de zapatos con los datos del zapato actualizado
+        return {
+          ...state,
+          allShoes: state.allShoes.map((shoe) =>
+            shoe.id === payload.id ? payload : shoe
+          ),
+          updateError: null,
+        };
+      }
+
+    case UPDATE_SHOE_FAIL:
+      // Maneja los errores de actualización
+      return {
+        ...state,
+        updateError:payload,
+      };
+  
+
+  // case UPDATE_SHOE:
+  //   return {
+  //     ...state,
+  //     allShoes: state.allShoes.map((shoe) =>
+  //       shoe.id === payload.id ? payload : shoe
+  //     ),
+  //     shoe: action.payload, // O actualiza el estado del zapato si es necesario
+  //     error: null, // Limpiar errores
+  //   };
+
+  // case UPDATE_SHOE_FAIL:
+  //   return {
+  //     ...state,
+  //     error: payload, // Almacenar el error
+  //   };
 
     case SET_USERS:
       return {

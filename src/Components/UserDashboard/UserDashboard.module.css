@@ -47,7 +47,7 @@
 }
 
 .logoutButton {
-  background-color: #dc3545; /* Color de fondo rojo para el botón */
+  background-color: #d5050f; /* Color de fondo rojo para el botón */
   color: #ffffff; /* Color del texto blanco */
   border: none; /* Sin borde predeterminado */
   border-radius: 4px; /* Bordes redondeados */
@@ -58,5 +58,21 @@
 }
 
 .logoutButton:hover {
-  background-color: #c82333; /* Color de fondo más oscuro al pasar el cursor */
+  background-color: #a4040a; /* Color de fondo más oscuro al pasar el cursor */
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples líneas */
+  
+  justify-content: flex-start; /* Alinea las tarjetas al inicio del contenedor */
+  
+}
+
+.card {
+  flex: 1 1 200px; /* Las tarjetas ocuparán al menos 200px de ancho, pero se ajustarán según el espacio disponible */
+  max-width: 300px; /* Ancho máximo de cada tarjeta */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho y alto total */
+  
+  margin: 1rem;
 }

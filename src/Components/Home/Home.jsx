@@ -145,7 +145,7 @@ export default function Home() {
         })
       );
       setIsLoading(false);
-      console.log(allShoes)
+      
     }
   }, [dispatch, order, filters, allShoes]);
 

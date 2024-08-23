@@ -314,7 +314,7 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
 
 export const addAddress = (address) =>  async (dispatch) =>{
   try {
-    const response = await axios.post(`https://e-commerse-fc.onrender.com/api/useraddresses`, address)
+    const response = await axios.post(`https://e-commerse-fc.onrender.com/api/adresses/`, address)
     console.log(response.data)
     dispatch( {
       type: ADD_ADDRESS,

@@ -13,6 +13,7 @@ import BrandsData from "../BussinesData/BrandsData";
 import MonthlySales from "../BussinesData/MonthlySales";
 import SportsData from "../BussinesData/SportsData"
 import AdminChat from "../Chat/AdminChat";
+import Footer from "../../Footer/Footer";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ export default function AdminDashboard() {
               <Create />
             </div>
           </TabPanel>
-        <TabPanel header="Elimina/oculta productos">
+        <TabPanel header="Elimina productos">
           <div className={styles.tabContent}>
             <DeleteShoe></DeleteShoe>
           </div>
@@ -68,11 +69,14 @@ export default function AdminDashboard() {
             </div>
           </TabPanel>
       </TabView>
-
+    
       </div>
    
       <button className={styles.logoutButton} onClick={logOut}>LOG OUT</button>
     
+      <div>
+      <Footer></Footer>
+    </div>
     </div>
   );
 }

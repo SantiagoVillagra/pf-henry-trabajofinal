@@ -1,7 +1,7 @@
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import styles from "./Checkout.module.css";
 import { Panel } from 'primereact/panel';
@@ -10,9 +10,12 @@ import { DataScroller } from 'primereact/datascroller';
 import { RadioButton } from 'primereact/radiobutton';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import alertSwal from "../../funcs/alertSwal"
+import { userInfoChange } from '../../Redux/Actions';
 
 export default function Checkout() {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     initMercadoPago('APP_USR-1350f145-a406-4674-bd19-5a5799cec260', {
         locale: "es-AR"
@@ -24,12 +27,13 @@ export default function Checkout() {
     const loggedUserData = useSelector(state => state.loggedUserData);
 console.log(loggedUserData)
     const items = cart.map(shoe => {
-        return {
-            title: shoe.item.name,
-            quantity: shoe.qty,
-            unit_price: shoe.item.price
-        };
-    });
+      return {
+        title: shoe.item.name,
+        quantity: shoe.qty,
+        unit_price: shoe.item.price,
+        id: shoe.item.id
+      }
+    })
 
     const createPreference = async () => {
         try {
@@ -45,6 +49,12 @@ console.log(loggedUserData)
     };
 
     const handleBuy = async () => {
+
+        if (shippingAddress === "") {
+          alertSwal("Debes selecionar una dirección")
+          return
+        }
+
         Swal.fire({
             title: 'Cargando...',
             text: 'Estamos procesando tu pedido, por favor espera.',
@@ -56,9 +66,11 @@ console.log(loggedUserData)
 
         const id = await createPreference();
         if (id) {
+            dispatch(userInfoChange(loggedUserData.id, {...loggedUserData, preference: id}))
             setPreferenceId(id);
             Swal.close();
         }
+
     };
 
     const itemTemplate = (product) => {

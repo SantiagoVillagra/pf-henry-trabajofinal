@@ -26,7 +26,8 @@ export default function UserDashboard() {
             const {response} = await axios.post(`https://e-commerse-fc.onrender.com/api/createorder/preferenceId`, {preferenceId: `${loggedUserData.preferenceId}`})
     
             const {payments, items} = response[0]
-    
+
+            //! HAY QUE AGREGAR DIRECCOIN DE PEDIDO   
             const createOrder = await axios.post(`https://e-commerse-fc.onrender.com/api/order/`, {
                 userId: loggedUserData.id,
                 statuspago: payments.status,

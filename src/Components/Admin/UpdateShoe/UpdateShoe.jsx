@@ -41,7 +41,7 @@ export default function UpdateShoeForm() {
     image: null,
     description: '',
     stock: true,
-    sizes: {},
+    sizes: [],
     enable: true,
   });
   const [searchTerm, setSearchTerm] = useState('');

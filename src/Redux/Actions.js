@@ -237,6 +237,7 @@ export const removeWish = (id) => {
 
 
 export const updateShoe = (shoeData) => async (dispatch) => {
+  console.log(shoeData)
   try {
     // Verificar que shoeData tenga un ID y todos los campos necesarios
     if (!shoeData.id) {

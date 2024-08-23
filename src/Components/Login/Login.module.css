@@ -1,76 +1,113 @@
-.background{
-    background-color: #dfdfdf31;
+
+/* Fondo principal */
+.background {
     background-color: #ffffff;
-
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
-.button {
-    margin: 5px;
-    margin-left: 0;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Añade una sombra para dar un efecto de elevación */
-    background-color: #949494 !important; /* Asegura que el color de fondo del botón sea rojo */
-    color: rgb(255, 255, 255); /* Color del texto del botón */
-    border: none; /* Elimina el borde del botón si es necesario */
-    padding: 0.5em 1em; /* Ajusta el padding según sea necesario */
-    border-radius: 4px; /* Opcional: Redondea las esquinas del botón */
-    font-size: 1em; /* Tamaño de fuente del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    text-align: center; /* Alinea el texto en el centro */
-    display: inline-flex; /* Alinea el botón en línea */
-    align-items: center; /* Alinea el contenido verticalmente en el centro */
-}
-
-.logo{
-    width: 50%;
-}
-
-
-.input {
-    width: 100%; /* Asegurar que el input ocupe todo el ancho disponible */
-    padding: 0.5rem; /* Padding interno del input */
-    font-size: 1rem; /* Tamaño de fuente */
-    border: 1px solid #ccc; /* Borde del input */
-    border-radius: 4px; /* Bordes redondeados */
-}
-.input:focus {
-    border-color: #000000; /* Color del borde al enfocar */
-    box-shadow: 0 0 4px rgba(3, 85, 172, 0.25); /* Sombra al enfocar */
-}
-
-.googleButton{
-    background-color: #949494;
-    border-radius: 6px;
-}
-
+/* Contenedor del formulario de inicio de sesión */
 .logInContainer {
-    background-color: #dfdfdf; /* Fondo gris claro para el contenedor */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    max-width: 400px; /* Ancho máximo del contenedor */
-    margin: auto; /* Centrar el contenedor */
-    padding: 2rem; /* Padding interno */
+    background-color: #dfdfdf;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
     margin-top: 2rem;
-    
-    
+    text-align: center;
 }
 
-.logInForm {
+/* Estilo del formulario */
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Contenedor de entradas */
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Estilo de la imagen del logo */
+.logo {
+    width: 50%;
+    max-width: 150px;
+}
+
+/* Contenedor de cada input y su label */
+.inputWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     width: 100%;
 }
-.errorContainer {
-    display: flex; /* Usar flexbox */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    width: 100%; /* Ancho completo del contenedor */
-    margin-top: 0.5rem; /* Separación superior */
+
+/* Estilo del texto del label */
+.label {
+    width: 6rem;
 }
 
-.error {
-    color: #000000; /* Color rojo para los errores */
-    font-size: 0.8rem; /* Tamaño de fuente más pequeño */
-    display: flex; /* Usar flexbox */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+/* Estilo del input */
+.inputText {
+    width: 12rem;
 }
+
+/* Contenedor de errores */
+.error {
+    color: #ff0000;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Estilo del botón */
+.button {
+    margin: 5px 0;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    background-color: #949494 !important;
+    color: #ffffff;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* Estilo del botón de Google */
+.googleButton {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Contenedor del botón de Google */
+.googleLogin {
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo del divisor */
+.divider {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/* Contenedor del botón de Sign Up */
+.signUpContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+

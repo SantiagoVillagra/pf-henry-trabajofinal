@@ -1,31 +1,71 @@
 .deleteButton {
-    margin-top: 1rem; /* Ajusta el espacio entre el dropdown y el botón */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    background-color: #c40802; /* Rojo para el botón de eliminación */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    text-align: center;
-    padding: 0.5em 1em;
-  }
-  .deleteButton:hover {
-    background-color: #ff0800; /* Color de fondo cuando el botón es hovered */
+  margin-top: 1rem; /* Ajusta el espacio entre el dropdown y el botón */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  background-color: #c40802; /* Rojo para el botón de eliminación */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+  padding: 0.5em 1em;
 }
 
-  .searchButton{
-    justify-content: center;
-    background-color: #949494;
-    font-size: bold;
-  }
-  .centered{
-    justify-content: center;
-    display: flex;
-    align-items: center;
+.deleteButton:hover {
+  background-color: #ff0800; /* Color de fondo cuando el botón es hovered */
+}
 
-  }
-  .SearchTittle{
-    font-size: bolder;
+.searchButton {
+  justify-content: center;
+  background-color: #949494;
+  font-size: bold;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-  }
+.searchButton:hover {
+  background-color: #b0b0b0;
+}
+
+.centered {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.SearchTittle {
+  font-size: bolder;
+}
+
+/* Estilos para la lista de sugerencias */
+.suggestionsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  max-height:100px; /* Limita la altura máxima de la lista */
+  
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Asegura que la lista se coloque directamente debajo del input */
+  z-index: 1000; /* Para que la lista quede por encima de otros elementos */
+}
+
+.suggestionItem {
+  padding: 4px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestionItem:hover {
+  background-color: #d6d1d1;
+}
+
+.suggestionItem:last-child {
+  border-bottom: none; /* Quita el borde del último elemento */
+}

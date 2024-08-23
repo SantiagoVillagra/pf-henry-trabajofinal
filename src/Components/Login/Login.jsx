@@ -54,25 +54,39 @@ export default function Login() {
     };
 
     const handleLoginSuccess = async (response) => {
+        console.log("entro al handleSuccess");
+        
+        console.log("RESPONSE")
+        console.log(response)
+        console.log("RESPONSE CREDENTIAL")
+        console.log(response.credential);
+
         try {
-            await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
-                token: response.credential,
-            })
-            .then(({data}) => {
-                const {token} = data;
-                const decodedToken = jwtDecode(token);
-                return decodedToken;
-            })
-            .then(async ({id}) => {
-                const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`);
-                return user;
-            })
-            .then(({data}) => {
-                const userData = {...data, wishList: data.wishList || [], shoppingHistory: data.shoppingHistory || []};
-                dispatch(loginUser(userData));
-                alertSwal("Log in exitoso");
-                navigate("/home");
-            });
+          await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
+            token: response.credential,
+          })
+          .then(({data}) => {
+            const {token} = data
+            console.log("JWT TOKEN")
+            console.log(token)
+            const decodedToken = jwtDecode(token)
+            console.log("DECODED TOKEN")
+            console.log(decodedToken)
+            return decodedToken
+          })
+          .then(async ({id}) => {
+            const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
+            console.log(user)
+            return user
+          })
+          .then(({data}) => {
+            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory}
+            dispatch(loginUser(userData))
+            alertSwal("Log in exitoso")
+            navigate("/home")
+          })
+          
+          // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
         } catch (error) {
             console.error('Error al enviar el token al backend', error);
         }

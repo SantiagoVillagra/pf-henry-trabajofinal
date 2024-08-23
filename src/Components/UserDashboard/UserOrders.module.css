@@ -1,0 +1,40 @@
+/* 
+
+.AcordionTab{
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+}
+
+.DataAndImage {
+    display: flex;
+    justify-content:start;
+    gap: 50px;
+}
+
+.DataAndImage img {
+    width: 250px;
+} */
+
+.DataScroller {
+    padding: 1rem;
+}
+
+.OrderItem {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.DataAndImage {
+    display: flex;
+    align-items: center;
+}
+
+.DataAndImage img {
+    margin-left: 1rem;
+    max-width: 100px;
+    border-radius: 8px;
+}

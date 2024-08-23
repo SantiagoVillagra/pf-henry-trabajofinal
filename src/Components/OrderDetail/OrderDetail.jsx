@@ -81,6 +81,7 @@ import { Column } from 'primereact/column';
 import { useParams } from "react-router-dom";
 import arrayOrders from "../../mockDB/mockOrders2";
 import styles from "./OrderDetail.module.css";
+import Footer from "../Footer/Footer"
 
 export default function OrderDetail() {
     const { id } = useParams();
@@ -118,6 +119,9 @@ export default function OrderDetail() {
                     </DataTable>
                     <h2>{`Total: $${order?.total}`}</h2>
                 </div>
+            </div>
+            <div>
+                <Footer></Footer>
             </div>
         </div>
     );

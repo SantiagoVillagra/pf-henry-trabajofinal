@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode" // Corregido el nombre de la importación
 import logIn from "../../mockDB/mockLogIn";
 import { loginUser } from "../../Redux/Actions";
 import { InputText } from 'primereact/inputtext';
@@ -24,9 +23,6 @@ export default function Login() {
         password: ""
     });
 
-    // Eliminado setErrors si no se usa
-    // const [errors, setErrors] = useState({});
-
     const handleChange = (event) => {
         setUserData({ ...userData, [event.target.name]: event.target.value });
     };
@@ -35,16 +31,28 @@ export default function Login() {
         event.preventDefault();
 
         await logIn(userData)
-        .then(({data: {token}}) => {
+        .then(({ data: { token } }) => {
             const decodedToken = jwtDecode(token);
             return decodedToken;
         })
-        .then(async ({id}) => {
-          const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`);
-          return user;
+        .then(async ({ id }) => {
+            const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`);
+            return user;
         })
-        .then(({data}) => {
-            const userData = {...data, wishList: data.wishList || [], shoppingHistory: data.shoppingHistory || [], email: data.email || "", addresses: data.addresses || []};
+        .then(({ data }) => {
+            // Verificar si el usuario está baneado
+            if (data.ban) {
+                alertSwal("Tu cuenta está baneada. No puedes iniciar sesión.", "error");
+                return;
+            }
+
+            const userData = {
+                ...data,
+                wishList: data.wishList || [],
+                shoppingHistory: data.shoppingHistory || [],
+                email: data.email || "",
+                addresses: data.addresses || []
+            };
             dispatch(loginUser(userData));
             navigate("/home");
         })
@@ -54,39 +62,35 @@ export default function Login() {
     };
 
     const handleLoginSuccess = async (response) => {
-        console.log("entro al handleSuccess");
-        
-        console.log("RESPONSE")
-        console.log(response)
-        console.log("RESPONSE CREDENTIAL")
-        console.log(response.credential);
-
         try {
-          await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
-            token: response.credential,
-          })
-          .then(({data}) => {
-            const {token} = data
-            console.log("JWT TOKEN")
-            console.log(token)
-            const decodedToken = jwtDecode(token)
-            console.log("DECODED TOKEN")
-            console.log(decodedToken)
-            return decodedToken
-          })
-          .then(async ({id}) => {
-            const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`)
-            console.log(user)
-            return user
-          })
-          .then(({data}) => {
-            const userData = {...data, wishList: !data.wishList? [] : data.wishList, shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory}
-            dispatch(loginUser(userData))
-            alertSwal("Log in exitoso")
-            navigate("/home")
-          })
-          
-          // Aquí puedes manejar el estado de autenticación del usuario en tu frontend
+            await axios.post(`https://e-commerse-fc.onrender.com/api/auth/google`, {
+                token: response.credential,
+            })
+            .then(({ data }) => {
+                const { token } = data;
+                const decodedToken = jwtDecode(token);
+                return decodedToken;
+            })
+            .then(async ({ id }) => {
+                const user = await axios(`https://e-commerse-fc.onrender.com/api/users/${id}`);
+                return user;
+            })
+            .then(({ data }) => {
+                // Verificar si el usuario está baneado
+                if (data.ban) {
+                    alertSwal("Tu cuenta está baneada. No puedes iniciar sesión.", "error");
+                    return;
+                }
+
+                const userData = {
+                    ...data,
+                    wishList: !data.wishList ? [] : data.wishList,
+                    shoppingHistory: !data.shoppingHistory ? [] : data.shoppingHistory
+                };
+                dispatch(loginUser(userData));
+                alertSwal("Log in exitoso", "success");
+                navigate("/home");
+            });
         } catch (error) {
             console.error('Error al enviar el token al backend', error);
         }
@@ -99,8 +103,7 @@ export default function Login() {
     return (
         <div className={styles.background}>
             <div className={styles.logInContainer}>
-             <form onSubmit={handleSubmit} className="flex flex-column md:flex-row align-items-center justify-content-center">
-
+                <form onSubmit={handleSubmit} className="flex flex-column md:flex-row align-items-center justify-content-center">
                     <div className={styles.inputContainer}>
                         <img src={logoNav} alt="logo shopsport" className={styles.logo} />
                         <div className={styles.inputWrapper}>
@@ -114,10 +117,7 @@ export default function Login() {
                                 className={styles.inputText}
                                 onChange={handleChange}
                             />
-                            {/* Elimina esta línea si no usas el error */}
-                            {/* <span className={styles.error}>{errors.email}</span> */}
                         </div>
-
                         <div className={styles.inputWrapper}>
                             <label htmlFor="password" className={styles.label}>Contraseña</label>
                             <InputText
@@ -129,12 +129,8 @@ export default function Login() {
                                 className={styles.inputText}
                                 onChange={handleChange}
                             />
-                            {/* Elimina esta línea si no usas el error */}
-                            {/* <span className={styles.error}>{errors.password}</span> */}
                         </div>
-
                         <Button type="submit" label="Login" icon="pi pi-user" className={styles.button} />
-
                         <div className={styles.googleLogin}>
                             <GoogleLogin
                                 onSuccess={handleLoginSuccess}
@@ -143,7 +139,6 @@ export default function Login() {
                             />
                         </div>
                     </div>
-
                     <Divider align="center" className={styles.divider}>
                         <b>OR</b>
                     </Divider>

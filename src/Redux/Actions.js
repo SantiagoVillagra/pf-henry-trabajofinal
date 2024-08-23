@@ -23,7 +23,9 @@ import {
   DELETE_ADDRESS,
   EDIT_ADDRESS,
   UPDATE_SHOE_FAIL,
+
   CREATE_ORDER
+
 } from "./ActionsTypes";
 import Swal from "sweetalert2";
 
@@ -303,7 +305,9 @@ export const userInfoChange = (userId, updatedData) => async(dispatch) =>{
 
   try {
     const response = await axios.put(`https://e-commerse-fc.onrender.com/api/users/${userId}`, updatedData)
+
     console.log(response.users)
+
     dispatch({
       type: USER_INFO_CHANGE,
       payload: response.users

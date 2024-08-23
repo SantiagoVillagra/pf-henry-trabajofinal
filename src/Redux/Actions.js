@@ -39,38 +39,6 @@ export function getAllShoes() {
 }
 
 
-// export const createShoe = (shoeData) => async (dispatch) => {
-//   try {
-//     const formData = new FormData();
-//     formData.append("file", shoeData.image);
-//     formData.append("upload_preset", "wp5af07o"); // Tu upload preset
-//     formData.append("cloud_name", "dbkg9dzwt");   // Tu cloud name
-
-//     const uploadResponse = await axios.post(
-//       "https://api.cloudinary.com/v1_1/dbkg9dzwt/image/upload",
-//       formData
-//     );
-
-//     const imageUrl = uploadResponse.data.secure_url;
-//     const newShoeData = { ...shoeData, image: imageUrl };
-// console.log("datos actions", newShoeData)
-//     const response = await axios.post(
-//       "https://e-commerse-fc.onrender.com/api/shoes",
-//       newShoeData
-//     );
-
-//     dispatch({ type: CREATE_SHOE, payload: response.data });
-//   } catch (error) {
-//     console.error("Error al crear el producto:", error);
-//     throw error; // Re-lanza el error para que pueda ser manejado en el componente
-//   }
-// };
-
-
-
-
-
-
 
 export const createShoe = (shoeData) => async (dispatch) => {
   try {
@@ -281,74 +249,6 @@ export const updateShoe = (shoeData) => async (dispatch) => {
     throw error;
   }
 };
-
-
-// // Acción para eliminar un zapato y luego crear uno nuevo
-// export const updateShoe = (shoeData) => async (dispatch) => {
-//   try {
-//     // Verificar que shoeData tenga un ID y todos los campos necesarios
-//     if (!shoeData.id) {
-//       throw new Error('ID del zapato es requerido');
-//     }
-
-//     // Realizar la solicitud DELETE al servidor para eliminar el zapato
-//     await axios.delete(`https://e-commerse-fc.onrender.com/api/shoes/${shoeData.id}`);
-//     console.log(`Shoe with ID ${shoeData.id} deleted`);
-
-//     // Crear el nuevo zapato con la misma data después de eliminar el existente
-//     const formData = new FormData();
-//     formData.append("file", shoeData.image);
-//     formData.append("upload_preset", "wp5af07o"); // Tu upload preset
-//     formData.append("cloud_name", "dbkg9dzwt");   // Tu cloud name
-
-//     const uploadResponse = await axios.post(
-//       "https://api.cloudinary.com/v1_1/dbkg9dzwt/image/upload",
-//       formData
-//     );
-
-//     const imageUrl = uploadResponse.data.secure_url;
-//     const newShoeData = { ...shoeData, image: imageUrl };
-
-//     // Realizar la solicitud POST para crear el nuevo zapato
-//     const response = await axios.post(
-//       "https://e-commerse-fc.onrender.com/api/shoes",
-//       newShoeData,
-//       {
-//         headers: {
-//           'Content-Type': 'application/json', // Asegúrate de que el tipo de contenido sea correcto
-//         },
-//       }
-//     );
-
-//     // Despachar la acción para actualizar el estado en Redux
-//     dispatch({
-//       type: 'SHOE_UPDATE_SUCCESS', // Cambia el tipo a uno que prefieras para indicar éxito
-//       payload: response.data, // Esto asume que la API devuelve los datos del zapato creado
-//     });
-
-//   } catch (error) {
-//     console.error('Error updating shoe:', error);
-
-//     // Puedes despachar una acción general o específica para manejar el error, o simplemente loguear el error
-//     dispatch({
-//       type: 'SHOE_UPDATE_ERROR', // Cambia el tipo si tienes un tipo específico para manejar errores
-//       payload: error.response ? error.response.data : 'Network Error',
-//     });
-//   }
-// };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export const getUsers = () => async dispatch => {

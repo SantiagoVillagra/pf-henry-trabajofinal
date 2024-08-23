@@ -45,3 +45,4 @@ export const DELETE_ADDRESS = "DELETE_ADDRESS"
 export const EDIT_ADDRESS = "EDIT_ADDRESS"
 
 export const UPDATE_SHOE_FAIL = "UPDATE_SHOE_FAIL"
+

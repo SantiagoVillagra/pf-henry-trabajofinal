@@ -104,7 +104,8 @@ export default function UserConfig() {
     };
 
     const handleSave = () => {
-        dispatch(userInfoChange(loggedUserData.id, userData));
+        console.log(userData)
+        dispatch(userInfoChange(loggedUserData.id, {email: userData.email, username: userData.username}));
         setIsEditing(false);
     };
 

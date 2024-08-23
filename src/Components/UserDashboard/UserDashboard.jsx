@@ -6,16 +6,47 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import Card2 from "../Card/Card2.jsx";
 import UserConfig from "./userConfig.jsx";
 import styles from "./UserDashboard.module.css";
+import UserOrders from "./UserOrders.jsx";
+import { Button } from "primereact/button";
+import axios from "axios";
 
 export default function UserDashboard() {
-    const navigate = useNavigate();
-    const loggedUserData = useSelector(state => state.loggedUserData);
-    const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedUserData = useSelector(state => state.loggedUserData);
+  const dispatch = useDispatch();
+  
+  const logOut = () => {
+    dispatch(logoutUser());
+    navigate("/home");
+  };
 
-    const logOut = () => {
-        dispatch(logoutUser());
-        navigate("/home");
-    };
+    const createOrder = async () => {
+        if (loggedUserData.preferenceId.length) {
+            const {response} = await axios.post(`https://e-commerse-fc.onrender.com/api/createorder/preferenceId`, {preferenceId: `${loggedUserData.preferenceId}`})
+    
+            const {payments, items} = response[0]
+    
+            const createOrder = await axios.post(`https://e-commerse-fc.onrender.com/api/order/`, {
+                userId: loggedUserData.id,
+                statuspago: payments.status,
+                statusenvio: "pendiente",
+                fecha: payments.date_approved,
+                total: payments.transaction_amount
+            })
+            const itemsIds = items.map(item => {
+                return {
+                    orderId: createOrder.id,
+                    itemId: item.id,
+                    quantity: item.quantity
+                } 
+            })
+            const createOrderItems = await axios.post("", {
+                arrayItems: itemsIds,
+            })
+        }
+    }
+    
+    console.log(loggedUserData);
 
     return (
         <div>
@@ -39,15 +70,7 @@ export default function UserDashboard() {
               }
             </TabPanel>
             <TabPanel header="Historial de compras">
-              {
-                !loggedUserData.shoppingHistory.length
-                  ? <h3>No hay registro de compras realizadas</h3>
-                  : loggedUserData.shoppingHistory.map((list, idx) => (
-                    <div key={idx}>
-                      {/* Contenido del historial de compras */}
-                    </div>
-                  ))
-              }
+              <UserOrders></UserOrders>
             </TabPanel>
             <TabPanel header="Configuración">
               <UserConfig />

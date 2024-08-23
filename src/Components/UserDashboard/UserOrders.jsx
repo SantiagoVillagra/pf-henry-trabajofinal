@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { createOrder } from '../../Redux/Actions';
 import arrayOrders from '../../mockDB/mockOrders2';
 import Swal from 'sweetalert2';
 import styles from "./UserOrders.module.css";
@@ -12,7 +13,7 @@ import axios from 'axios';
 
 export default function UserOrders() {
     const { orders } = useSelector(state => state.loggedUserData);
-    const loggedUserData = useSelector(state => loggedUserData)
+    const loggedUserData = useSelector(state => state.loggedUserData)
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
@@ -28,7 +29,7 @@ export default function UserOrders() {
             } 
         })
         //! HAY QUE AGREGAR DIRECCOIN DE PEDIDO   
-        const createOrder = await axios.post(`https://e-commerse-fc.onrender.com/api/order/`, {
+        const creatingOrder = await axios.post(`https://e-commerse-fc.onrender.com/api/order/`, {
             userId: loggedUserData.id,
             arrayItems: itemsIds,
             statuspago: payments.status,
@@ -36,12 +37,13 @@ export default function UserOrders() {
             fecha: payments.date_approved,
             total: payments.transaction_amount
         })
-
-
+        dispatch(createOrder(creatingOrder))
+        return createOrder
+        
     }
 
     useEffect(() => {
-        if (loggedUserData.preference.length) {
+        if (loggedUserData.preference) {
             Swal.fire({
                 title: 'Cargando...',
                 text: 'Estamos procesando tus pedidos, por favor espera.',
@@ -50,9 +52,10 @@ export default function UserOrders() {
                     Swal.showLoading();
                 }
             });
-            
+            createOrder()
+            Swal.close();         
         }
-    }, []) 
+    }, [loggedUserData.preference]) 
 
     return (
         <div>

@@ -83,7 +83,7 @@ const Footer = () => {
             <ul>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/usuario1"
+                  href="https://www.linkedin.com/in/daniel-ignacio-alvarez-767b9127a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
@@ -105,7 +105,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/usuario3"
+                  href="linkedin.com/in/gustavoquinteros"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}

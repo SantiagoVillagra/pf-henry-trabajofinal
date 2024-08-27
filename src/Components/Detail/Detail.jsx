@@ -22,6 +22,9 @@ export default function Detail() {
     const alreadyInCart = cart.find(cartItem => cartItem.item.id === parseInt(ID));
     const [reviews, setReviews] = useState([]);
 
+    console.log(shoeDetail)
+    console.log(selectedSize)
+
     useEffect(() => {
         setLoading(true);
         axios(`https://e-commerse-fc.onrender.com/api/shoes/id/${ID}`)
@@ -67,6 +70,15 @@ export default function Detail() {
 
     const sizes = shoeDetail.sizes ? shoeDetail.sizes.map(size => ({ label: size.value, value: size.value })) : [];
 
+    const handleAddItem = () => {
+        const addedSize = shoeDetail.sizes.find(size => size.value === selectedSize)
+        if (alreadyInCart.qty <= addedSize.shoesizes.quantity) {
+            dispatch(addItem(shoeDetail))
+            return
+        }
+        alertSwal("Has alcanzado el límite para el talle seleccionado")
+    }
+
     return (
         <div>
         <div className={styles.container}>
@@ -90,7 +102,7 @@ export default function Detail() {
                                     label="Añadir otro"
                                     icon="pi pi-plus"
                                     className={styles.styledButton}
-                                    onClick={() => dispatch(addItem(shoeDetail))}
+                                    onClick={() => handleAddItem()}
                                 />
                                 <span>Cantidad: {alreadyInCart.qty}</span>
                             </>

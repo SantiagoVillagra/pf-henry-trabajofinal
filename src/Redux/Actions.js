@@ -176,6 +176,7 @@ export const takeItem = (item) => {
 };
 
 export const addItem = (item) => {
+  console.log(item)
   return {
     type: ADD_ITEM,
     payload: item,

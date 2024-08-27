@@ -12,7 +12,7 @@ import axios from 'axios';
 
 
 export default function UserOrders() {
-    const { orders } = useSelector(state => state.loggedUserData);
+    const { shoppingHistory } = useSelector(state => state.loggedUserData);
     const loggedUserData = useSelector(state => state.loggedUserData)
     const navigate = useNavigate();
     const dispatch = useDispatch()

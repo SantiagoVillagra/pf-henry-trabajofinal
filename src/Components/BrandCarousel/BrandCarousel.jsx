@@ -69,6 +69,11 @@ export default function BrandCarousel() {
             breakpoint: '560px',
             numVisible: 2,
             numScroll: 1
+        },
+        {
+            breakpoint: '480px',
+            numVisible: 1,
+            numScroll: 1
         }
     ];
 
@@ -83,14 +88,13 @@ export default function BrandCarousel() {
     return (
         <Carousel
             value={images}
-            numVisible={5} // Muestra 4 imágenes a la vez
-              // Desplaza 2 imágenes a la vez
+            numVisible={5}
+            numScroll={2}
             responsiveOptions={responsiveOptions}
             className="custom-carousel"
-            circular // Hacer que el carrusel sea circular
-            autoplayInterval={2000} // Tiempo de cambio automático
+            circular
+            autoplayInterval={2000}
             itemTemplate={productTemplate}
-        
             showIndicators={false}
             showThumbnails={false}
         />

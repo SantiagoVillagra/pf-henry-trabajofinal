@@ -25,9 +25,10 @@ import {
   UPDATE_SHOE_FAIL,
   CREATE_ORDER
 } from "./ActionsTypes";
+import sneakers from "../mockDB/mockDB"
 
 const initialState = {
-  allShoes: [],
+  allShoes: sneakers  ,
   searchedShoes: [],
   orderAndFilter: [],
   loggedUserData: JSON.parse(localStorage.getItem("userData")) || {},
@@ -38,6 +39,7 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
+  console.log(state.allShoes)
   switch (type) {
     case GET_ALL_SHOES:
       return { ...state, allShoes: payload };

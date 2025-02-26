@@ -368,4 +368,19 @@ module.exports = sneakers
 
 
 
+// const sneakers = [
+//     {
+//         "ID": 1,
+//         "name": "Kyrie Flytrap 6",
+//         "brand": "Nike",
+//         "size": [43],
+//         "price": 161300,
+//         "gender": "Hombre",
+//         "sport": "Basketball",
+//         "stock": "Si",
+//         "image": "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwab6fd02a/products/NIDM1125-800/NIDM1125-800-1.JPG",
+//         "description": "Vestibulum sed tortor sit amet odio sodales ultricies. Etiam tincidunt, justo ut molestie consequat, sapien lacus molestie arcu, laoreet consequat nisl nisi eget est. Cras ut libero gravida, elementum nisl nec, sagittis nisl. Etiam pulvinar, nibh id pretium facilisis, odio dolor hendrerit dui, condimentum tincidunt leo ligula bibendum justo. Cras iaculis hendrerit odio, sed dapibus odio semper id. Ut condimentum eros aliquet ligula bibendum volutpat.",
+//     }
+// ]
+// module.exports = sneakers
 

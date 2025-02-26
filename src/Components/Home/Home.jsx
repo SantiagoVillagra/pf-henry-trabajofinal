@@ -1,7 +1,7 @@
 import brands from "../../mockDB/mockBrands";
 import genders from "../../mockDB/mockGenders";
 import sports from "../../mockDB/mockSports";
-import Card from "../Card/Card";
+
 import Swal from "sweetalert2";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,13 +15,16 @@ import Chat from "../Chat/Chat"
 import BrandCarousel from "../BrandCarousel/BrandCarousel";
 import Footer from "../Footer/Footer";
 
+
 export default function Home() {
 
   const [first, setFirst] = useState(0); // Índice del primer elemento de la página actual
   const [rows, setRows] = useState(6); // Número de elementos por página
   const [isLoading, setIsLoading] = useState(true)
+  // const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const allShoes = useSelector((state) => state.allShoes);
+   const allShoes = useSelector((state) => state.allShoes);
+  
   
   const orderAndFilter = useSelector((state) => state.orderAndFilter);
   const orderAndFilterOnlyEnabled = orderAndFilter.filter(shoe => shoe.enable === true || shoe.enable === null);
@@ -37,8 +40,6 @@ export default function Home() {
   const paginatedData = orderAndFilterOnlyEnabled.slice(first, first + rows);
   const dispatch = useDispatch();
 
-
-  
   const brandsDefault = {};
 
   brands.map((brand) => {
@@ -62,6 +63,9 @@ export default function Home() {
     brands: brandsDefault,
     genders: gendersDefault,
   };
+
+
+
 
   const [filters, setFilters] = useState(filtersDefault);
   const [order, setOrder] = useState({ order: null });
@@ -131,10 +135,23 @@ export default function Home() {
   }
 
   useEffect(() => {
-    dispatch(getAllShoes())
+    //dispatch(getAllShoes())
     
       
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsSmallScreen(window.innerWidth <= 768);
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (allShoes.length > 0) {
@@ -150,11 +167,12 @@ export default function Home() {
   }, [dispatch, order, filters, allShoes]);
 
 
-
+// logica que si la pantalla e smas chica o igual a 768 renderice un componente que vamos a crear nuevo que sea responsive. 
  
 
   return (
     <div>
+      {console.log(allShoes)}
         <div>
       <BrandCarousel></BrandCarousel>
       </div>
@@ -256,9 +274,9 @@ export default function Home() {
           ))}
         </div> */}
         <div className={styles.Cards}>
-          {paginatedData.map(({ id, name, price, image, brand, enable }) => (
+          {allShoes.map(({ id, name, price, image, brand, enable }) => (
             <>
-              
+              {console.log(allShoes)}
               <Card2
                 key={id}
                 id={id}

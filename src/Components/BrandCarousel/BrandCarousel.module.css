@@ -20,7 +20,50 @@
 .custom-carousel .p-carousel-item img {
     max-width: 100%;
     height: auto; /* Mantiene la relación de aspecto de las imágenes */
-    
+}
+
+/* Diseño para pantallas más grandes */
+@media (min-width: 1024px) {
+    .custom-carousel .p-carousel-item {
+        padding: 0 30px;
+    }
+
+    .custom-carousel .product-item {
+        margin-left: 2rem;
+    }
+}
+
+/* Diseño para pantallas medianas */
+@media (max-width: 1023px) {
+    .custom-carousel .p-carousel-item {
+        padding: 0 20px;
+    }
+
+    .custom-carousel .product-item {
+        margin-left: 1.5rem;
+    }
+}
+
+/* Diseño para pantallas pequeñas */
+@media (max-width: 768px) {
+    .custom-carousel .p-carousel-item {
+        padding: 0 10px;
+    }
+
+    .custom-carousel .product-item {
+        margin-left: 1rem;
+    }
+}
+
+/* Diseño para pantallas extra pequeñas */
+@media (max-width: 480px) {
+    .custom-carousel .p-carousel-item {
+        padding: 0 5px;
+    }
+
+    .custom-carousel .product-item {
+        margin-left: 0.5rem;
+    }
 }
 
 /* Si quieres una animación de desplazamiento continuo */
@@ -32,11 +75,11 @@
         transform: translateX(-100%);
     }
 }
+
 .custom-carousel .product-item {
     display: flex;
     flex-direction: column; /* Alinea imagen y título verticalmente */
     align-items: center; /* Centra el contenido dentro de cada item */
     text-align: center;
     width: 100%; /* Asegura que el item ocupe el ancho del contenedor */
-    margin-left: 2rem;
 }

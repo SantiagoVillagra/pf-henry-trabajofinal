@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from "primereact/card";
-import { Divider } from "primereact/divider";
 import styles from "./Footer.module.css";
 import "primeicons/primeicons.css";
+
 
 const Footer = () => {
   const logos = [
@@ -105,14 +105,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="linkedin.com/in/gustavoquinteros"
+                  href="https://linkedin.com/in/gustavoquinteros"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
-                >
-                  <i className="pi pi-linkedin iconSpacing"></i>
-                  Quintero Gustavo
-                </a>
+                ></a>
               </li>
               <li>
                 <a

@@ -20,6 +20,7 @@ export default function Home() {
 
   const [first, setFirst] = useState(0); // Índice del primer elemento de la página actual
   const [rows, setRows] = useState(6); // Número de elementos por página
+  
   const [isLoading, setIsLoading] = useState(true)
   // const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -28,16 +29,19 @@ export default function Home() {
   
   const orderAndFilter = useSelector((state) => state.orderAndFilter);
   const orderAndFilterOnlyEnabled = orderAndFilter.filter(shoe => shoe.enable === true || shoe.enable === null);
-  const totalRecords = orderAndFilterOnlyEnabled.length;
+  const totalRecords = allShoes.length;
 
   const handlePageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
+    console.log(event)
   };
 
   // Cálculo de los datos que se mostrarán en la página actual
   
-  const paginatedData = orderAndFilterOnlyEnabled.slice(first, first + rows);
+  // const paginatedData = orderAndFilterOnlyEnabled.slice(first, first + rows);
+  const paginatedData = allShoes.slice(first, first + rows);
+  
   const dispatch = useDispatch();
 
   const brandsDefault = {};
@@ -259,9 +263,10 @@ export default function Home() {
           ></Button> <br />
       </div>
       <div>
-        {/* <div className={styles.Cards}>
+     
+        <div className={styles.Cards}>
           {paginatedData.map(({ id, name, price, image, brand }) => (
-            <Card
+            <Card2
               key={id}
               id={id}
               brand={brand}
@@ -272,11 +277,10 @@ export default function Home() {
 
             
           ))}
-        </div> */}
-        <div className={styles.Cards}>
+        </div>
+        {/* <div className={styles.Cards}>
           {allShoes.map(({ id, name, price, image, brand, enable }) => (
             <>
-              {console.log(allShoes)}
               <Card2
                 key={id}
                 id={id}
@@ -290,7 +294,7 @@ export default function Home() {
 
             
           ))}
-        </div>
+        </div> */}
 
         {/* Paginador */}
         <Paginator
